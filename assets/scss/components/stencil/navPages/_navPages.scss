@@ -44,6 +44,7 @@
     position: absolute;
     right: 0;
     z-index: zIndex("lower");
+    align-self: center;
 
     @include breakpoint("medium") {
         background: transparent;
@@ -102,9 +103,14 @@
 
 .navPages-list {
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
 
     @include breakpoint("medium") {
         display: inline-block;
+    display: flex;
+
         float: none;
     }
 
@@ -187,14 +193,15 @@
     display: block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
-    padding: spacing("half") 0;
+    // padding: spacing("half") 0;
+    padding: 0;
     text-decoration: none;
     text-transform: uppercase;
 
     @include breakpoint("medium") {
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
-
+        padding: 0;
         &.is-open {
             background-color: $navPage-subMenu-item--is-highlighted-background;
         }

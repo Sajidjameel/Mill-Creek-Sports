@@ -10,6 +10,11 @@
         <link href="{{{ head.favicon }}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
         <script nonce="{{nonce}}">
             {{!-- Change document class from no-js to js so we can detect this in css --}}
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -30,6 +35,22 @@
         
         <script nonce="{{nonce}}" async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
+        <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+        />
+        <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+        />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        ></script>
+        
         {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
@@ -54,7 +75,7 @@
 
         {{> components/common/header }}
         {{> components/common/body }}
-        {{> components/common/footer }}
+        {{> components/common/footer-new }}
 
         <script nonce="{{nonce}}">window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script nonce="{{nonce}}">

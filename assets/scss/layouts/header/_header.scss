@@ -45,7 +45,7 @@
     @include breakpoint("medium") {
         border-bottom: container("border");
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         height: auto;
         overflow: visible;
         position: relative;
@@ -63,7 +63,8 @@
 .header-logo {
     font-size: 0;   // 1
     height: $header-height;
-    margin: 0 remCalc($header-toggle-width); // 2
+    // margin: 0 remCalc($header-toggle-width); // 2
+    margin: 0 !important;
     text-align: center;
 
     @include breakpoint("small") { // 4

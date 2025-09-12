@@ -6,6 +6,10 @@
     "product": {}
   },
   "normalStoreUrl": "https://saad.mybigcommerce.com/",
+<<<<<<< HEAD
   "port": "3000",
+=======
+  "port": 3000,
+>>>>>>> bf664fffb02483a0a0da70df8121e1285e7ffaaa
   "packageManager": "npm"
 }

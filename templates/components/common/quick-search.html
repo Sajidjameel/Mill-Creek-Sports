@@ -1,4 +1,90 @@
-<div class="container a">
+<div class="search-bar-container">
+  <form class="search-form" action="{{urls.search}}" data-quick-search-form>
+    <label class="sr-only" for="{{name}}">
+      <!-- {{lang "search.quick_search.input_label"}} -->
+    </label>
+    <input
+      class="search-input"
+      id="{{name}}"
+      name="{{name}}"
+      data-search-quick
+      data-error-message="{{lang 'search.error.empty_field'}}"
+      placeholder="{{lang 'search.quick_search.input_placeholder'}}"
+      autocomplete="off"
+    />
+    <button type="submit" class="search-button" aria-label="Search">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="17"
+        viewBox="0 0 17 17"
+        fill="none"
+      >
+        <path
+          d="M13.4157 12.2324L17 15.8158L15.8158 17L12.2324 13.4157C10.8991 14.4846 9.24062 15.0659 7.53175 15.0635C3.37422 15.0635 0 11.6893 0 7.53175C0 3.37422 3.37422 0 7.53175 0C11.6893 0 15.0635 3.37422 15.0635 7.53175C15.0659 9.24062 14.4846 10.8991 13.4157 12.2324ZM11.737 11.6115C12.7988 10.5191 13.3919 9.05515 13.3898 7.53175C13.3898 4.29561 10.7679 1.67372 7.53175 1.67372C4.29561 1.67372 1.67372 4.29561 1.67372 7.53175C1.67372 10.7679 4.29561 13.3898 7.53175 13.3898C9.05515 13.3919 10.5191 12.7988 11.6115 11.737L11.737 11.6115Z"
+          fill="#0A0A1E"
+        />
+      </svg>
+    </button>
+  </form>
+
+  <section class="quickSearchResults" data-bind="html: results"></section>
+
+  <p
+    role="status"
+    aria-live="polite"
+    class="aria-description--hidden"
+    data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
+  ></p>
+</div>
+
+<style>
+  .search-form {
+    display: flex;
+    align-items: center;
+    border-radius: 9999px; /* fully rounded */
+    background: #eaeaf0;
+    padding: 0 1rem;
+  }
+
+  .search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    height: 48px;
+    font-size: 1rem;
+    outline: none;
+
+    color: rgba(10, 10, 30, 0.9);
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.28px;
+  }
+
+  .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: #333;
+  }
+  .navPages-quickSearch {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+</style>
+
+<!-- <div class="container a">
     <form class="form" data-url="{{urls.search}}" data-quick-search-form>
         <fieldset class="form-fieldset">
             <div class="form-field">
@@ -21,11 +107,4 @@
        data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
     ></p>
 </div>
-
-<style>
-    
-    .form{
-        border-radius: 100px;
-background: #EAEAEF;
-    }
-</style>
+-->

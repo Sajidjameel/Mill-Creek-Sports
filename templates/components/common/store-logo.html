@@ -1,20 +1,46 @@
 <a href="{{urls.home}}" class="header-logo__link" data-header-logo-link>
-    {{#if settings.store_logo.image}}
-        {{#if theme_settings.logo_size '===' 'original'}}
-        <img class="header-logo-image-unknown-size"
-             src="{{getImage settings.store_logo.image 'logo_size'}}"
-             alt="{{settings.store_logo.title}}"
-             title="{{settings.store_logo.title}}">
-        {{else}}
-        <div class="header-logo-image-container">
-            <img class="header-logo-image"
-                 src="{{getImage settings.store_logo.image 'logo_size'}}"
-                 srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
-                 alt="{{settings.store_logo.title}}"
-                 title="{{settings.store_logo.title}}">
-        </div>
-        {{/if}}
-    {{else}}
-    <span class="header-logo-text">{{settings.store_logo.title}}</span>
-    {{/if}}
+  {{#if settings.store_logo.image}} {{#if theme_settings.logo_size '==='
+  'original'}}
+  <img
+    class="header-logo-image-unknown-size"
+    src="{{getImage settings.store_logo.image 'logo_size'}}"
+    alt="{{settings.store_logo.title}}"
+    title="{{settings.store_logo.title}}"
+  />
+  {{else}}
+  <div class="header-logo-image-container">
+    <img
+      class="header-logo-image"
+      src="{{getImage settings.store_logo.image 'logo_size'}}"
+      srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
+      alt="{{settings.store_logo.title}}"
+      title="{{settings.store_logo.title}}"
+    />
+  </div>
+  {{/if}} {{else}}
+  <span class="header-logo-text">{{settings.store_logo.title}}</span>
+  {{/if}}
 </a>
+
+<style>
+  /* Keep header logo visible and a consistent size from desktop down to 800 px */
+  @media (min-width: 801px) {
+    .header-logo,
+    .header-logo__link {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .header-logo img,
+    .header-logo__link img,
+    .header-logo-image,
+    .header-logo-image-unknown-size {
+      max-width: none !important; /* cancel percentage-based shrinking */
+      height: auto;
+      width: 20rem; /* set your preferred desktop width */
+      width: 145px !important;
+      height: 81px !important;
+    }
+  }
+</style>

@@ -458,7 +458,7 @@
     margin-bottom: spacing("half");
 
     @include breakpoint("medium") {
-        display: none;
+        // display: none;
     }
 
     > .container {

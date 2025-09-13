@@ -9,24 +9,22 @@
 
     <ul class="navUser-section navUser-section--alt">
          <li class="navUser-item">
-                        <form class="form self-header-form" onsubmit="return false" data-url="{{urls.search}}" data-quick-search-form>
-        <fieldset class="form-fieldset">
-            <div class="form-field self-header-form-field">
-                <label class="is-srOnly" for="{{name}}">{{lang "search.quick_search.input_label"}}</label>
-                <input class="form-input self-header-form-input"
-                       data-search-quick
-                       name="{{name}}"
-                       id="{{name}}"
-                       data-error-message="{{lang 'search.error.empty_field'}}"
-                       placeholder="What can we help you find?"
-                       autocomplete="off"
-                       >
-                <button class="quickSearch-btn"  type="submit" aria-label="Submit Quick Search">
-                  <svg style="height: 20px; width: 20px;" aria-hidden="true"><use xlink:href="#icon-search"></use></svg>
-                </button>
-            </div>
-        </fieldset>
-    </form>
+             <button class="customer-support-btn">
+                <span class="btn-text">Customer Support</span>
+                 <span class="btn-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="8" viewBox="0 0 15 8" fill="none">
+                        <g clip-path="url(#clip0_1_424)">
+                            <path d="M11.6 2.81254C11.6 2.84546 11.587 2.87704 11.5638 2.90043L8.02771 6.43656C7.88707 6.57715 7.6963 6.65629 7.49744 6.65629C7.29858 6.65628 7.1078 6.57716 6.96716 6.43656L3.43201 2.90043C3.38321 2.85161 3.3832 2.77248 3.43201 2.72367L4.3158 1.83988C4.33918 1.81674 4.37077 1.80376 4.40369 1.80375C4.43683 1.80375 4.46911 1.81645 4.49255 1.83988L7.49841 4.84476L10.5033 1.83988C10.5267 1.81674 10.5583 1.80376 10.5912 1.80375C10.6243 1.80375 10.6566 1.81645 10.6801 1.83988L11.5638 2.72367L11.5902 2.76469C11.5965 2.77973 11.6 2.79594 11.6 2.81254Z"
+                                fill="#0A0A1E" stroke="#0A0A1E" stroke-width="0.25" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_424">
+                            <rect width="7.5" height="15" fill="white" transform="translate(15) rotate(90)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </span>
+            </button>
          </li>
         {{#if customer.store_credit.value '>' 0}}
             <li class="navUser-item">
@@ -60,7 +58,7 @@
             </li>
             <li class="navUser-item navUser-item--divider">|</li>
         {{/if}}
-        <li class="navUser-item">
+        <!-- <li class="navUser-item">
             <button class="navUser-action navUser-action--quickSearch"
                type="button"
                id="quick-search-expand"
@@ -70,7 +68,7 @@
             >
                 {{lang 'common.search'}}
             </button>
-        </li>
+        </li> -->
         {{#if settings.gift_certificates_enabled}}
             <li class="navUser-item">
                 <a class="navUser-action"
@@ -100,17 +98,28 @@
                    href="{{urls.auth.login}}"
                    aria-label="{{lang 'common.login'}}"
                 >
-                    {{lang 'common.login'}}
+                    <!-- {{lang 'common.login'}} -->
+                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_1_419)">
+                                <path d="M4.82599 20.7247C6.02307 19.8628 7.29339 19.1816 8.63694 18.6812C9.97955 18.1798 11.4339 17.9292 13 17.9292C14.566 17.9292 16.0204 18.1798 17.363 18.6812C18.7056 19.1826 19.9759 19.8633 21.1739 20.7233C22.1034 19.7609 22.8512 18.6249 23.4174 17.3151C23.9835 16.0035 24.2666 14.5651 24.2666 13C24.2666 9.87819 23.1695 7.21973 20.9753 5.02461C18.7812 2.82948 16.1227 1.73239 13 1.73333C9.87721 1.73427 7.21875 2.83183 5.02456 5.02601C2.83038 7.2202 1.73329 9.87819 1.73329 13C1.73329 14.5651 2.01636 16.0035 2.58251 17.3151C3.14866 18.6258 3.89649 19.7619 4.82599 20.7233M13.0014 13.7042C11.8146 13.7042 10.8133 13.2967 9.99739 12.4817C9.18149 11.6668 8.77401 10.6664 8.77495 9.48057C8.77589 8.29476 9.18337 7.29343 9.99739 6.4766C10.8114 5.65976 11.8123 5.25229 13 5.25416C14.1876 5.25604 15.1885 5.66352 16.0025 6.4766C16.8165 7.28968 17.224 8.29053 17.225 9.47916C17.2259 10.6678 16.8184 11.6687 16.0025 12.4817C15.1866 13.2948 14.1862 13.7023 13.0014 13.7042ZM13 25.675C11.232 25.675 9.57724 25.3459 8.03558 24.6878C6.49392 24.0296 5.15225 23.1301 4.01056 21.9894C2.86887 20.8486 1.96942 19.507 1.31219 17.9644C0.654973 16.4218 0.325892 14.767 0.324953 13C0.324014 11.233 0.653095 9.57822 1.31219 8.03562C1.97129 6.49303 2.87075 5.15136 4.01056 4.01061C5.15225 2.86986 6.49392 1.9704 8.03558 1.31224C9.57724 0.654077 11.232 0.324997 13 0.324997C14.7679 0.324997 16.4227 0.654077 17.9643 1.31224C19.506 1.9704 20.8477 2.86986 21.9893 4.01061C23.131 5.15136 24.0305 6.49303 24.6877 8.03562C25.3449 9.57822 25.674 11.233 25.675 13C25.6759 14.767 25.3468 16.4218 24.6877 17.9644C24.0286 19.507 23.1292 20.8486 21.9893 21.9894C20.8477 23.1301 19.506 24.0296 17.9643 24.6878C16.4227 25.3459 14.7679 25.675 13 25.675ZM13 24.2667C14.2984 24.2667 15.5758 24.0395 16.832 23.585C18.0883 23.1315 19.1741 22.51 20.0895 21.7204C19.175 20.9852 18.1164 20.4045 16.9137 19.9783C15.711 19.552 14.4064 19.3384 13 19.3375C11.5935 19.3366 10.2842 19.5455 9.07211 19.9642C7.86001 20.3829 6.80563 20.9683 5.909 21.7204C6.82441 22.5091 7.91071 23.1306 9.16788 23.585C10.4251 24.0395 11.7024 24.2667 13 24.2667ZM13 12.2958C13.7905 12.2958 14.4576 12.024 15.0012 11.4804C15.5448 10.9368 15.8166 10.2697 15.8166 9.47916C15.8166 8.68862 15.5448 8.02154 15.0012 7.47792C14.4576 6.93431 13.7905 6.6625 13 6.6625C12.2094 6.6625 11.5423 6.93431 10.9987 7.47792C10.4551 8.02154 10.1833 8.68862 10.1833 9.47916C10.1833 10.2697 10.4551 10.9368 10.9987 11.4804C11.5423 12.024 12.2094 12.2958 13 12.2958Z" fill="#0A0A1E"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1_419">
+                                <rect width="26" height="26" fill="white"/>
+                                </clipPath>
+                            </defs>
+                    </svg>
                 </a>
-                {{#if settings.account_creation_enabled}}
+                <!-- {{#if settings.account_creation_enabled}}
                     <span class="navUser-or">{{lang 'common.or'}}</span>
                     <a class="navUser-action"
                        href="{{urls.auth.create_account}}"
                        aria-label="{{lang 'common.sign_up'}}"
                     >
                         {{lang 'common.sign_up'}}
+                         
                     </a>
-                {{/if}}
+                {{/if}} -->
             {{/if}}
         </li>
         <li class="navUser-item navUser-item--cart">
@@ -121,8 +130,11 @@
                href="{{urls.cart}}"
                aria-label="{{lang 'cart.nav_aria_label'}}"
             >
-                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
-                <span class="countPill cart-quantity"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 27 26" fill="none">
+                <path d="M24.3953 7.04474H19.1953V6.79545C19.1953 5.27479 18.5952 3.81641 17.5271 2.74114C16.4591 1.66587 15.0104 1.06179 13.5 1.06179C11.9895 1.06179 10.5408 1.66587 9.47276 2.74114C8.40468 3.81641 7.80464 5.27479 7.80464 6.79545V7.04474H2.60457C2.14486 7.04474 1.70397 7.2286 1.3789 7.55585C1.05384 7.88311 0.871216 8.32696 0.871216 8.78977V23.7472C0.871216 24.21 1.05384 24.6538 1.3789 24.9811C1.70397 25.3083 2.14486 25.4922 2.60457 25.4922H24.3953C24.855 25.4922 25.2959 25.3083 25.621 24.9811C25.9461 24.6538 26.1287 24.21 26.1287 23.7472V8.78977C26.1287 8.32696 25.9461 7.88311 25.621 7.55585C25.2959 7.2286 24.855 7.04474 24.3953 7.04474ZM9.29037 6.79545C9.29037 5.67149 9.73388 4.59355 10.5233 3.79879C11.3128 3.00402 12.3835 2.55753 13.5 2.55753C14.6164 2.55753 15.6871 3.00402 16.4766 3.79879C17.266 4.59355 17.7095 5.67149 17.7095 6.79545V7.04474H9.29037V6.79545ZM24.643 23.7472C24.643 23.8133 24.6169 23.8767 24.5704 23.9234C24.524 23.9702 24.461 23.9964 24.3953 23.9964H2.60457C2.5389 23.9964 2.47591 23.9702 2.42948 23.9234C2.38304 23.8767 2.35695 23.8133 2.35695 23.7472V8.78977C2.35695 8.72366 2.38304 8.66025 2.42948 8.6135C2.47591 8.56675 2.5389 8.54048 2.60457 8.54048H7.80464V10.7841C7.80464 10.9824 7.88291 11.1727 8.02222 11.3129C8.16153 11.4532 8.35049 11.532 8.54751 11.532C8.74453 11.532 8.93348 11.4532 9.07279 11.3129C9.21211 11.1727 9.29037 10.9824 9.29037 10.7841V8.54048H17.7095V10.7841C17.7095 10.9824 17.7878 11.1727 17.9271 11.3129C18.0664 11.4532 18.2554 11.532 18.4524 11.532C18.6494 11.532 18.8384 11.4532 18.9777 11.3129C19.117 11.1727 19.1953 10.9824 19.1953 10.7841V8.54048H24.3953C24.461 8.54048 24.524 8.56675 24.5704 8.6135C24.6169 8.66025 24.643 8.72366 24.643 8.78977V23.7472Z" fill="#0A0A1E"/>
+            </svg>
+                <!-- <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill cart-quantity"></span> -->
             </a>
 
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
@@ -132,20 +144,50 @@
         {{> components/common/quick-search name='nav-quick-search'}}
     </div>
 </nav>
-<style>
 
-    
-    .quickSearch-btn {
-        width: 47px;
-        height: 47px;
-        padding: 12px;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-     .quickSearch-btn svg {
-            fill: #000000;
-            width: 100%;
-            height: 100%;
-        }
-        </style>
+
+<style>
+.customer-support-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                  /* space between text and arrow */
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--Dark-Overlay, #0A0A1E);
+  background: transparent;
+  cursor: pointer;
+}
+
+.customer-support-btn .btn-text {
+  color: var(--Dark-Overlay, #0A0A1E);
+  text-align: right;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.customer-support-btn .btn-arrow svg {
+    width: 18px;
+    height: 10px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 2;
+}
+.navUser-action{
+    padding: 0;
+}
+.navUser-section--alt{
+    display: flex;
+    align-items: center;
+    gap:25px;
+}
+.navUser-section--alt > * {
+    margin: 0;   /* test reset */
+    padding: 0;
+}
+
+.navUser{
+    align-self: center;
+}
+</style>

@@ -19,33 +19,71 @@
 {{/if}}
 <div class="container">
   <header class="header" role="banner">
-    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
-      <span class="mobileMenu-toggleIcon">Toggle menu</span>
-    </a>
-    <!-- <a href="" class="mobile-second">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
-      fill="none"
-    >
-      <g clip-path="url(#clip0_1_1560)">
-        <path
-          d="M1.56775 7.69271H19.4323M5.76439 3.09896V1.05729M15.2071 3.09896V1.05729M15.8594 3.09896H5.14067C4.19307 3.09896 3.28428 3.47539 2.61423 4.14544C1.94418 4.81549 1.56775 5.72428 1.56775 6.67187V16.3698C1.56775 17.3174 1.94418 18.2262 2.61423 18.8962C3.28428 19.5663 4.19307 19.9427 5.14067 19.9427H15.8594C16.807 19.9427 17.7158 19.5663 18.3858 18.8962C19.0559 18.2262 19.4323 17.3174 19.4323 16.3698V6.67187C19.4323 5.72428 19.0559 4.81549 18.3858 4.14544C17.7158 3.47539 16.807 3.09896 15.8594 3.09896Z"
-          stroke="#0A0A1E"
-          stroke-width="1.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_1_1560">
-          <rect width="21" height="21" fill="white" />
-        </clipPath>
-      </defs>
-    </svg>
-  </a> -->
+    <!-- Mobile Menu icons -->
+    <div class="mobile-menus-in-div">
+      <a
+        href="#"
+        class="mobileMenu mobileMenu--one"
+        data-mobile-menu-toggle="menu"
+      >
+        <div class="mobileMenu-toggleIcon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="21"
+            viewBox="0 0 28 21"
+            fill="none"
+          >
+            <path
+              d="M25.8125 2.625H2.1875M11.375 10.5H2.1875M11.375 18.375H2.1875"
+              stroke="#1F1F1F"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20.5625 18.375C22.7371 18.375 24.5 16.6121 24.5 14.4375C24.5 12.2629 22.7371 10.5 20.5625 10.5C18.3879 10.5 16.625 12.2629 16.625 14.4375C16.625 16.6121 18.3879 18.375 20.5625 18.375Z"
+              stroke="#1F1F1F"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M25.8125 19.6875L23.3187 17.1938"
+              stroke="#1F1F1F"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </a>
+
+      <a href="#" class="mobileMenu mobileMenu--two" aria-label="Search">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="21"
+          viewBox="0 0 21 21"
+          fill="none"
+        >
+          <g clip-path="url(#clip0_1_1560)">
+            <path
+              d="M1.56775 7.69271H19.4323M5.76439 3.09896V1.05729M15.2071 3.09896V1.05729M15.8594 3.09896H5.14067C4.19307 3.09896 3.28428 3.47539 2.61423 4.14544C1.94418 4.81549 1.56775 5.72428 1.56775 6.67187V16.3698C1.56775 17.3174 1.94418 18.2262 2.61423 18.8962C3.28428 19.5663 4.19307 19.9427 5.14067 19.9427H15.8594C16.807 19.9427 17.7158 19.5663 18.3858 18.8962C19.0559 18.2262 19.4323 17.3174 19.4323 16.3698V6.67187C19.4323 5.72428 19.0559 4.81549 18.3858 4.14544C17.7158 3.47539 16.807 3.09896 15.8594 3.09896Z"
+              stroke="#0A0A1E"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_1_1560">
+              <rect width="21" height="21" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+    </div>
 
     {{#if page_type '===' 'default'}}
     <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
@@ -68,17 +106,179 @@
 {{{region name="header_bottom--global"}}} {{{region name="header_bottom"}}}
 
 <style>
-  @media (min-width: 801px) {
-    .header {
-      justify-content: space-between;
-    }
-  }
-  .mobile-second {
+  .mobileMenu,
+  .skip-to-main-link {
     display: none;
   }
-  @media (max-width: 801px) {
-    .mobile-second {
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    height: 100px;
+  }
+  .header-logo {
+    margin: 0;
+  }
+  .navPages-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .navUser {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .navUser-section {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .navPages-container {
+    /* it was in scss so adjusted here */
+    height: 22px;
+  }
+
+  @media (max-width: 769px) {
+    .mobileMenu {
       display: block;
     }
+    .header {
+      margin-bottom: 100px;
+    }
+    .mobile-menus-in-div,
+    .navUser-section {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .header-logo-image-container {
+      width: 178px; /* fixed container width */
+      height: 100px; /* fixed container height */
+    }
+
+    .header-logo-image-container img,
+    .header-logo-image {
+      width: 178px !important; /* force image width */
+      height: 100px !important; /* force image height */
+      object-fit: contain; /* keep aspect ratio inside the box */
+    }
+  }
+
+  @media (max-width: 570px) {
+    /* MOBILE MENU IMG */
+    .header-logo-image-container {
+      width: 78px;
+      height: 44px;
+    }
+    .header-logo-image-container img,
+    .header-logo-image {
+      width: 78px !important;
+      height: 44px !important;
+      object-fit: contain;
+    }
+  }
+  /* MOBILE MENU SVG'S */
+  .navUser-item .navUser-action svg,
+  .mobileMenu svg {
+    width: 40px;
+    height: 40px;
+  }
+  @media (max-width: 500px) {
+    .header {
+      height: 50px;
+      gap: 30px;
+    }
+    /* MOBILE MENU IMG */
+    .header-logo-image-container {
+      width: 78px;
+      height: 44px;
+    }
+    .header-logo-image-container img,
+    .header-logo-image {
+      width: 78px !important;
+      height: 44px !important;
+      object-fit: contain;
+    }
+
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .navPage-subMenu-item {
+    padding: 0px !important;
+    width: 50%;
+    float: left;
+    margin: 1px !important;
+
+    list-style-type: none;
+  }
+
+  /* Force vertical scrollbar to show */
+  .navPage-subMenu.is-open .navPage-subMenu-list {
+    max-height: 50vh; /* or whatever height you need */
+    overflow-y: scroll !important; /* always show, not just auto */
+    overflow-x: hidden;
+
+    /* For Firefox */
+    scrollbar-width: 10px; /* make it thin */
+    scrollbar-color: red; /* thumb, track */
+  }
+
+  /* WebKit browsers (Chrome, Edge, Safari) */
+  .navPage-subMenu.is-open .navPage-subMenu-list::-webkit-scrollbar {
+    width: 8px; /* scrollbar width */
+  }
+
+  .navPage-subMenu.is-open .navPage-subMenu-list::-webkit-scrollbar-track {
+    background: #fff; /* track color */
+
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .navPage-subMenu.is-open .navPage-subMenu-list::-webkit-scrollbar-thumb {
+    background: #21205f;
+    width: 3px;
+    max-height: 15vh;
+    min-height: 1vh;
+    border-radius: 10px; /* rounded thumb */
+    border: 1px solid #e0e0e0;
+  }
+  .navPage-subMenu-list {
+    background: #e0e0e0;
+    width: 300px;
+    padding-left: 33px;
+
+    margin: 0;
+    list-style-type: none;
+  }
+  ul {
+    margin: 0;
+  }
+  .navPage-subMenu {
+    width: 175% !important;
+
+    border-radius: 10px;
+    border: 1px solid var(--Gray-5, #e0e0e0);
+    background: var(--White, #fff);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+  }
+  .navPage-subMenu-item > .navPage-subMenu-action {
+    margin-bottom: 0;
   }
 </style>

@@ -1,8 +1,25 @@
-<div class="body" id="main-content" data-currency-code="{{currency_selector.active_currency_code}}">
-    {{#block "hero"}} {{/block}}
-    <div>
-        {{#block "page"}} {{/block}}
-    </div>
-    {{> components/common/modal/modal}}
-    {{> components/common/alert/alert-modal}}
+<div
+  class="body"
+  id="main-content"
+  data-currency-code="{{currency_selector.active_currency_code}}"
+>
+  {{#block "hero"}} {{/block}}
+  <div>{{#block "page"}} {{/block}}</div>
+  {{> components/common/modal/modal}} {{> components/common/alert/alert-modal}}
 </div>
+<style>
+  .body {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    padding: 0;
+
+    margin: 0;
+  }
+  .main-content {
+    padding: 0;
+
+    margin: 0;
+  }
+</style>

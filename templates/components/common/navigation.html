@@ -9,7 +9,7 @@
   </div>
 
   <ul class="navUser-section navUser-section--alt">
-    <li class="navUser-item">
+    <li class="navUser-item navUser-item--customer-support">
       <button class="customer-support-btn">
         <span class="btn-text">Customer Support</span>
         <span class="btn-arrow">
@@ -67,36 +67,12 @@
         store_credit=customer.store_credit.formatted}}}
       </div>
     </li>
-    {{/if}}
-    <li class="navUser-item">
-      <a
-        class="navUser-action navUser-item--compare"
-        href="{{urls.compare}}"
-        data-compare-nav
-        aria-label="{{lang 'common.compare'}}"
-      >
-        {{lang 'common.compare'}}
-        <span class="countPill countPill--positive countPill--alt"></span>
-      </a>
-    </li>
-    {{#if theme_settings.social_icon_placement_top}}
+    {{/if}} {{#if theme_settings.social_icon_placement_top}}
     <li class="navUser-item navUser-item--social">
       {{> components/common/social-links}}
     </li>
     <li class="navUser-item navUser-item--divider">|</li>
-    {{/if}}
-    <!-- <li class="navUser-item">
-            <button class="navUser-action navUser-action--quickSearch"
-               type="button"
-               id="quick-search-expand"
-               data-search="quickSearch"
-               aria-controls="quickSearch"
-               aria-label="{{lang 'common.search'}}"
-            >
-                {{lang 'common.search'}}
-            </button>
-        </li> -->
-    {{#if settings.gift_certificates_enabled}}
+    {{/if}} {{#if settings.gift_certificates_enabled}}
     <li class="navUser-item">
       <a
         class="navUser-action"
@@ -150,16 +126,6 @@
           </defs>
         </svg>
       </a>
-      <!-- {{#if settings.account_creation_enabled}}
-                    <span class="navUser-or">{{lang 'common.or'}}</span>
-                    <a class="navUser-action"
-                       href="{{urls.auth.create_account}}"
-                       aria-label="{{lang 'common.sign_up'}}"
-                    >
-                        {{lang 'common.sign_up'}}
-                         
-                    </a>
-                {{/if}} -->
       {{/if}}
     </li>
     <li class="navUser-item navUser-item--cart">
@@ -183,8 +149,6 @@
             fill="#0A0A1E"
           />
         </svg>
-        <!-- <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
-                <span class="countPill cart-quantity"></span> -->
       </a>
 
       <div
@@ -232,63 +196,5 @@
     height: 10px;
     flex-shrink: 0;
     aspect-ratio: 1 / 2;
-  }
-  .navUser-action {
-    padding: 0;
-  }
-
-  .navUser-section--alt > * {
-    margin: 0; /* test reset */
-    padding: 0;
-  }
-
-  .navUser {
-    align-self: center;
-    display: flex;
-    align-items: center;
-  }
-</style>
-<style>
-  /* Main nav: parent that holds search + user links */
-  .navUser {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* space between the two main children */
-    justify-content: flex-start; /* prevent extra space distribution */
-    padding-left: 0 !important; /* override SCSS padding */
-    padding-right: 0 !important;
-  }
-
-  /* Horizontal list of icons/links */
-  .navUser-section.navUser-section--alt {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* only space between list items */
-    margin: 0; /* remove default UL margin */
-    padding: 0; /* remove default UL padding */
-    list-style: none; /* no bullets */
-    justify-content: flex-start;
-    width: max-content; /* shrink-wrap children so gap doesn't add edge space */
-  }
-
-  /* Reset any browser default li margin */
-  .navUser-section.navUser-section--alt > li {
-    margin: 0;
-  }
-
-  /* Optional: if higher-level wrappers add padding */
-  .header,
-  .container,
-  .header-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  @media (max-width: 801px) {
-    .navPages-quickSearch {
-      display: none;
-    }
-    .navUser-item--account {
-      display: block;
-    }
   }
 </style>

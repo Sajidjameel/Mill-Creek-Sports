@@ -10,16 +10,17 @@
       components/common/navigation-list-alternate}} {{/if}}
     </li>
     {{/each}} {{#unless theme_settings.hide_content_navigation}} {{#each pages}}
+    {{#unless name '===' 'Blog'}}
     <li class="navPages-item navPages-item-page">
       <a
         class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}"
         href="{{url}}"
         aria-label="{{name}}"
       >
-<span class="name-styling">{{name}}</span>
+        <span class="name-styling">{{name}}</span>
       </a>
     </li>
-    {{/each}} {{/unless}}
+    {{/unless}} {{/each}} {{/unless}}
   </ul>
 </nav>
 

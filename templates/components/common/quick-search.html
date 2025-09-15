@@ -36,9 +36,10 @@
 </div>
 
 <style>
-  /* fixed outer width */
-  .search-bar-container.navPages-quickSearch {
-    width: 400px; /* total width you wanted */
+  .search-bar-container {
+    width: 100%;
+    min-width: 200px;
+    max-width: 400px;
     border: none;
     margin-bottom: none;
   }
@@ -47,23 +48,24 @@
     border: none !important;
     border-bottom: none !important;
   }
+  .navPages-quickSearch {
+    margin-bottom: 0px;
+  }
 
-  /* flex layout with explicit spacing between the input and button */
   .search-form {
     display: flex;
     align-items: center;
-    /* justify-content: space-between;
-    gap: 180px;  */
+    justify-content: space-between;
+    gap: 10px;
     border-radius: 9999px;
     background: #eaeaf0;
     padding: 0 1rem;
   }
 
-  /* input takes all the remaining space so placeholder spans full line */
   .search-input {
     flex: 1;
     flex: 1 1 auto;
-    min-width: 0; /* important so flex-gap works precisely */
+    min-width: 0;
     border: none;
     background: transparent;
     height: 48px;
@@ -71,11 +73,8 @@
     font-weight: 300;
     line-height: 150%;
     letter-spacing: -0.28px;
-    white-space: nowrap; /* ensure placeholder never wraps */
-    overflow: hidden; /* optional */
-  }
-  .search-input {
-    padding-right: 180px; /* adds internal spacing for the icon */
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .search-button {

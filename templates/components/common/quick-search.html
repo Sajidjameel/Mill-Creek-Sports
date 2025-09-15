@@ -36,6 +36,9 @@
 </div>
 
 <style>
+  .quickSearchResults {
+    margin: 0;
+  }
   .search-bar-container {
     width: 100%;
     min-width: 200px;
@@ -85,7 +88,47 @@
     align-items: center;
     padding: 0;
   }
-  @media (max-width: 768px) {
+
+  @media (min-width: 1350px) {
+    .navPages-quickSearch {
+      width: 320px;
+    }
+  }
+
+  @media (min-width: 1300px) and (max-width: 1350px) {
+    .navPages-quickSearch {
+      width: 260px;
+    }
+  }
+  @media (min-width: 1250px) and (max-width: 1300px) {
+    .navPages-quickSearch {
+      width: 230px;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1250px) {
+    .search-bar-container {
+      width: 35px;
+      min-width: 35px;
+      max-width: 35px;
+    }
+    .search-input {
+      display: none;
+    }
+    .search-form {
+      background: white;
+      justify-content: center;
+      padding: 8px 5px;
+      border-radius: 50%;
+    }
+    .customer-support-btn {
+      padding: 8px 10px;
+    }
+    .search-button svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  @media (max-width: 992px) {
     .navPages-quickSearch,
     .navUser-item--customer-support {
       display: none !important;

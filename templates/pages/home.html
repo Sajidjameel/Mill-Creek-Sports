@@ -23,12 +23,11 @@ blog:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-<div class="main full" style="display: none;">
+<div class="main full" style="display: none;" >
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
     {{{region name="home_below_featured_products"}}}
-    {{> components/home-sections/home-shop-top-products/home-shop-top-products}}
 
     {{#if products.top_sellers}}
         {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
@@ -44,6 +43,7 @@ blog:
 <div class="main full">
     {{region name='home-sports-categories'}}
     {{region name='home-shopby-category'}}
+    {{> components/home-sections/home-shop-top-products/home-shop-top-products}}
     {{region name='home-featured-players'}}
     {{region name='home-upcoming-events'}}
     {{region name='past-event-highlight'}}
@@ -54,3 +54,9 @@ blog:
 </div>
 {{/partial}}
 {{> layout/base}}
+{{~inject "products" products}}
+
+<script>
+    var context = JSON.parse({{jsContext}})
+    console.log(context,'context')
+</script>

@@ -3,162 +3,61 @@
         <div class="stp-header">
             <h1 class="stp-title">Shop Top Products</h1>
             <div class="stp-filters">
-                <button class="stp-filter-badge stp-active">New</button>
-                <button class="stp-filter-badge">Featured</button>
-                <button class="stp-filter-badge">Best Sellers</button>
+                <button class="stp-filter-badge stp-filter-badge-new stp-active" onclick="newProducts()">New</button>
+                <button class="stp-filter-badge stp-filter-badge-featured" onclick="featuredProducts()">Featured</button>
+                <button class="stp-filter-badge stp-filter-badge-best-seller" onclick="topSellers()">Best Sellers</button>
             </div>
         </div>
 
         <div class="stp-products-grid">
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-1">
-                </div>
+            {{#each products.new}}
+            <div class="stp-product-card new-products">
+                <img src="{{getImage image '400x400'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
                     <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497
+                        <div class="stp-product-brand">{{name}}</div>
+                        <div class="stp-product-title">{{description}}
                         </div>
-                        <div class="stp-product-price">$149.00</div>
+                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
                     </div>
+                    <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                 </div>
             </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-2">
-                </div>
+            {{/each}}
+             {{#each products.top_sellers}}
+            <div class="stp-product-card top-sellers-products d-none">
+                <img src="{{getImage image '400x500'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
                     <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Ken Griffey Jr.</div>
-                        <div class="stp-product-title">Ken Griffey Jr. Autographed 2008 Florida Marlins HR #600 Ticket
-                            Stub Mariners PSA 6 Auto Grade Gem Mint 10 "600th HR!" PSA/DNA #92328123</div>
-                        <div class="stp-product-price stp-product-sale-price">
-                            <span class="stp-original-price">$500.00</span>
-                            <span class="stp-dicount-price">$600.00</span>
-                            <span class="stp-sale-badge">Sale</span>
+                        <div class="stp-product-brand">{{name}}</div>
+                        <div class="stp-product-title">{{description}}
                         </div>
+                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
                     </div>
+                    <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                 </div>
             </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-3">
-                </div>
+            {{/each}}
+             {{#each products.featured}}
+            <div class="stp-product-card featured-products d-none">
+                <img src="{{getImage image '400x500'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
                     <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-4">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-5">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART </button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-1">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497
+                        <div class="stp-product-brand">{{name}}</div>
+                        <div class="stp-product-title">{{description}}
                         </div>
-                        <div class="stp-product-price">$149.00</div>
+                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
                     </div>
+                    <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                 </div>
             </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-2">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Ken Griffey Jr.</div>
-                        <div class="stp-product-title">Ken Griffey Jr. Autographed 2008 Florida Marlins HR #600 Ticket
-                            Stub Mariners PSA 6 Auto Grade Gem Mint 10 "600th HR!" PSA/DNA #92328123</div>
-                        <div class="stp-product-price stp-product-sale-price">
-                            <span class="stp-original-price">$500.00</span>
-                            <span class="stp-dicount-price">$600.00</span>
-                            <span class="stp-sale-badge">Sale</span>
-                        </div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-3">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-4">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
-
-            <div class="stp-product-card">
-                <div class="stp-product-image stp-img-5">
-                </div>
-                <div class="stp-product-info">
-                    <div class="stp-product-info-container">
-                        <div class="stp-product-brand">Largent, Steve</div>
-                        <div class="stp-product-title">Seattle Seahawks Steve Largent Autographed Blue Reebok Jersey MCS
-                            Holo #88497</div>
-                        <div class="stp-product-price">$149.00</div>
-                    </div>
-                    <button class="stp-add-to-cart">ADD TO CART </button>
-                </div>
-            </div>
+            {{/each}}
 
         </div>
 
@@ -372,7 +271,7 @@
         align-items: center;
         flex-direction: column;
         gap: 5px;
-        min-height: 285px;
+        min-height: 240px;
     }
 
     .stp-product-info-container {
@@ -530,9 +429,13 @@
         }
 
     }
+    .d-none{
+        display: none !important;
+    }
 </style>
 
 <script>
+    console.log($('.stp-products-grid'))
     $('.stp-products-grid').slick({
         infinite: false,
         arrows: true,
@@ -574,20 +477,21 @@
     }
      function getSlidesToShow() {
         if (isDesktop()) {
-            return 3.5
+            return 4;
         }
         if (isTablet()) {
-            return 1.5
+            return 2;
         }
         if (isMobile()) {
-            return 1.5
+            return 2;
         }
     }
-    var playersSTP = document.querySelectorAll('.stp-product-card')
-    var slidesSTP = getSlidesToShow()
-    console.log(slidesSTP)
-    var displaySlidesSTP = slidesSTP
-    var playersLengthSTP = playersSTP.length
+
+    var playersSTP = document.querySelectorAll('.stp-product-card');
+    var slidesSTP = getSlidesToShow();
+    console.log(slidesSTP);
+    var displaySlidesSTP = slidesSTP;
+    var playersLengthSTP = playersSTP.length;
     var percentageSTP = (slidesSTP * 100) / playersLengthSTP;
 
     var progressBarSTP = document.querySelector('.stp-container .fp-progress-fill')
@@ -609,13 +513,50 @@
         document.querySelector('.stp-container .slick-prev.slick-arrow')?.click()
     }
 
-
-
-
+    
     document.querySelectorAll('.stp-filter-badge').forEach(badge => {
         badge.addEventListener('click', function () {
             document.querySelectorAll('.stp-filter-badge').forEach(b => b.classList.remove('stp-active'));
             this.classList.add('stp-active');
         });
     });
+
+    const topSellers=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        topSellersProducts.forEach((p)=>p.classList.remove('d-none'))
+        
+        newProducts.forEach((e)=>e.classList.add('d-none'));
+        if(featuredProducts){
+            featuredProducts.foreach((e)=>e.classList.add('d-none'));
+        }
+    }
+     const newProducts=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        newProducts.forEach((e)=>e.classList.remove('d-none'));
+        if(featuredProducts){
+            featuredProducts.foreach((e)=>e.classList.add('d-none'));
+        }
+    }
+     const featuredProducts=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        newProducts.forEach((e)=>e.classList.add('d-none'));
+        if(featuredProducts){
+            featuredProducts.foreach((e)=>e.classList.remove('d-none'));
+        }
+    }
+
+
+    
+    
 </script>

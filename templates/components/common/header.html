@@ -1,3 +1,16 @@
+<style>
+    .announcement-bar {
+        position: relative;
+        z-index: 11;
+    }
+</style>
+<div class="linear-gradient-bg"></div>
+<div class="announcement-bar">
+    {{region name='announcement-bar'}}
+</div>
+
+
+
 <a href="#main-content" class="skip-to-main-link"
   >{{lang 'header.skip_to_main'}}</a
 >
@@ -106,11 +119,11 @@
 {{{region name="header_bottom--global"}}} {{{region name="header_bottom"}}}
 
 <style>
-  .navPage-subMenu-item a {
-    display: inline-block;
-    width: 100%;
-    white-space: nowrap;
-  }
+    div#main-content {
+        z-index: unset;
+    }
+
+
   .skip-to-main-link {
     display: none;
   }
@@ -218,69 +231,19 @@
     margin-bottom: 0;
   }
 
-  @media (min-width: 1250px) {
+  @media (min-width: 1250px) and (max-width: 1300px) {
     .header {
       gap: 20px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-  }
-  @media (min-width: 993px) and (max-width: 1250px) {
-    .header {
-      gap: 20px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-  }
-  @media (min-width: 993px) and (max-width: 1060px) {
-    .navUser-section {
-      gap: 18px;
-    }
-    .header {
-      gap: 15px;
-    }
-    .navUser {
-      gap: 20px;
-    }
-    .navPages-action {
-      font-size: 14px;
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     /* dont display above  768; */
     .mobile-menus-in-div {
       display: none;
     }
   }
-  @media (max-width: 992px) {
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 35px;
-      height: 35px;
-    }
-    .header {
-      height: 80px;
-    }
-    .navPages-container {
-      display: none;
-    }
+  @media (max-width: 768px) {
     .mobile-menus-in-div,
     .navUser-section {
       display: flex;
@@ -290,49 +253,30 @@
 
     .header {
       margin-bottom: 6px;
-      margin-top: 6px;
     }
 
     .header-logo-image-container {
-      width: 145px;
-      height: 75px;
+      width: 178px;
+      height: 100px;
     }
 
     .header-logo-image-container img,
     .header-logo-image {
-      width: 135px !important;
-      height: 71px !important;
-      /* width: 178px !important;
-      height: 100px !important; */
+      width: 178px !important;
+      height: 100px !important;
       object-fit: contain;
     }
   }
 
-  @media (min-width: 570px) and (max-width: 768px) {
-    .header {
-      height: 56px;
-      gap: 30px;
-    }
-
-    .header-logo-image-container {
-      width: 90px;
-      height: 50px;
-    }
-    .header-logo-image-container img,
-    .header-logo-image {
-      width: 110px !important;
-      height: 60px !important;
-      object-fit: contain;
-    }
-
+  @media (max-width: 550px) {
     .navUser-item .navUser-action svg,
     .mobileMenu svg {
-      width: 28px;
-      height: 28px;
+      width: 35px;
+      height: 35px;
     }
   }
 
-  @media (max-width: 570px) {
+  @media (max-width: 500px) {
     .header {
       height: 50px;
       gap: 30px;
@@ -362,4 +306,6 @@
       gap: 15px;
     }
   }
+
+  
 </style>

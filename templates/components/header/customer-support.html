@@ -1,0 +1,299 @@
+<style>
+    .support-container {
+        overflow: hidden;
+        border-radius: 10px;
+
+        background: var(--White, #FFF);
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+        position: absolute;
+        top: -6px;
+        right: 0;
+        z-index: 1;
+        width: 303px;
+        display: none;
+    }
+
+    .border-blue {
+        border: 1px solid var(--Gray-5, #E0E0E0);
+    }
+
+    /* 👇 parent reference ke sath child classes */
+    .support-container .support-header {
+        background-color: #f7f7f7;
+        padding: 12px 16px;
+        border-bottom: 1px dashed #BDBDBD;
+    }
+
+    .support-container .support-title {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        color: var(--Dark-Overlay, #0A0A1E);
+        text-align: center;
+        font-family: "Noto Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+        text-transform: capitalize;
+    }
+
+    .support-container span.arrow {
+        position: relative;
+        bottom: 2px;
+    }
+
+    .support-container .arrow {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .support-container .support-content {
+        padding: 27px 5px 7px 5px;
+        text-align: center;
+    }
+
+    .support-container .main-heading {
+        color: var(--Mill-Creek-Blue, #21205F);
+        text-align: center;
+        font-family: "Noto Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: -0.32px;
+        margin: 0px 0px 12px 0px;
+    }
+
+
+    /* .support-container .sub-heading-paragraphs {
+    color: var(--Dark-Overlay, #0A0A1E);
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-transform: capitalize;
+    color: var(--Dark-Overlay, #0A0A1E);
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-transform: capitalize;
+    width: 223px;
+    height: 103px;
+    flex-shrink: 0;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+} */
+    .support-container .sub-heading {
+        font-size: 15px;
+        color: #0A0A1E;
+        margin-bottom: 2px;
+    }
+
+    p.availability {
+        font-size: 15px;
+        color: #0A0A1E;
+        margin-bottom: 7px;
+        margin-top: 3px;
+    }
+
+    .support-container .sub-heading-paragraphs {
+        color: var(--Dark-Overlay, #0A0A1E);
+        text-align: center;
+        font-family: "Noto Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+        text-transform: capitalize;
+    }
+
+    .support-container .contact-info {
+        margin-bottom: 13px;
+    }
+
+    .support-container .phone-number {
+        font-size: 14px;
+        color: #0A0A1E;
+        /* color: #333333; */
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+
+    span.number-bold-span {
+        font-weight: 700;
+        font-size: 16px;
+        margin-left: 2px;
+    }
+
+    .support-container .email {
+        font-size: 13px;
+        /* color: #0066cc; */
+        color: #0A0A1E;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    .support-container .email:hover {
+        text-decoration: underline;
+    }
+
+    .support-container .menu-links {
+        list-style: none;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .support-container .menu-links li {
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .support-container .menu-links li:last-child {
+        border-bottom: none;
+        padding-bottom: 20px;
+    }
+
+    .support-container .menu-links a {
+        text-decoration: none;
+        color: #0A0A1E;
+        font-size: 15px;
+    }
+
+    .support-container .menu-links a:hover {
+        color: #0066cc;
+    }
+
+    .support-container .address-section {
+        padding: 14px 20px 10px 25px;
+        color: white;
+        display: flex;
+        gap: 4px;
+        background: var(--Tan-Background, #F2F0EC);
+    }
+
+    .support-container .location-icon {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        margin-right: 8px;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .support-container .location-icon::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        background-color: #2c3e50;
+        border-radius: 50%;
+    }
+
+    .support-container .address {
+        color: var(--Dark-Overlay, #0A0A1E);
+        text-align: center;
+        font-family: "Noto Sans";
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+        text-transform: capitalize;
+        width: 100%;
+        padding: 0;
+        position: relative;
+        right: 18px;
+    }
+
+    .support-container .contact-button {
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: "Noto Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: -0.28px;
+        text-transform: uppercase;
+        display: flex;
+        width: 100%;
+        padding: 13px 28px 14px 30px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 0 0 10px 10px;
+        background: var(--Dark-Overlay, #0A0A1E);
+        max-width: 303px;
+        border: none;
+    }
+</style>
+
+
+<div class="support-container">
+    <div class="border-blue">
+        <div class="support-header">
+            <div class="support-title">
+                Customer Support
+                <span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 9 6"
+                        fill="none">
+                        <path
+                            d="M8.59961 4.68747C8.5996 4.65455 8.58662 4.62297 8.56348 4.59958L5.02734 1.06345C4.8867 0.922859 4.69593 0.84372 4.49707 0.84372C4.29821 0.84373 4.10743 0.922852 3.9668 1.06345L0.431641 4.59958C0.382844 4.6484 0.382832 4.72753 0.431641 4.77634L1.31543 5.66013C1.33882 5.68327 1.3704 5.69625 1.40332 5.69626C1.43646 5.69626 1.46875 5.68356 1.49219 5.66013L4.49805 2.65524L7.50293 5.66013C7.52632 5.68327 7.5579 5.69625 7.59082 5.69626C7.62396 5.69626 7.65625 5.68356 7.67969 5.66013L8.56348 4.77634L8.58984 4.73532C8.59608 4.72028 8.59961 4.70407 8.59961 4.68747Z"
+                            fill="#961414" stroke="#961414" stroke-width="0.25" stroke-linejoin="round" />
+                    </svg></span>
+            </div>
+        </div>
+
+        <div class="support-content">
+            <h2 class="main-heading">Have a Question or Need Help?</h2>
+            <div class="sub-heading-paragraphs">
+                <p class="sub-heading">Our Team is Here for You!</p>
+                <p class="availability">Reach Out Anytime.</p>
+                <div class="contact-info">
+                    <div class="phone-number">Call or Text at <span class="number-bold-span">(425) 745-8500</span>
+                    </div>
+                    <a href="mailto:Sales@Millcreeksports.com" class="email">Sales@Millcreeksports.com</a>
+                </div>
+            </div>
+
+
+
+            <ul class="menu-links">
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping/Returns</a></li>
+                <li><a href="#">Gift Cards</a></li>
+            </ul>
+        </div>
+
+        <div class="address-section">
+            <span><i><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.4465 16.6005C8.4465 16.6005 3 12.0135 3 7.5C3 5.9087 3.63214 4.38258 4.75736 3.25736C5.88258 2.13214 7.4087 1.5 9 1.5C10.5913 1.5 12.1174 2.13214 13.2426 3.25736C14.3679 4.38258 15 5.9087 15 7.5C15 12.0135 9.5535 16.6005 9.5535 16.6005C9.2505 16.8795 8.75175 16.8765 8.4465 16.6005ZM9 10.125C9.34472 10.125 9.68606 10.0571 10.0045 9.92518C10.323 9.79327 10.6124 9.59991 10.8562 9.35616C11.0999 9.1124 11.2933 8.82302 11.4252 8.50454C11.5571 8.18606 11.625 7.84472 11.625 7.5C11.625 7.15528 11.5571 6.81394 11.4252 6.49546C11.2933 6.17698 11.0999 5.8876 10.8562 5.64384C10.6124 5.40009 10.323 5.20673 10.0045 5.07482C9.68606 4.9429 9.34472 4.875 9 4.875C8.30381 4.875 7.63613 5.15156 7.14384 5.64384C6.65156 6.13613 6.375 6.80381 6.375 7.5C6.375 8.19619 6.65156 8.86387 7.14384 9.35616C7.63613 9.84844 8.30381 10.125 9 10.125Z"
+                            fill="#0A0A1E" />
+                    </svg></i></span>
+            <div class="address"> 13616 Bothell Everett Highway<br>
+                Mill Creek, WA 98012
+
+            </div>
+        </div>
+    </div>
+    <button class="contact-button">CONTACT US</button>
+</div>
+
+
+<script>
+
+</script>

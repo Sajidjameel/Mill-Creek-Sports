@@ -1,0 +1,100 @@
+<style>
+    .custom-dropdown {
+       
+        width: 270px;
+        border-radius: 10px;
+        border: 1px solid var(--Gray-5, #E0E0E0);
+        background: var(--White, #FFF);
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+        max-width: 260px;
+        padding: 23px 45px 28px 46px;
+        position: absolute;
+        right: 14px;
+        /* top: 70px; */
+        z-index: 1;
+        display: none;
+    }
+
+  
+ 
+
+    .custom-dropdown .custom-dropdown-menu {
+        background: white;
+        border-radius: 8px;
+        /* padding: 8px 0; */
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .custom-dropdown .custom-dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -31px;
+        right: 20px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid white;
+    }
+
+    /* 
+    .custom-dropdown .custom-dropdown-menu::after {
+        content: '';
+        position: absolute;
+        top: -9px;
+        right: 20px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #e0e0e0;
+        z-index: -1;
+    } */
+
+    .custom-dropdown .custom-dropdown-item {
+        /* padding: 12px 20px; */
+        color: #333;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+        position: relative;
+    }
+
+    .custom-dropdown .custom-cursor {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 20px;
+        background: white;
+        border: 2px solid #333;
+        border-radius: 2px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .active-drop:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+
+<div class="custom-dropdown">
+    <div class="custom-dropdown-menu">
+        <div class="custom-dropdown-item-sign active-drop">Sign In / Manage Account</div>
+        <div class="custom-dropdown-item-create active-drop">Create Account</div>
+        <div class="custom-dropdown-item-wishlist active-drop">Wishlist</div>
+        <div class="custom-dropdown-item-order active-drop">Order History</div>
+    </div>
+</div>
+
+
+<script>
+
+</script>

@@ -6,6 +6,7 @@
 
   <div class="navPages-quickSearch">
     {{> components/common/quick-search name='nav-menu-quick-search'}}
+    {{> components/header/quick-search-bar-dropdown}}
   </div>
 
   <ul class="navUser-section navUser-section--alt">
@@ -135,7 +136,6 @@
   .name-styling {
     display: inline-block;
     width: 100%;
-    white-space: nowrap;
   }
 
   .navPages-container {
@@ -148,6 +148,10 @@
     position: relative;
   }
 
+  .navPages-quickSearch {
+    position: relative;
+  }
+
   /* li.navUser-item.navUser-item--customer-support {
     position: relative;
     right: 0;
@@ -156,7 +160,7 @@
 
 
 <script>
-  const customerSupport = document.querySelector(".customer-support-btn");
+  const customerSupport = document.querySelector(".navUser .customer-support-btn");
   const supportContainer = document.querySelector(".support-container");
   const navUserItemAccount = document.querySelector(".navUser-item--account");
   const customDropdown = document.querySelector(".custom-dropdown");

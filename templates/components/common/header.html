@@ -1,15 +1,7 @@
-<style>
-    .announcement-bar {
-        position: relative;
-        z-index: 11;
-    }
-</style>
 <div class="linear-gradient-bg"></div>
 <div class="announcement-bar">
     {{region name='announcement-bar'}}
 </div>
-
-
 
 <a href="#main-content" class="skip-to-main-link"
   >{{lang 'header.skip_to_main'}}</a
@@ -119,11 +111,21 @@
 {{{region name="header_bottom--global"}}} {{{region name="header_bottom"}}}
 
 <style>
-    div#main-content {
+
+  .announcement-bar {
+        position: relative;
+        z-index: 11;
+    }
+
+  div#main-content {
         z-index: unset;
     }
 
-
+  .navPage-subMenu-item a {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+  }
   .skip-to-main-link {
     display: none;
   }
@@ -231,19 +233,69 @@
     margin-bottom: 0;
   }
 
-  @media (min-width: 1250px) and (max-width: 1300px) {
+  @media (min-width: 1250px) {
     .header {
       gap: 20px;
     }
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 30px;
+      height: 30px;
+    }
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  @media (min-width: 993px) and (max-width: 1250px) {
+    .header {
+      gap: 20px;
+    }
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 30px;
+      height: 30px;
+    }
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  @media (min-width: 993px) and (max-width: 1060px) {
+    .navUser-section {
+      gap: 18px;
+    }
+    .header {
+      gap: 15px;
+    }
+    .navUser {
+      gap: 20px;
+    }
+    .navPages-action {
+      font-size: 14px;
+    }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* dont display above  768; */
     .mobile-menus-in-div {
       display: none;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
+    .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 35px;
+      height: 35px;
+    }
+    .header {
+      height: 80px;
+    }
+    .navPages-container {
+      display: none;
+    }
     .mobile-menus-in-div,
     .navUser-section {
       display: flex;
@@ -253,30 +305,49 @@
 
     .header {
       margin-bottom: 6px;
+      margin-top: 6px;
     }
 
     .header-logo-image-container {
-      width: 178px;
-      height: 100px;
+      width: 145px;
+      height: 75px;
     }
 
     .header-logo-image-container img,
     .header-logo-image {
-      width: 178px !important;
-      height: 100px !important;
+      width: 135px !important;
+      height: 71px !important;
+      /* width: 178px !important;
+      height: 100px !important; */
       object-fit: contain;
     }
   }
 
-  @media (max-width: 550px) {
+  @media (min-width: 570px) and (max-width: 768px) {
+    .header {
+      height: 56px;
+      gap: 30px;
+    }
+
+    .header-logo-image-container {
+      width: 90px;
+      height: 50px;
+    }
+    .header-logo-image-container img,
+    .header-logo-image {
+      width: 110px !important;
+      height: 60px !important;
+      object-fit: contain;
+    }
+
     .navUser-item .navUser-action svg,
     .mobileMenu svg {
-      width: 35px;
-      height: 35px;
+      width: 28px;
+      height: 28px;
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 570px) {
     .header {
       height: 50px;
       gap: 30px;
@@ -306,6 +377,472 @@
       gap: 15px;
     }
   }
-
-  
 </style>
+
+<style>
+  .name-styling {
+    display: inline-block;
+    width: 100%;
+  }
+
+  @media (min-width: 993px) {
+
+  .subMenu-dropdown {
+    /* display: flex; */
+    justify-content: space-between;
+    gap: 35px;
+    position: absolute;
+    top: 0;
+    left: 300px;
+    max-height: 785px;
+    overflow: auto;
+    padding: 20px 20px 20px 35px;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid var(--Gray-5, #E0E0E0);
+    background: var(--White, #FFF);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+    border-left: none;
+    width: 200%;
+    max-width: 560px;
+  }
+
+}
+
+  .subMenu-dropdown.is-open {
+    display: flex !important;
+  }
+
+  .navPage-subMenu-item a {
+    white-space: normal;
+  }
+
+  .navPage-childList-action {
+    font-weight: 400;
+    padding: 10px 15px 15px 0;
+  }
+
+  .navPage-subMenu-action .collapsible-icon-wrapper {
+    width: auto;
+  }
+
+  .navPage-subMenu-action.navPages-action {
+    color: var(--Dark-Overlay, #0A0A1E);
+    font-family: "Noto Sans";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .navPage-subMenu-action.navPages-action:hover .name-styling {
+    color: var(--Mill-Creek-Blue, #21205F);
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+  }
+
+  .navPage-subMenu-action.navPages-action.has-subMenu:hover svg > g > path {
+    fill: #961414;
+  }
+
+  .subMenu-dropdown > .navPage-childList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .subCategory-name {
+    color: var(--Dark-Overlay, #0A0A1E);
+    font-family: "Noto Sans";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 11px;
+  }
+
+  .navPage-childList-action.navPages-action {
+    color: var(--Dark-Overlay, #0A0A1E);
+    font-family: "Noto Sans";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .navPage-childList-action.navPages-action:hover > .name-styling {
+    color: var(--Mill-Creek-Blue, #21205F);
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+  }
+
+  .category-image-and-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .category-image-and-cta > img {
+    max-width: 240px;
+    max-height: 240px;
+  }
+
+  .category-image-and-cta .button {
+    max-width: 240px;
+    white-space: pre-wrap;
+    padding: 13px 28px 14px 30px;
+    border-radius: 10px;
+    background: var(--Dark-Overlay, #0A0A1E);
+    color: #fff;
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 801px) {
+    .navPage-subMenu.is-open {
+        width: auto !important;
+    }
+    .navPage-subMenu-action .collapsible-icon-wrapper {
+        display: block;
+    }
+    .navPage-subMenu .navPages-action-moreIcon {
+      display: block;
+    }
+    .navPage-subMenu-item .navPages-action {
+      border-bottom:1px solid #cccccc;
+    }
+    .navPages-list:not(.navPages-list-depth-max) .navPage-subMenu-action {
+        padding: 0.78571rem 0 1.14286rem;
+        padding: 10px 2px 15px 1px;
+    }
+    .navPages-action.is-open {
+        background-color: #fff;
+    }
+  }
+
+  @media (min-width: 993px) {
+    .navPages > .navPages-quickSearch {
+      display: none !important;
+    }
+    .navPages > .customer-support-btn, .navPages > .authenticity-right {
+      display: none;
+    }
+  }
+
+  @media (min-width: 993px) and (max-width: 1024px) {
+    .subMenu-dropdown {
+      max-width: 500px;
+      padding: 20px 20px 20px 25px;
+    }
+    .navPage-subMenu-action.navPages-action, .subCategory-name, .navPage-childList-action.navPages-action {
+      font-size: 13px;
+    }
+    .category-image-and-cta > img {
+      max-width: 220px;
+      max-height: 220px;
+    }
+    .category-image-and-cta .button {
+      max-width: 220px;
+      font-size: 12px;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1100px) {
+    .subMenu-dropdown {
+      max-width: 520px;
+      padding: 20px 20px 20px 25px;
+    }
+    .navPage-subMenu-action.navPages-action, .subCategory-name, .navPage-childList-action.navPages-action {
+      font-size: 14px;
+    }
+    .category-image-and-cta > img {
+      max-width: 220px;
+      max-height: 220px;
+    }
+    .category-image-and-cta .button {
+      max-width: 220px;
+      font-size: 12px;
+    }
+  }
+
+  header.header {
+    z-index: 1
+  }
+
+  @media (max-width: 992px) {
+    .navPages {
+      background: var(--Page-Bkg, #FBFBFB);
+      height: auto;
+      overflow-y: auto;
+    }
+    .navPages > .navPages-quickSearch {
+      display: block !important;
+    }
+    .navPages .authenticity-right {
+      display: flex;
+      gap: 10px;
+      background: var(--Mill-Creek-Blue, #21205F);
+      justify-content: center;
+      height: 80px;
+    }
+    .search-bar-container {
+      padding: 5px 10px 0;
+    }
+    .navPages-list {
+      display: block;
+    }
+    .navPages-item {
+      padding: 20px 20px 26px 20px;
+      border-bottom: 1px solid #E0E0E0;
+    }
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action-moreIcon {
+      margin: 0;
+    }
+    .customer-support-btn {
+      margin: 16px 20px;
+      justify-content: space-between;
+      width: -webkit-fill-available;
+    }
+
+    .navPage-subMenu.is-open > .navPage-subMenu-list {
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 100%;
+    }
+
+    .subMenu-dropdown.is-open {
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .back-btn-and-icon {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const subMenuItems = document.querySelectorAll('.navPage-subMenu-item');
+    subMenuItems?.forEach(subMenuItem => {
+      const subMenuAction = subMenuItem.querySelector('.navPage-subMenu-action.navPages-action.has-subMenu');
+      console.log('subMenuAction:', subMenuAction);
+      if (window.innerWidth > 992) {
+        if (subMenuAction) {
+          subMenuItem?.addEventListener('mouseenter', () => {
+            console.log('item hovered:', subMenuItem);
+            const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
+            subMenuDropdowns?.forEach(subMenuDropdown => {
+              subMenuDropdown.classList.remove('is-open');
+            })
+            const subMenuDropdown = subMenuItem.querySelector('.subMenu-dropdown');
+            if (subMenuDropdown) {
+              subMenuDropdown.classList.add('is-open');
+            }
+          })
+        } else {
+          subMenuItem?.addEventListener('mouseenter', () => {
+            console.log('item hovered:', subMenuItem);
+            const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
+            subMenuDropdowns?.forEach(navPageChildList => {
+              navPageChildList.classList.remove('is-open');
+            })
+          })
+        }
+      } else {
+        // if (subMenuAction) {
+        //   const collapsilbleIcon = subMenuAction.querySelector('.collapsible-icon-wrapper');
+        //   collapsilbleIcon?.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+
+        //     console.log('item clicked:', collapsilbleIcon);
+        //     const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
+        //     subMenuDropdowns?.forEach(subMenuDropdown => {
+        //       subMenuDropdown.classList.remove('is-open');
+        //     })
+        //     const subMenuDropdown = subMenuItem.querySelector('.subMenu-dropdown');
+        //     if (subMenuDropdown) {
+        //       if (subMenuDropdown.classList.contains('is-open')) {
+        //         subMenuDropdown.classList.remove('is-open');
+        //       } else {
+        //         subMenuDropdown.classList.add('is-open');
+        //       }
+            
+        //     }
+
+        //     const navPageChildList = subMenuItem.querySelector('.navPage-childList');
+        //     if (navPageChildList.classList.contains('is-open')) {
+        //       navPageChildList.classList.remove('is-open');
+        //     } else {
+        //       navPageChildList.classList.add('is-open');
+        //     }
+        //   })
+        // }
+      }
+    })
+  })
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    if (window.innerWidth > 992) {
+      return;
+    }
+
+    const navPagesItems = document.querySelectorAll('.navPages-item');
+
+    //close navPage-subMenus when click back button on second level
+    const secondLevelBackBtns = document.querySelectorAll('.second-level-back-btn');
+
+    // secondLevelBackBtns?.addEventListener('click', () => {
+    //   navPagesItems?.forEach((navPageItem) => {
+
+    //     const navPageAction = navPageItem.querySelector('.navPages-action.has-subMenu');
+    //     if (navPageAction) {
+    //       navPageAction.classList.toggle('is-open');
+    //     }
+
+    //     const navPageSubMenu = navPageItem.querySelector('.navPage-subMenu');
+    //     if (navPageSubMenu) {
+    //       navPageSubMenu.classList.toggle('is-open');
+    //     }
+    //   })
+    // })
+
+    secondLevelBackBtns?.forEach(secondLevelBackBtn => {
+        secondLevelBackBtn?.addEventListener('click', () => {
+          
+          const navPageSubMenu = secondLevelBackBtn.closest('.navPage-subMenu.is-open');
+          if (navPageSubMenu) {
+            navPageSubMenu.classList.remove('is-open');
+            navPageSubMenu.setAttribute('aria-hidden', true);
+          }
+
+          const navPageAction = secondLevelBackBtn.closest('.navPages-item').querySelector('.navPages-action.has-subMenu.is-open');
+          if (navPageAction) {
+            navPageAction.classList.remove('is-open');
+            navPageAction.setAttribute('aria-expanded', false);
+          }
+        })
+      })
+
+    const thirdLevelBackBtns = document.querySelectorAll('.third-level-back-btn');
+
+    thirdLevelBackBtns?.forEach(thirdLevelBackBtn => {
+      thirdLevelBackBtn?.addEventListener('click', () => {
+
+        const navPageSubMenuDropdown = thirdLevelBackBtn.closest('.subMenu-dropdown.is-open');
+        if (navPageSubMenuDropdown) {
+          navPageSubMenuDropdown.classList.remove('is-open');
+        }
+
+        const navPageChildList = navPageSubMenuDropdown.querySelector('.navPage-childList.is-open');
+        if (navPageChildList) {
+          navPageChildList.classList.remove('is-open');
+          navPageChildList.style.display = 'none';
+          navPageChildList.setAttribute('aria-hidden', true);
+        }
+      })
+    })
+    
+    //handle opening and closing of 2nd level navPage-subMenus
+    navPagesItems?.forEach((navPageItem) => {
+      const navPageAction = navPageItem.querySelector('.navPages-action.has-subMenu');
+
+      if (navPageAction) {
+        const navPageMoreIcon = navPageAction.querySelector('.navPages-action-moreIcon');
+        
+        if (navPageMoreIcon) {
+          navPageMoreIcon?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            navPageAction.classList.toggle('is-open');
+            navPageAction.setAttribute('aria-expanded', navPageAction.classList.contains('is-open'));
+
+            const navPageSubMenu = navPageItem.querySelector('.navPage-subMenu');
+            if (navPageSubMenu) {
+              navPageSubMenu.classList.toggle('is-open');
+              navPageSubMenu.setAttribute('aria-hidden', navPageSubMenu.classList.contains('is-open'));
+            }
+          })
+        }
+      }
+    })
+
+      //handle opening and closing of 3rd level navPage-subMenus
+
+    const navPageSubMenuItems = document.querySelectorAll('.navPage-subMenu-item');
+
+    navPageSubMenuItems?.forEach((navPageSubMenuItem) => {
+      const navPageSubMenuAction = navPageSubMenuItem.querySelector('.navPage-subMenu-action.navPages-action.has-subMenu');
+      
+      if (navPageSubMenuAction) {
+        const navPageMoreIcon = navPageSubMenuAction.querySelector('.collapsible-icon-wrapper');
+        if (navPageMoreIcon) {
+          navPageMoreIcon?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            navPageMoreIcon.classList.toggle('is-open');
+            navPageMoreIcon.setAttribute('aria-expanded', navPageMoreIcon.classList.contains('is-open'));
+
+            console.log('navPageSubMenuItem', navPageSubMenuItem);
+            console.log('navPageSubMenuAction', navPageSubMenuAction);
+            console.log('navPageMoreIcon', navPageMoreIcon);
+            const navPageSubMenuDropdown = navPageSubMenuItem.querySelector('.subMenu-dropdown');
+            console.log('navPageSubMenuDropdown', navPageSubMenuDropdown);
+            if (navPageSubMenuDropdown) {
+              navPageSubMenuDropdown.classList.toggle('is-open');
+
+              const navPageChildList = navPageSubMenuDropdown.querySelector('.navPage-childList');
+              console.log('navPageChildList', navPageChildList);
+              if (navPageChildList) {
+                console.log('navPageChildList before', navPageChildList);
+                if (navPageChildList.classList.contains('is-open')) {
+                  navPageChildList.classList.remove('is-open');
+                  navPageChildList.style.display = 'none'
+                } else {
+                  navPageChildList.classList.add('is-open');
+                  navPageChildList.style.display = 'block';
+                }
+                // navPageChildList.classList.toggle('is-open');
+                console.log('navPageChildList after', navPageChildList);
+                // navPageChildList.setAttribute('aria-hidden', navPageChildList.classList.contains('is-open'));
+              }
+            }
+          })
+        }
+      }
+    })
+  
+
+  })
+</script>

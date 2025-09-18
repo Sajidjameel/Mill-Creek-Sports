@@ -1,9 +1,19 @@
 <div class="search-bar-container">
-  <form class="search-form" action="{{urls.search}}" data-quick-search-form>
-    <input
+  <!-- <form class="search-form ss" action="{{urls.search}}" data-quick-search-form> -->
+    <form class="search-form ss" action="/search.php" data-quick-search-form>
+    <!-- <input
       class="search-input"
       id="{{name}}"
       name="{{name}}"
+      data-search-quick
+      data-error-message="{{lang 'search.error.empty_field'}}"
+      placeholder="{{lang 'search.quick_search.input_placeholder'}}"
+      autocomplete="off"
+    /> -->
+     <input
+      class="search-input"
+      id="{{name}}"
+      name="search_query"
       data-search-quick
       data-error-message="{{lang 'search.error.empty_field'}}"
       placeholder="{{lang 'search.quick_search.input_placeholder'}}"

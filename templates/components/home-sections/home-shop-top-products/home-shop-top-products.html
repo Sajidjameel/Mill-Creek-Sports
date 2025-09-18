@@ -8,7 +8,6 @@
                 <button class="stp-filter-badge stp-filter-badge-best-seller" onclick="topSellers()">Best Sellers</button>
             </div>
         </div>
-
         <div class="stp-products-grid">
             {{#each products.new}}
             <div class="stp-product-card new-products">
@@ -226,6 +225,10 @@
     .stp-product-card {
         background: white;
         overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    .stp-product-card:hover{
+        transform: translateY(-5px);
     }
 
     .stp-product-image {
@@ -382,21 +385,14 @@
         border-color: #961414;
     }
 
-    @media (max-width: 992px) {
-        .stp-title {
-            font-size: 26px;
-        }
-        .stp-title {
-            padding: 65px 0 40px;
-        }
-        .stp-header {
-            margin-bottom: 40px;
-        }
-    }
-
     @media (max-width:768px) {
         .stp-header {
             flex-direction: column;
+            margin-bottom: 25%;
+        }
+
+        .stp-title {
+            padding: 12% 0 5%;
         }
     }
 
@@ -484,7 +480,7 @@
     }
      function getSlidesToShow() {
         if (isDesktop()) {
-            return 4;
+            return 5;
         }
         if (isTablet()) {
             return 2;
@@ -494,30 +490,34 @@
         }
     }
 
-    var playersSTP = document.querySelectorAll('.stp-product-card');
-    var slidesSTP = getSlidesToShow();
-    console.log(slidesSTP);
-    var displaySlidesSTP = slidesSTP;
-    var playersLengthSTP = playersSTP.length;
-    var percentageSTP = (slidesSTP * 100) / playersLengthSTP;
-
-    var progressBarSTP = document.querySelector('.stp-container .fp-progress-fill')
-    progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
+    var playersSTP, slidesSTP, displaySlidesSTP, slidesSTP, playersLengthSTP, playersSTP, percentageSTP, slidesSTP, progressBarSTP
+    function setLoader(targets){
+        playersSTP = document.querySelectorAll(targets);
+        slidesSTP = getSlidesToShow();
+        console.log(slidesSTP);
+        displaySlidesSTP = slidesSTP;
+        playersLengthSTP = playersSTP.length;
+        percentageSTP = (slidesSTP * 100) / playersLengthSTP;
+        
+        progressBarSTP = document.querySelector('.stp-container .fp-progress-fill')
+        progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
+    }
+    setLoader('.new-products')
 
     function nextSTP() {
         if (slidesSTP + 1 <= playersLengthSTP) {
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.stp-container .slick-next.slick-arrow')?.click()
         }
-        document.querySelector('.stp-container .slick-next.slick-arrow')?.click()
     }
 
     function prevSTP() {
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.stp-container .slick-prev.slick-arrow')?.click()
         }
-        document.querySelector('.stp-container .slick-prev.slick-arrow')?.click()
     }
 
     
@@ -534,7 +534,7 @@
         const featuredProducts = document.querySelectorAll('.featured-products')
 
         topSellersProducts.forEach((p)=>p.classList.remove('d-none'))
-        
+        setLoader('.top-sellers-products')
         newProducts.forEach((e)=>e.classList.add('d-none'));
         if(featuredProducts){
             featuredProducts.foreach((e)=>e.classList.add('d-none'));
@@ -544,8 +544,9 @@
         const topSellersProducts = document.querySelectorAll('.top-sellers-products')
         const  newProducts = document.querySelectorAll('.new-products')
         const featuredProducts = document.querySelectorAll('.featured-products')
-
+    
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        setLoader('.new-products')
         newProducts.forEach((e)=>e.classList.remove('d-none'));
         if(featuredProducts){
             featuredProducts.foreach((e)=>e.classList.add('d-none'));
@@ -557,6 +558,7 @@
         const featuredProducts = document.querySelectorAll('.featured-products')
 
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        setLoader('.featured-products')
         newProducts.forEach((e)=>e.classList.add('d-none'));
         if(featuredProducts){
             featuredProducts.foreach((e)=>e.classList.remove('d-none'));

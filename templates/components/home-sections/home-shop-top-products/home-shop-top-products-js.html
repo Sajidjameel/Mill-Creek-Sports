@@ -1,0 +1,262 @@
+<script>
+    console.log($('.stp-products-grid' ))
+    $('.new-products-grid').slick({
+        infinite: false,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1090,
+                settings: {
+                    slidesToShow: 4
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 570,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                    initialSlide: 1
+                }
+            }
+        ]
+    });
+
+     $('.featured-products-grid').slick({
+        infinite: false,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1090,
+                settings: {
+                    slidesToShow: 4
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 570,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                    initialSlide: 1
+                }
+            }
+        ]
+    });
+
+     $('.top-seller-products-grid').slick({
+        infinite: false,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1090,
+                settings: {
+                    slidesToShow: 4
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 570,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                    initialSlide: 1
+                }
+            }
+        ]
+    });
+    
+    
+    function isDesktop() {
+        return window.innerWidth > 992;
+    }
+    function isTablet() {
+        return window.innerWidth <= 992 && window.innerWidth > 768;
+    }
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+     function getSlidesToShow() {
+        if (isDesktop()) {
+            return 5;
+        }
+        if (isTablet()) {
+            return 2;
+        }
+        if (isMobile()) {
+            return 2;
+        }
+    }
+
+    var playersSTP, slidesSTP, displaySlidesSTP, slidesSTP, playersLengthSTP, playersSTP, percentageSTP, slidesSTP, progressBarSTP
+    function setLoader(targets){
+        playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
+        slidesSTP = getSlidesToShow();
+        console.log(slidesSTP);
+        displaySlidesSTP = slidesSTP;
+        playersLengthSTP = playersSTP.length
+        percentageSTP = (slidesSTP * 100) / playersLengthSTP;
+        console.log(targets,'target')
+        
+        progressBarSTP = document.querySelector(`${targets} .stp-slick-container .fp-progress-fill`)
+        progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
+        console.log(progressBarSTP,'progressBarSTP')
+    }
+    setLoader('#New-Products-container');
+
+
+    function nextSTP(event) {
+        console.log('prevstp', slidesSTP, playersLengthSTP)
+
+        if (slidesSTP + 1 <= playersLengthSTP) {
+            percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.new-products-grid .slick-next.slick-arrow')?.click()
+            console.log(event,'next event');
+
+        }
+    }
+
+    function featuredNextSTP(event) {
+        if (slidesSTP + 1 <= playersLengthSTP) {
+            percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.featured-products-grid .slick-next.slick-arrow')?.click()
+            console.log(event,'next event');
+
+        }
+    }
+    function topNextSTP(event) {
+        if (slidesSTP + 1 <= playersLengthSTP) {
+            percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.top-seller-products-grid .slick-next.slick-arrow')?.click()
+            console.log(event,'next event');
+
+        }
+    }
+
+   
+
+    function prevSTP(event) {
+        if (slidesSTP - 1 >= displaySlidesSTP) {
+            percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.new-products-grid .slick-prev.slick-arrow')?.click();
+            console.log(event,'prev event')
+        }
+    }
+     function featuredPrevSTP(event) {
+        if (slidesSTP - 1 >= displaySlidesSTP) {
+            percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('.featured-products-grid .slick-prev.slick-arrow')?.click()
+            console.log(event,'prev event')
+        }
+    }
+       function topPrevSTP(event) {
+        console.log('topprev')
+        if (slidesSTP - 1 >= displaySlidesSTP) {
+            percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
+            progressBarSTP.style.width = `${percentageSTP}%`
+            document.querySelector('#Top-Products-container .slick-prev.slick-arrow')?.click()
+            console.log(event,'prev event')
+        }
+    }
+
+    
+    document.querySelectorAll('.stp-filter-badge').forEach(badge => {
+        badge.addEventListener('click', function () {
+            document.querySelectorAll('.stp-filter-badge').forEach(b => b.classList.remove('stp-active'));
+            this.classList.add('stp-active');
+        });
+    });
+
+    const topSellers=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        const TPslickContainer = document.querySelector('.stp-top-slick-container');
+        const FPslickContainer = document.querySelector('.stp-featured-slick-container');
+        const NewslickContainer = document.querySelector('.stp-new-slick-container');
+        topSellersProducts.forEach((p)=>p.classList.remove('d-none'))
+        setLoader('#Top-Products-container')
+        newProducts.forEach((e)=>e.classList.add('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.add('d-none'));
+        }
+        if(TPslickContainer){
+            TPslickContainer.classList.remove('d-none');
+            FPslickContainer.classList.add('d-none')
+            NewslickContainer.classList.add('d-none')
+        }
+    }
+     const newProducts=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        const TPslickContainer = document.querySelector('.stp-top-slick-container');
+        const FPslickContainer = document.querySelector('.stp-featured-slick-container');
+        const NewslickContainer = document.querySelector('.stp-new-slick-container');
+    
+        topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        setLoader('#New-Products-container')
+        newProducts.forEach((e)=>e.classList.remove('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.add('d-none'));
+        }
+         if(NewslickContainer){
+             NewslickContainer.classList.remove('d-none')
+            TPslickContainer.classList.add('d-none');
+            FPslickContainer.classList.add('d-none')
+        }
+    }
+     const featuredProducts=()=>{
+        const topSellersProducts = document.querySelectorAll('.top-sellers-products')
+        const  newProducts = document.querySelectorAll('.new-products')
+        const featuredProducts = document.querySelectorAll('.featured-products')
+
+        const TPslickContainer = document.querySelector('.stp-top-slick-container');
+        const FPslickContainer = document.querySelector('.stp-featured-slick-container');
+        const NewslickContainer = document.querySelector('.stp-new-slick-container');
+
+        topSellersProducts.forEach((p)=>p.classList.add('d-none'))
+        setLoader('#Featured-Products-container')
+        newProducts.forEach((e)=>e.classList.add('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.remove('d-none'));
+        }
+        if(FPslickContainer){
+            FPslickContainer.classList.remove('d-none')
+            TPslickContainer.classList.add('d-none');
+            NewslickContainer.classList.add('d-none')
+        }
+    }
+    
+</script>

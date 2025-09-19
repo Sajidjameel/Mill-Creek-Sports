@@ -13,14 +13,25 @@
             <div class="stp-product-card new-products">
                 <img src="{{getImage image '400x400'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
+                    <a class="stp-product-url" href="{{url}}">
                     <div class="stp-product-info-container">
+                        <div class="stp-product-brand">{{brand.name}}</div>
                         <div class="stp-product-brand">{{name}}</div>
                         <div class="stp-product-title">{{description}}
                         </div>
-                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                        {{#if price.sale_price_without_tax}}
+                        <div class="stp-product-price stp-product-sale-price">
+                        <span class="stp-original-price">{{price.non_sale_price_without_tax.formatted}}</span>
+                        <span class="stp-dicount-price">{{price.sale_price_without_tax.formatted}}</span>
+                        <span class="stp-sale-badge">Sale</span>
+                        </div>
+                        {{else}}
+                         <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                         {{/if}}
                     </div>
                     <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                     </a>
                 </div>
             </div>
@@ -29,14 +40,25 @@
             <div class="stp-product-card top-sellers-products d-none">
                 <img src="{{getImage image '400x500'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
+                    <a class="stp-product-url" href="{{url}}">
                     <div class="stp-product-info-container">
+                        <div class="stp-product-brand-name">{{brand.name}}</div>
                         <div class="stp-product-brand">{{name}}</div>
                         <div class="stp-product-title">{{description}}
                         </div>
-                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                        {{#if price.sale_price_without_tax}}
+                        <div class="stp-product-price stp-product-sale-price">
+                        <span class="stp-original-price">{{price.non_sale_price_without_tax.formatted}}</span>
+                        <span class="stp-dicount-price">{{price.sale_price_without_tax.formatted}}</span>
+                        <span class="stp-sale-badge">Sale</span>
+                        </div>
+                        {{else}}
+                         <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                         {{/if}}
                     </div>
                     <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                     </a>
                 </div>
             </div>
@@ -45,14 +67,25 @@
             <div class="stp-product-card featured-products d-none">
                 <img src="{{getImage image '400x500'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
+                    <a class="stp-product-url" href="{{url}}">
                     <div class="stp-product-info-container">
+                        <div class="stp-product-brand-name">{{brand.name}}</div>
                         <div class="stp-product-brand">{{name}}</div>
                         <div class="stp-product-title">{{description}}
                         </div>
-                        <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                       {{#if price.sale_price_without_tax}}
+                        <div class="stp-product-price stp-product-sale-price">
+                        <span class="stp-original-price">{{price.non_sale_price_without_tax.formatted}}</span>
+                        <span class="stp-dicount-price">{{price.sale_price_without_tax.formatted}}</span>
+                        <span class="stp-sale-badge">Sale</span>
+                        </div>
+                        {{else}}
+                         <div class="stp-product-price">{{price.without_tax.formatted}}</div>
+                         {{/if}}
                     </div>
                     <a href="{{add_to_cart_url}}" style="width: 100%;">
                     <button class="stp-add-to-cart">ADD TO CART</button>
+                    </a>
                     </a>
                 </div>
             </div>
@@ -131,6 +164,9 @@
     .slick-prev,
     .slick-next {
         display: none !important;
+    }
+    .stp-product-url{
+        text-decoration: none;
     }
 
     @media (max-width: 570px) {
@@ -274,7 +310,7 @@
         align-items: center;
         flex-direction: column;
         gap: 5px;
-        min-height: 240px;
+        min-height: 260px;
     }
 
     .stp-product-info-container {
@@ -288,6 +324,13 @@
     .stp-product-brand {
         font-size: 12px;
         color: #0A0A1E;
+        margin-bottom: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 400;
+    }
+    .stp-product-brand-name{
+        font-size: 12px;
+        color: #1f1f23;
         margin-bottom: 5px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 400;
@@ -486,7 +529,7 @@
             return 2;
         }
         if (isMobile()) {
-            return 2;
+            return 1.5;
         }
     }
 
@@ -536,8 +579,8 @@
         topSellersProducts.forEach((p)=>p.classList.remove('d-none'))
         setLoader('.top-sellers-products')
         newProducts.forEach((e)=>e.classList.add('d-none'));
-        if(featuredProducts){
-            featuredProducts.foreach((e)=>e.classList.add('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.add('d-none'));
         }
     }
      const newProducts=()=>{
@@ -548,8 +591,8 @@
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
         setLoader('.new-products')
         newProducts.forEach((e)=>e.classList.remove('d-none'));
-        if(featuredProducts){
-            featuredProducts.foreach((e)=>e.classList.add('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.add('d-none'));
         }
     }
      const featuredProducts=()=>{
@@ -560,8 +603,8 @@
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
         setLoader('.featured-products')
         newProducts.forEach((e)=>e.classList.add('d-none'));
-        if(featuredProducts){
-            featuredProducts.foreach((e)=>e.classList.remove('d-none'));
+        if(featuredProducts.length>0){
+            featuredProducts.forEach((e)=>e.classList.remove('d-none'));
         }
     }
     

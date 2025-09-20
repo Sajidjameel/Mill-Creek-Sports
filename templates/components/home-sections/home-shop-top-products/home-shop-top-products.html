@@ -8,10 +8,11 @@
                 <button class="stp-filter-badge stp-filter-badge-best-seller" onclick="topSellers()">Best Sellers</button>
             </div>
         </div>
+        
         <div class="stp-products-grid">
             {{#each products.new}}
             <div class="stp-product-card new-products">
-                <img src="{{getImage image '400x400'}}" alt="{{image.alt}}">
+                <img class="stp-product-card--img" src="{{getImage image '400x400'}}" alt="{{image.alt}}">
                 <div class="stp-product-info">
                     <a class="stp-product-url" href="{{url}}">
                     <div class="stp-product-info-container">
@@ -196,7 +197,7 @@
     .stp-container {
         background: white;
         position: relative;
-        padding: 2%;
+        /* padding: 2%; */
     }
 
     .stp-header {
@@ -210,6 +211,7 @@
         font-size: 36px;
         font-weight: bold;
         color: #21205F;
+        padding-left: 18px;
     }
 
     .stp-filters {
@@ -477,6 +479,15 @@
     }
     .d-none{
         display: none !important;
+    }
+
+    /* .stp-container .stp-products-grid .slick-list .slick-track{
+        display: flex;
+        gap: 13px;
+    } */
+
+    .stp-product-card .stp-product-card--img{
+        padding: 42px 26px 0  27px;
     }
 </style>
 

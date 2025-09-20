@@ -1142,3 +1142,18 @@
     });
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      if (window.innerWidth > 800 && window.innerWidth <= 992) {
+        //remove is-open class from all navpage childlists
+        const navPageChildLists = document.querySelectorAll('.subMenu-dropdown .navPage-childList');
+        navPageChildLists?.forEach((navPageChildList) => {
+          navPageChildList.classList.remove('is-open');
+          navPageChildList.setAttribute('aria-hidden', true);
+        })
+      }
+    }, 2000)
+  })
+</script>

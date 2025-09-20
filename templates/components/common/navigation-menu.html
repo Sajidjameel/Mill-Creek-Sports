@@ -20,7 +20,7 @@
         href="{{url}}"
         aria-label="{{name}}"
       >
-        <span class="name-styling">{{name}}</span>
+        <p class="name-styling">{{name}}</p>
       </a>
     </li>
     {{/unless}} {{/each}} {{/unless}}
@@ -28,11 +28,12 @@
   {{> components/header/mobile-bottom-dropdowns}}
 </nav>
 
-<span class="name-styling">{{name}}</span>
-
+<p class="name-styling">{{name}}</p>
+<!-- 
 <style>
   .name-styling {
     display: inline-block;
     width: 100%;
+    margin: 0;
   }
-</style>
+</style> -->

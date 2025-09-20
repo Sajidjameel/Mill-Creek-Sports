@@ -4,7 +4,8 @@
   href="{{url}}"
   data-collapsible="navPages-{{id}}"
 >
-  <span class="name-styling">{{name}}</span>
+  <p class="name-styling">{{name}}</p>
+
   <i class="icon navPages-action-moreIcon" aria-hidden="true">
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
                 <g clip-path="url(#clip0_1_2187)">
@@ -29,15 +30,29 @@
 
     <a class="back-btn-and-icon second-level-back-btn">
       <span class="icon back-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fill="none"
+        >
           <g clip-path="url(#clip0_1_2656)">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
               d="M0.86922 6.59251L5.58339 11.3067L6.76172 10.1283L2.63672 6.00335L6.76172 1.87835L5.58339 0.700012L0.86922 5.41418C0.712993 5.57045 0.625231 5.78238 0.625231 6.00335C0.625231 6.22432 0.712993 6.43624 0.86922 6.59251Z"
-              fill="#0A0A1E" />
+              fill="#0A0A1E"
+            />
           </g>
           <defs>
             <clipPath id="clip0_1_2656">
-              <rect width="8" height="12" fill="white" transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)" />
+              <rect
+                width="8"
+                height="12"
+                fill="white"
+                transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)"
+              />
             </clipPath>
           </defs>
         </svg>
@@ -70,8 +85,7 @@
               </svg>
             </i>
           </span>
-        </a>
-    
+        </a>    
         <div class="subMenu-dropdown" style="display: none;">
           <a class="back-btn-and-icon third-level-back-btn">
             <span class="icon back-icon">
@@ -127,6 +141,6 @@
   href="{{url}}"
   aria-label="{{name}}"
 >
-  <span class="name-styling">{{name}}</span>
+  <p class="name-styling">{{name}}</p>
 </a>
 {{/if}}

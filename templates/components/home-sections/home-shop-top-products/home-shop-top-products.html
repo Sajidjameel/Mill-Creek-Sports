@@ -8,7 +8,7 @@
                 <button class="stp-filter-badge stp-filter-badge-best-seller" onclick="topSellers()">Best Sellers</button>
             </div>
         </div>
-        
+        <div id="New-Products-container">
         <div class="stp-products-grid new-products-grid ">
             {{#each products.new}}
             <div class="stp-product-card new-products">
@@ -57,6 +57,8 @@
                 </svg>
             </button>
         </div>
+        </div>
+        <div id="Top-Products-container">
         <div class="stp-products-grid top-seller-products-grid ">
          {{#each products.top_sellers}}
             <div class="stp-product-card top-sellers-products d-none">
@@ -105,7 +107,8 @@
                 </svg>
             </button>
         </div>
-
+        </div>
+        <div id="Featured-Products-container">   
         <div class="stp-products-grid featured-products-grid">
         {{#each products.featured}}
             <div class="stp-product-card featured-products d-none">
@@ -153,6 +156,7 @@
                         stroke-linejoin="round" />
                 </svg>
             </button>
+        </div>
         </div>
 
     </section>
@@ -668,24 +672,28 @@
 
     var playersSTP, slidesSTP, displaySlidesSTP, slidesSTP, playersLengthSTP, playersSTP, percentageSTP, slidesSTP, progressBarSTP
     function setLoader(targets){
-        playersSTP = document.querySelectorAll(targets);
+        playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
         slidesSTP = getSlidesToShow();
         console.log(slidesSTP);
         displaySlidesSTP = slidesSTP;
         playersLengthSTP = playersSTP.length
         percentageSTP = (slidesSTP * 100) / playersLengthSTP;
+        console.log(targets,'target')
         
-        progressBarSTP = document.querySelector(`${targets} .stp-new-slick-container .fp-progress-fill`)
+        progressBarSTP = document.querySelector(`${targets} .stp-slick-container .fp-progress-fill`)
         progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
+        console.log(progressBarSTP,'progressBarSTP')
     }
-    setLoader('.new-products');
+    setLoader('#New-Products-container');
 
 
     function nextSTP(event) {
+        console.log('prevstp', slidesSTP, playersLengthSTP)
+
         if (slidesSTP + 1 <= playersLengthSTP) {
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('.stp-products-grid .slick-next.slick-arrow')?.click()
+            document.querySelector('.new-products-grid .slick-next.slick-arrow')?.click()
             console.log(event,'next event');
 
         }
@@ -716,7 +724,7 @@
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('.stp-products-grid .slick-prev.slick-arrow')?.click();
+            document.querySelector('.new-products-grid .slick-prev.slick-arrow')?.click();
             console.log(event,'prev event')
         }
     }
@@ -729,10 +737,11 @@
         }
     }
        function topPrevSTP(event) {
+        console.log('topprev')
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('.top-seller-products-grid .slick-prev.slick-arrow')?.click()
+            document.querySelector('#Top-Products-container .slick-prev.slick-arrow')?.click()
             console.log(event,'prev event')
         }
     }
@@ -754,7 +763,7 @@
         const FPslickContainer = document.querySelector('.stp-featured-slick-container');
         const NewslickContainer = document.querySelector('.stp-new-slick-container');
         topSellersProducts.forEach((p)=>p.classList.remove('d-none'))
-        setLoader('.top-sellers-products')
+        setLoader('#Top-Products-container')
         newProducts.forEach((e)=>e.classList.add('d-none'));
         if(featuredProducts.length>0){
             featuredProducts.forEach((e)=>e.classList.add('d-none'));
@@ -775,7 +784,7 @@
         const NewslickContainer = document.querySelector('.stp-new-slick-container');
     
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
-        setLoader('.new-products')
+        setLoader('#New-Products-container')
         newProducts.forEach((e)=>e.classList.remove('d-none'));
         if(featuredProducts.length>0){
             featuredProducts.forEach((e)=>e.classList.add('d-none'));
@@ -796,7 +805,7 @@
         const NewslickContainer = document.querySelector('.stp-new-slick-container');
 
         topSellersProducts.forEach((p)=>p.classList.add('d-none'))
-        setLoader('.featured-products')
+        setLoader('#Featured-Products-container')
         newProducts.forEach((e)=>e.classList.add('d-none'));
         if(featuredProducts.length>0){
             featuredProducts.forEach((e)=>e.classList.remove('d-none'));

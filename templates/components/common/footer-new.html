@@ -18,6 +18,8 @@
       </div>
     </div>
 
+    <div class="container">
+
     <div class="footer-blocks">
       <!-- Block 1 -->
       <div class="footer-block footer-block-1">
@@ -200,6 +202,8 @@
         </div>
       </div>
     </div>
+    </div>
+
   </section>
   <!-- FOOTER 5 COLUMNS -->
   <footer class="site-footer">
@@ -549,7 +553,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 0 20px;
+    /* margin: 0 20px; */
   }
 
   .auto-slider .footer-block {
@@ -911,6 +915,12 @@
     fill: #f2994a; /* orange color */
   }
 
+  @media (min-width: 901px) {
+    .footer-container{
+
+      padding-left: 40px;
+    }
+  }
   @media (max-width: 900px) {
     .google-reviews {
       width: 100%;
@@ -939,6 +949,7 @@
       grid-template-columns: 1fr;
       grid-template-columns: repeat(1, auto);
       gap: 0px;
+
     }
 
     /* Collapse sections */
@@ -1130,4 +1141,19 @@
       section.classList.toggle("active");
     });
   });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      if (window.innerWidth > 800 && window.innerWidth <= 992) {
+        //remove is-open class from all navpage childlists
+        const navPageChildLists = document.querySelectorAll('.subMenu-dropdown .navPage-childList');
+        navPageChildLists?.forEach((navPageChildList) => {
+          navPageChildList.classList.remove('is-open');
+          navPageChildList.setAttribute('aria-hidden', true);
+        })
+      }
+    }, 2000)
+  })
 </script>

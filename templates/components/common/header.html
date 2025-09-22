@@ -1,7 +1,5 @@
 <div class="linear-gradient-bg"></div>
-<div class="announcement-bar">
-    {{region name='announcement-bar'}}
-</div>
+<div class="announcement-bar">{{region name='announcement-bar'}}</div>
 
 <a href="#main-content" class="skip-to-main-link"
   >{{lang 'header.skip_to_main'}}</a
@@ -111,15 +109,14 @@
 {{{region name="header_bottom--global"}}} {{{region name="header_bottom"}}}
 
 <style>
-
   .announcement-bar {
-        position: relative;
-        z-index: 11;
-    }
+    position: relative;
+    z-index: 11;
+  }
 
   div#main-content {
-        z-index: unset;
-    }
+    z-index: unset;
+  }
 
   .navPage-subMenu-item a {
     display: inline-block;
@@ -137,6 +134,8 @@
     gap: 40px;
 
     height: 100px;
+
+    padding-right: 10px;
   }
   .header-logo {
     margin: 0;
@@ -148,7 +147,7 @@
 
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 22px;
   }
   .navUser {
     display: flex;
@@ -162,10 +161,12 @@
 
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20.5px;
   }
   .navPages-container {
     height: 22px;
+    padding-top: 0 !important;
+    z-index: 1;
   }
 
   .navUser-item .navUser-action svg,
@@ -182,13 +183,15 @@
     list-style-type: none;
   }
 
-  .navPage-subMenu.is-open .navPage-subMenu-list {
-    max-height: 785px;
-    overflow-y: scroll !important;
-    overflow-x: hidden;
+  @media (min-width: 993px) {
+    .navPage-subMenu.is-open .navPage-subMenu-list {
+      max-height: 785px;
+      overflow-y: scroll !important;
+      overflow-x: hidden;
 
-    scrollbar-width: 10px;
-    scrollbar-color: red;
+      scrollbar-width: 10px;
+      scrollbar-color: red;
+    }
   }
 
   .navPage-subMenu.is-open .navPage-subMenu-list::-webkit-scrollbar {
@@ -211,9 +214,9 @@
     border: 1px solid #e0e0e0;
   }
   .navPage-subMenu-list {
-    background: #f2f0ec;
+    background: var(--Page-Bkg, #FBFBFB);
     width: 300px;
-    padding: 10px 35px;
+    padding: 20px;
 
     margin: 0;
     list-style-type: none;
@@ -232,35 +235,35 @@
   .navPage-subMenu-item > .navPage-subMenu-action {
     margin-bottom: 0;
   }
-
-  @media (min-width: 1250px) {
+   .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 26px;
+      height: 26px;
+    }
+  @media (min-width: 1400px) {
+    .header {
+      gap: 40px;
+      justify-content: flex-start;
+    }
+    .navPages-quickSearch,
+    .search-bar-container {
+      width: 399px;
+    }
+    .customer-support-btn {
+      width: 174px;
+      height: 46px;
+    }
+   
+  }
+  @media (min-width: 1250px) and (max-width: 1400px) {
     .header {
       gap: 20px;
     }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
+   
   }
   @media (min-width: 993px) and (max-width: 1250px) {
     .header {
       gap: 20px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
-    }
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 30px;
-      height: 30px;
     }
   }
   @media (min-width: 993px) and (max-width: 1060px) {
@@ -284,12 +287,12 @@
       display: none;
     }
   }
+
+
+
+
   @media (max-width: 992px) {
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 35px;
-      height: 35px;
-    }
+   
     .header {
       height: 80px;
     }
@@ -306,6 +309,7 @@
     .header {
       margin-bottom: 6px;
       margin-top: 6px;
+
     }
 
     .header-logo-image-container {
@@ -317,8 +321,6 @@
     .header-logo-image {
       width: 135px !important;
       height: 71px !important;
-      /* width: 178px !important;
-      height: 100px !important; */
       object-fit: contain;
     }
   }
@@ -330,8 +332,8 @@
     }
 
     .header-logo-image-container {
-      width: 90px;
-      height: 50px;
+      width: 100px;
+      height: 60px;
     }
     .header-logo-image-container img,
     .header-logo-image {
@@ -340,11 +342,7 @@
       object-fit: contain;
     }
 
-    .navUser-item .navUser-action svg,
-    .mobileMenu svg {
-      width: 28px;
-      height: 28px;
-    }
+  
   }
 
   @media (max-width: 570px) {
@@ -376,13 +374,20 @@
       display: flex;
       gap: 15px;
     }
+      .navUser-item .navUser-action svg,
+    .mobileMenu svg {
+      width: 21px;
+      height: 21px;
+    }
   }
 </style>
 
 <style>
-  body, .section-sprts, .stp-container {
-    background: #FBFBFB !important;
-    background-color: #FBFBFB !important;
+  body,
+  .section-sprts,
+  .stp-container {
+    background: #fbfbfb !important;
+    background-color: #fbfbfb !important;
   }
 
   [data-content-region] [data-sub-layout] {
@@ -392,9 +397,17 @@
   .name-styling {
     display: inline-block;
     width: 100%;
+    margin-bottom: 0;
   }
 
-  input:focus, button:focus, textarea:focus, select:focus, details:focus, [href]:focus, [tabindex]:not([tabindex="-1"]):focus, [contenteditable="true"]:focus {
+  input:focus,
+  button:focus,
+  textarea:focus,
+  select:focus,
+  details:focus,
+  [href]:focus,
+  [tabindex]:not([tabindex="-1"]):focus,
+  [contenteditable="true"]:focus {
     outline: none !important;
   }
 
@@ -412,7 +425,7 @@
 
   .navPage-childList-action {
     font-weight: 400;
-    padding: 10px 15px 15px 0;
+    padding: 15px 20px 17px;
   }
 
   .navPage-subMenu-action .collapsible-icon-wrapper {
@@ -420,7 +433,7 @@
   }
 
   .navPage-subMenu-action.navPages-action {
-    color: var(--Dark-Overlay, #0A0A1E);
+    color: var(--Dark-Overlay, #0a0a1e);
     font-family: "Noto Sans";
     font-size: 15px;
     font-style: normal;
@@ -429,7 +442,7 @@
   }
 
   .navPage-subMenu-action.navPages-action:hover .name-styling {
-    color: var(--Mill-Creek-Blue, #21205F);
+    color: var(--Mill-Creek-Blue, #21205f);
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
@@ -449,7 +462,7 @@
   }
 
   .subCategory-name {
-    color: var(--Dark-Overlay, #0A0A1E);
+    color: var(--Dark-Overlay, #0a0a1e);
     font-family: "Noto Sans";
     font-size: 15px;
     font-style: normal;
@@ -459,7 +472,7 @@
   }
 
   .navPage-childList-action.navPages-action {
-    color: var(--Dark-Overlay, #0A0A1E);
+    color: var(--Dark-Overlay, #0a0a1e);
     font-family: "Noto Sans";
     font-size: 15px;
     font-style: normal;
@@ -468,7 +481,7 @@
   }
 
   .navPage-childList-action.navPages-action:hover > .name-styling {
-    color: var(--Mill-Creek-Blue, #21205F);
+    color: var(--Mill-Creek-Blue, #21205f);
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
@@ -494,9 +507,9 @@
     white-space: pre-wrap;
     padding: 13px 28px 14px 30px;
     border-radius: 10px;
-    background: var(--Dark-Overlay, #0A0A1E);
+    background: var(--Dark-Overlay, #0a0a1e);
     color: #fff;
-    color: var(--White, #FFF);
+    color: var(--White, #fff);
     text-align: center;
     font-family: "Noto Sans";
     font-size: 14px;
@@ -507,30 +520,48 @@
     text-transform: uppercase;
   }
 
+  .navPages-item > .navPages-action {
+    color: var(--Dark-Overlay, #0A0A1E);
+    font-family: "Noto Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+
+  .navPages-action {
+    text-transform: capitalize;
+  }
+
   @media (min-width: 801px) {
     .navPage-subMenu.is-open {
-        width: auto !important;
+      width: auto !important;
     }
     .navPage-subMenu-action .collapsible-icon-wrapper {
-        display: block;
+      display: block;
     }
     .navPage-subMenu .navPages-action-moreIcon {
       display: block;
     }
     .navPage-subMenu-item .navPages-action {
-      border-bottom:1px solid #cccccc;
+      border-bottom: 1px solid #cccccc;
     }
     .navPages-list:not(.navPages-list-depth-max) .navPage-subMenu-action {
-        padding: 0.78571rem 0 1.14286rem;
-        padding: 10px 2px 15px 1px;
+      padding: 0.78571rem 0 1.14286rem;
+      padding: 10px 2px 15px 1px;
     }
     .navPages-action.is-open {
-        background-color: #fff;
+      background-color: #fff;
     }
   }
 
   @media (min-width: 993px) {
-    .navPages > .navPages-quickSearch, .navPages > .customer-support-btn, .navPages > .authenticity-right, .back-btn-and-icon {
+    .navPages > .navPages-quickSearch, .navPages > .customer-support > .customer-support-btn, .navPages > .authenticity-guarantee > .authenticity-right, .back-btn-and-icon,
+    .navPages > .navPages-quickSearch,
+    .navPages > .customer-support-btn,
+    .navPages > .authenticity-right,
+    .back-btn-and-icon {
       display: none !important;
     }
     .subMenu-dropdown {
@@ -544,16 +575,64 @@
       padding: 20px 20px 20px 35px;
       height: 100%;
       border-radius: 0 10px 10px 0;
-      border: 1px solid var(--Gray-5, #E0E0E0);
-      background: var(--White, #FFF);
+      border: 1px solid var(--Gray-5, #e0e0e0);
+      background: var(--White, #fff);
       box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
       border-left: none;
       width: 200%;
       max-width: 560px;
     }
-    .navPage-subMenu-list > .subCategory-name {
+    .navPage-subMenu > .subCategory-name, .mobile-bottom-dropdowns {
       display: none;
     }
+
+    .navPage-childList-action {
+      padding-left: 0;
+    }
+    .navPage-subMenu.is-open {
+      top: 46px;
+      left: -16px;
+    }
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + .navPage-subMenu .navPage-subMenu-list {
+      border-radius: 10px;
+    }
+
+    .navPage-subMenu-list {
+      background: var(--Tan-Background, #F2F0EC);
+    }
+
+    .navPage-subMenu-list::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 83px;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--Tan-Background, #F2F0EC);
+      border-radius: 3px;
+      transform: translateX(-50%) rotate(45deg);
+     }
+
+     .navPage-subMenu.is-open > .category-image-and-cta {
+      display: none;
+     }
+
+     .navPage-subMenu-item:last-child .navPages-action {
+      border-bottom: none;
+     }
+
+     .navPage-subMenu-list {
+      padding: 20px 20px 0;
+     }
+
+     .navPages-action.has-subMenu > .navPages-action-moreIcon {
+      transform: rotate(90deg);
+     }
+
+     .navPages-item > .navPages-action {
+      width: max-content !important;
+     }
   }
 
   @media (min-width: 993px) and (max-width: 1024px) {
@@ -561,7 +640,9 @@
       max-width: 500px;
       padding: 20px 20px 20px 25px;
     }
-    .navPage-subMenu-action.navPages-action, .subCategory-name, .navPage-childList-action.navPages-action {
+    .navPage-subMenu-action.navPages-action,
+    .subCategory-name,
+    .navPage-childList-action.navPages-action {
       font-size: 13px;
     }
     .category-image-and-cta > img {
@@ -579,7 +660,9 @@
       max-width: 520px;
       padding: 20px 20px 20px 25px;
     }
-    .navPage-subMenu-action.navPages-action, .subCategory-name, .navPage-childList-action.navPages-action {
+    .navPage-subMenu-action.navPages-action,
+    .subCategory-name,
+    .navPage-childList-action.navPages-action {
       font-size: 14px;
     }
     .category-image-and-cta > img {
@@ -593,37 +676,56 @@
   }
 
   header.header {
-    z-index: 1
+    z-index: 1;
   }
 
   @media (max-width: 992px) {
     .navPages-container {
       position: absolute;
+      top: 100px;
     }
     .navPages {
-      background: var(--Page-Bkg, #FBFBFB);
+      background: var(--Page-Bkg, #fbfbfb);
       height: auto;
       overflow-y: auto;
+      position: relative;
     }
     .navPages > .navPages-quickSearch {
       display: block !important;
     }
+    .subMenu-dropdown .category-image-and-cta img {
+      display: none;
+    }
+    .navPage-subMenu.is-open .navPage-subMenu-list {
+      /* overflow-y: hidden !important; */
+      overflow-x: hidden;
+    }
     .navPages .authenticity-right {
       display: flex;
       gap: 10px;
-      background: var(--Mill-Creek-Blue, #21205F);
+      background: var(--Mill-Creek-Blue, #21205f);
       justify-content: center;
       height: 80px;
+      align-items: center;
+    }
+    .navPages .authenticity-right .icon.arrow-icon {
+      width: 12px;
+      height: 12px;
     }
     .search-bar-container {
-      padding: 5px 10px 0;
+      padding: 5px 7px 0 8px;
+      min-width: 100%;
+      margin-bottom: 8px;
+    }
+    .navPages-item > .navPages-action {
+      font-weight: 600 !important;
     }
     .navPages-list {
       display: block;
     }
     .navPages-item {
       padding: 20px 20px 26px 20px;
-      border-bottom: 1px solid #E0E0E0;
+      border-bottom: 1px solid #e0e0e0;
     }
     .navPages-list:not(.navPages-list-depth-max) .navPages-action-moreIcon {
       margin: 0;
@@ -635,10 +737,28 @@
     }
 
     .navPage-subMenu.is-open > .navPage-subMenu-list {
-      position: absolute;
+      /* position: absolute;
       top: 120px;
-      left: 0;
+      left: 0; */
       width: 100%;
+      padding: 0;
+      /* overflow-y: visible !important; */
+      /* overflow-y: hidden; */
+      /* z-index: 1; */
+    }
+
+    .navPage-subMenu.is-open {
+      display: block;
+      width: 100% !important;
+      position: absolute;
+      left: 0;
+      top: 55px;
+      border: none;
+      box-shadow: none;
+      /* padding: 20px 20px 0; */
+      background: var(--Page-Bkg, #FBFBFB);
+      overflow-y: scroll !important;
+      z-index: 1;
     }
 
     .subMenu-dropdown.is-open {
@@ -649,44 +769,246 @@
       background: #fff;
       z-index: 2;
       width: 100%;
+      height: 100%;
+      /* padding: 20px 20px 0; */
+    }
+
+    .navPage-childList {
+      border: none;
+    }
+
+    .navPage-childList-action {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .category-image-and-cta {
+      padding: 25px 20px;
+      border-bottom: 1px solid var(--Gray-5, #E0E0E0);
+    }
+
+    .category-image-and-cta .button {
+      min-width: 100%;
+      margin: 0;
     }
 
     .back-btn-and-icon {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 20px;
+        display: flex !important;
+        gap: 12px;
+        align-items: center;
+        text-decoration: none;
+        padding: 20px 20px 0;
     }
+
+    .icon.back-icon {
+      width: 8px;
+      height: 12px;
+    }
+
+    .back-text {
+      color: var(--Dark-Overlay, #0A0A1E);
+      font-family: "Noto Sans";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    .subCategory-name {
+      color: var(--Dark-Overlay, #0A0A1E);
+      font-family: "Noto Sans";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      padding: 20px 20px 25px;
+      margin: 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .navPage-subMenu-action.navPages-action {
+      border-bottom: 1px solid #E0E0E0;
+      padding: 15px 20px 17px !important;
+    }
+
+    /* .navPage-subMenu-list .icon.navPages-action-moreIcon svg {
+      transform: rotate(90deg);
+    } */
+
+    .navPage-subMenu .customer-support .customer-support-btn {
+      margin: 20px 20px 28px;
+    }
+
+    .navPage-subMenu .authenticity-guarantee {
+      margin: 0 -20px;
+    }
+
+    .customer-support .customer-support-btn {
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .customer-support .customer-support-btn .support-header {
+      display: none;
+    }
+
+    .customer-support .customer-support-btn .btn {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 12px 20px 15px 20px;
+      align-items: center;
+    }
+
+    .customer-support .customer-support-btn .btn.is-open {
+      border-bottom: 1px dashed #BDBDBD;
+    }
+
+    .customer-support .customer-support-btn .btn-arrow.is-open svg {
+      transform: rotate(180deg);
+    }
+
+    .customer-support .customer-support-btn .btn-arrow.is-open svg > g > path {
+      fill: #ff0000;
+    }
+
+    .customer-support .customer-support-btn .support-container {
+      position: relative;
+      width: 100%;
+      box-shadow: none;
+      top: 0;
+      background: #FBFBFB;
+    }
+
+    .customer-support .customer-support-btn .support-container.is-open {
+      display: block !important;
+    }
+
+    .customer-support .customer-support-btn .support-container .support-content {
+      padding: 27px 20px 7px 20px;
+    }
+
+    .customer-support .customer-support-btn .support-container .border-blue {
+      border: none;
+    }
+
+    .customer-support .customer-support-btn .support-container .address-section {
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .customer-support .customer-support-btn .support-container .address {
+      width: auto;
+    }
+
+    .customer-support .customer-support-btn .support-container .contact-button {
+      min-width: 100%;
+    }
+
+    .authenticity-guarantee .guarantee-section {
+      display: none;
+      position: relative;
+      top: 0;
+      right: 0;
+      width: 100%;
+      border: none;
+      background: var(--Mill-Creek-Blue, #21205F);
+      border-radius: 0;
+      padding-top: 0;
+      margin: -10px 0 0;
+      max-width: unset;
+    }
+
+    .authenticity-guarantee .guarantee-section.is-open {
+      display: block;
+      padding: 0 20px;
+    }
+
+    .authenticity-guarantee .icon.arrow-icon.is-open svg {
+      transform: rotate(180deg);
+    }
+
+    .authenticity-guarantee .guarantee-section::before {
+      content: '';
+      background: transparent;
+    }
+
+    .authenticity-guarantee .guarantee-section .guarantee-text {
+      color: #fff;
+      width: 100%;
+      padding: 0 20px 30px 20px;
+    }
+
+    .navPages > .mobile-bottom-dropdowns .authenticity-guarantee .guarantee-section .guarantee-text {
+      padding: 0 0 30px;
+    }
+  }
+  
+  .navPages-action svg, .navPages-action.is-open svg, .navPages-action .collapsible-icon-wrapper.is-open svg {
+    fill: #0A0A1E;
+    stroke: #0A0A1E;
+  }
+
+  @media (max-width: 800px) {
+    .navPages-action svg, .navPages-action.is-open svg, .navPages-action .collapsible-icon-wrapper.is-open svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  .navPages-action-moreIcon {
+    width: 8px !important;
+    height: 12px !important;
+  }
+  .navPages-action {
+    text-transform: capitalize;
+  }
+  .navPages-item > .navPages-action {
+    color: var(--Dark-Overlay, #0a0a1e);
+    text-align: right;
+    font-family: "Noto Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+    width: 100%;
+  }
+  .navPages-item > .navPages-action > .icon {
+    margin-left: 7px;
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const subMenuItems = document.querySelectorAll('.navPage-subMenu-item');
-    subMenuItems?.forEach(subMenuItem => {
-      const subMenuAction = subMenuItem.querySelector('.navPage-subMenu-action.navPages-action.has-subMenu');
-      console.log('subMenuAction:', subMenuAction);
+  document.addEventListener("DOMContentLoaded", () => {
+    const subMenuItems = document.querySelectorAll(".navPage-subMenu-item");
+    subMenuItems?.forEach((subMenuItem) => {
+      const subMenuAction = subMenuItem.querySelector(
+        ".navPage-subMenu-action.navPages-action.has-subMenu"
+      );
+      console.log("subMenuAction:", subMenuAction);
       if (window.innerWidth > 992) {
         if (subMenuAction) {
-          subMenuItem?.addEventListener('mouseenter', () => {
-            console.log('item hovered:', subMenuItem);
-            const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
-            subMenuDropdowns?.forEach(subMenuDropdown => {
-              subMenuDropdown.classList.remove('is-open');
-            })
-            const subMenuDropdown = subMenuItem.querySelector('.subMenu-dropdown');
+          subMenuItem?.addEventListener("mouseenter", () => {
+            console.log("item hovered:", subMenuItem);
+            const subMenuDropdowns =
+              document.querySelectorAll(".subMenu-dropdown");
+            subMenuDropdowns?.forEach((subMenuDropdown) => {
+              subMenuDropdown.classList.remove("is-open");
+            });
+            const subMenuDropdown =
+              subMenuItem.querySelector(".subMenu-dropdown");
             if (subMenuDropdown) {
-              subMenuDropdown.classList.add('is-open');
+              subMenuDropdown.classList.add("is-open");
             }
-          })
+          });
         } else {
-          subMenuItem?.addEventListener('mouseenter', () => {
-            console.log('item hovered:', subMenuItem);
-            const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
-            subMenuDropdowns?.forEach(navPageChildList => {
-              navPageChildList.classList.remove('is-open');
-            })
-          })
+          subMenuItem?.addEventListener("mouseenter", () => {
+            console.log("item hovered:", subMenuItem);
+            const subMenuDropdowns =
+              document.querySelectorAll(".subMenu-dropdown");
+            subMenuDropdowns?.forEach((navPageChildList) => {
+              navPageChildList.classList.remove("is-open");
+            });
+          });
         }
       } else {
         // if (subMenuAction) {
@@ -694,7 +1016,6 @@
         //   collapsilbleIcon?.addEventListener('click', (e) => {
         //     e.preventDefault();
         //     e.stopPropagation();
-
         //     console.log('item clicked:', collapsilbleIcon);
         //     const subMenuDropdowns = document.querySelectorAll('.subMenu-dropdown');
         //     subMenuDropdowns?.forEach(subMenuDropdown => {
@@ -707,9 +1028,7 @@
         //       } else {
         //         subMenuDropdown.classList.add('is-open');
         //       }
-            
         //     }
-
         //     const navPageChildList = subMenuItem.querySelector('.navPage-childList');
         //     if (navPageChildList.classList.contains('is-open')) {
         //       navPageChildList.classList.remove('is-open');
@@ -719,21 +1038,22 @@
         //   })
         // }
       }
-    })
-  })
+    });
+  });
 </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-
+  document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth > 992) {
       return;
     }
 
-    const navPagesItems = document.querySelectorAll('.navPages-item');
+    const navPagesItems = document.querySelectorAll(".navPages-item");
 
     //close navPage-subMenus when click back button on second level
-    const secondLevelBackBtns = document.querySelectorAll('.second-level-back-btn');
+    const secondLevelBackBtns = document.querySelectorAll(
+      ".second-level-back-btn"
+    );
 
     // secondLevelBackBtns?.addEventListener('click', () => {
     //   navPagesItems?.forEach((navPageItem) => {
@@ -750,126 +1070,221 @@
     //   })
     // })
 
-    secondLevelBackBtns?.forEach(secondLevelBackBtn => {
-        secondLevelBackBtn?.addEventListener('click', () => {
-          
-          const navPageSubMenu = secondLevelBackBtn.closest('.navPage-subMenu.is-open');
-          if (navPageSubMenu) {
-            navPageSubMenu.classList.remove('is-open');
-            navPageSubMenu.setAttribute('aria-hidden', true);
-          }
+    secondLevelBackBtns?.forEach((secondLevelBackBtn) => {
+      secondLevelBackBtn?.addEventListener("click", () => {
+        const navPageSubMenu = secondLevelBackBtn.closest(
+          ".navPage-subMenu.is-open"
+        );
+        if (navPageSubMenu) {
+          navPageSubMenu.classList.remove("is-open");
+          navPageSubMenu.setAttribute("aria-hidden", true);
+        }
 
-          const navPageAction = secondLevelBackBtn.closest('.navPages-item').querySelector('.navPages-action.has-subMenu.is-open');
-          if (navPageAction) {
-            navPageAction.classList.remove('is-open');
-            navPageAction.setAttribute('aria-expanded', false);
-          }
-        })
-      })
+        const navPageAction = secondLevelBackBtn
+          .closest(".navPages-item")
+          .querySelector(".navPages-action.has-subMenu.is-open");
+        if (navPageAction) {
+          navPageAction.classList.remove("is-open");
+          navPageAction.setAttribute("aria-expanded", false);
+        }
+      });
+    });
 
-    const thirdLevelBackBtns = document.querySelectorAll('.third-level-back-btn');
+    const thirdLevelBackBtns = document.querySelectorAll(
+      ".third-level-back-btn"
+    );
 
-    thirdLevelBackBtns?.forEach(thirdLevelBackBtn => {
-      thirdLevelBackBtn?.addEventListener('click', () => {
-
-        const navPageSubMenuDropdown = thirdLevelBackBtn.closest('.subMenu-dropdown.is-open');
+    thirdLevelBackBtns?.forEach((thirdLevelBackBtn) => {
+      thirdLevelBackBtn?.addEventListener("click", () => {
+        const navPageSubMenuDropdown = thirdLevelBackBtn.closest(
+          ".subMenu-dropdown.is-open"
+        );
         if (navPageSubMenuDropdown) {
-          navPageSubMenuDropdown.classList.remove('is-open');
+          navPageSubMenuDropdown.classList.remove("is-open");
         }
 
-        const navPageChildList = navPageSubMenuDropdown.querySelector('.navPage-childList.is-open');
+        const navPageChildList = navPageSubMenuDropdown.querySelector(
+          ".navPage-childList.is-open"
+        );
         if (navPageChildList) {
-          navPageChildList.classList.remove('is-open');
-          navPageChildList.style.display = 'none';
-          navPageChildList.setAttribute('aria-hidden', true);
+          navPageChildList.classList.remove("is-open");
+          navPageChildList.style.display = "none";
+          navPageChildList.setAttribute("aria-hidden", true);
         }
-      })
-    })
-    
+      });
+    });
+
     //handle opening and closing of 2nd level navPage-subMenus
     navPagesItems?.forEach((navPageItem) => {
-      const navPageAction = navPageItem.querySelector('.navPages-action.has-subMenu');
+      const navPageAction = navPageItem.querySelector(
+        ".navPages-action.has-subMenu"
+      );
 
       if (navPageAction) {
-        const navPageMoreIcon = navPageAction.querySelector('.navPages-action-moreIcon');
-        
+        const navPageMoreIcon = navPageAction.querySelector(
+          ".navPages-action-moreIcon"
+        );
+
         if (navPageMoreIcon) {
-          navPageMoreIcon?.addEventListener('click', (e) => {
+          navPageMoreIcon?.addEventListener("click", (e) => {
             e.stopPropagation();
             e.preventDefault();
 
-            navPageAction.classList.toggle('is-open');
-            navPageAction.setAttribute('aria-expanded', navPageAction.classList.contains('is-open'));
+            navPageAction.classList.toggle("is-open");
+            navPageAction.setAttribute(
+              "aria-expanded",
+              navPageAction.classList.contains("is-open")
+            );
 
-            const navPageSubMenu = navPageItem.querySelector('.navPage-subMenu');
+            const navPageSubMenu =
+              navPageItem.querySelector(".navPage-subMenu");
             if (navPageSubMenu) {
-              navPageSubMenu.classList.toggle('is-open');
-              navPageSubMenu.setAttribute('aria-hidden', navPageSubMenu.classList.contains('is-open'));
+              navPageSubMenu.classList.toggle("is-open");
+              navPageSubMenu.setAttribute(
+                "aria-hidden",
+                navPageSubMenu.classList.contains("is-open")
+              );
             }
-          })
+          });
         }
       }
-    })
+    });
 
-      //handle opening and closing of 3rd level navPage-subMenus
+    //handle opening and closing of 3rd level navPage-subMenus
 
-    const navPageSubMenuItems = document.querySelectorAll('.navPage-subMenu-item');
+    const navPageSubMenuItems = document.querySelectorAll(
+      ".navPage-subMenu-item"
+    );
 
     navPageSubMenuItems?.forEach((navPageSubMenuItem) => {
-      const navPageSubMenuAction = navPageSubMenuItem.querySelector('.navPage-subMenu-action.navPages-action.has-subMenu');
-      
+      const navPageSubMenuAction = navPageSubMenuItem.querySelector(
+        ".navPage-subMenu-action.navPages-action.has-subMenu"
+      );
+
       if (navPageSubMenuAction) {
-        const navPageMoreIcon = navPageSubMenuAction.querySelector('.collapsible-icon-wrapper');
+        const navPageMoreIcon = navPageSubMenuAction.querySelector(
+          ".collapsible-icon-wrapper"
+        );
         if (navPageMoreIcon) {
-          navPageMoreIcon?.addEventListener('click', (e) => {
+          navPageMoreIcon?.addEventListener("click", (e) => {
             e.stopPropagation();
             e.preventDefault();
 
-            navPageMoreIcon.classList.toggle('is-open');
-            navPageMoreIcon.setAttribute('aria-expanded', navPageMoreIcon.classList.contains('is-open'));
+            navPageMoreIcon.classList.toggle("is-open");
+            navPageMoreIcon.setAttribute(
+              "aria-expanded",
+              navPageMoreIcon.classList.contains("is-open")
+            );
 
-            console.log('navPageSubMenuItem', navPageSubMenuItem);
-            console.log('navPageSubMenuAction', navPageSubMenuAction);
-            console.log('navPageMoreIcon', navPageMoreIcon);
-            const navPageSubMenuDropdown = navPageSubMenuItem.querySelector('.subMenu-dropdown');
-            console.log('navPageSubMenuDropdown', navPageSubMenuDropdown);
+            console.log("navPageSubMenuItem", navPageSubMenuItem);
+            console.log("navPageSubMenuAction", navPageSubMenuAction);
+            console.log("navPageMoreIcon", navPageMoreIcon);
+            const navPageSubMenuDropdown =
+              navPageSubMenuItem.querySelector(".subMenu-dropdown");
+            console.log("navPageSubMenuDropdown", navPageSubMenuDropdown);
             if (navPageSubMenuDropdown) {
-              navPageSubMenuDropdown.classList.toggle('is-open');
+              navPageSubMenuDropdown.classList.toggle("is-open");
 
-              const navPageChildList = navPageSubMenuDropdown.querySelector('.navPage-childList');
-              console.log('navPageChildList', navPageChildList);
+              const navPageChildList =
+                navPageSubMenuDropdown.querySelector(".navPage-childList");
+              console.log("navPageChildList", navPageChildList);
               if (navPageChildList) {
-                console.log('navPageChildList before', navPageChildList);
-                if (navPageChildList.classList.contains('is-open')) {
-                  navPageChildList.classList.remove('is-open');
-                  navPageChildList.style.display = 'none'
+                console.log("navPageChildList before", navPageChildList);
+                if (navPageChildList.classList.contains("is-open")) {
+                  navPageChildList.classList.remove("is-open");
+                  navPageChildList.style.display = "none";
                 } else {
-                  navPageChildList.classList.add('is-open');
-                  navPageChildList.style.display = 'block';
+                  navPageChildList.classList.add("is-open");
+                  navPageChildList.style.display = "block";
                 }
                 // navPageChildList.classList.toggle('is-open');
-                console.log('navPageChildList after', navPageChildList);
+                console.log("navPageChildList after", navPageChildList);
                 // navPageChildList.setAttribute('aria-hidden', navPageChildList.classList.contains('is-open'));
               }
             }
-          })
+          });
         }
       }
-    })
-  
+    });
+  });
+</script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInputs = document.querySelectorAll(".search-input");
+
+    searchInputs?.forEach((searchInput) => {
+      searchInput?.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        searchInput.focus();
+      })
+    })
   })
 </script>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const searchInputs = document.querySelectorAll('.search-input');
 
-    searchInputs?.forEach((searchInput) => {
-      searchInput?.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        searchInput.focus();
+    //header mobileMenu Toggle Icon
+    const toggleIconDiv = document.querySelector('.mobileMenu.mobileMenu--one');
+    const navPagesContainer = document.querySelector('.navPages-container');
+
+    toggleIconDiv?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleIconDiv.classList.toggle('is-open');
+
+      const toggleIcon = toggleIconDiv.querySelector('.mobileMenu-toggleIcon');
+
+      if (toggleIcon) {
+        if (toggleIconDiv.classList.contains('is-open')) {
+          toggleIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <line x1="6" y1="6" x2="18" y2="18" stroke="#0A0A1E" stroke-width="2" stroke-linecap="round"/>
+  <line x1="18" y1="6" x2="6" y2="18" stroke="#0A0A1E" stroke-width="2" stroke-linecap="round"/>
+</svg>
+`;
+        } else {
+          toggleIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="21" viewBox="0 0 28 21" fill="none">
+            <path d="M25.8125 2.625H2.1875M11.375 10.5H2.1875M11.375 18.375H2.1875" stroke="#1F1F1F" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.5625 18.375C22.7371 18.375 24.5 16.6121 24.5 14.4375C24.5 12.2629 22.7371 10.5 20.5625 10.5C18.3879 10.5 16.625 12.2629 16.625 14.4375C16.625 16.6121 18.3879 18.375 20.5625 18.375Z" stroke="#1F1F1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.8125 19.6875L23.3187 17.1938" stroke="#1F1F1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`
+        }
+      }
+    })
+
+
+    //customer support script
+    const customerSupportBtns = document.querySelectorAll('.customer-support .customer-support-btn');
+
+    customerSupportBtns?.forEach((customerSupportBtn) => {
+      const btnArrow = customerSupportBtn.querySelector('.customer-support .customer-support-btn .btn-arrow');
+
+      btnArrow?.addEventListener('click', () => {
+        btnArrow.classList.toggle('is-open');
+
+        const btn = btnArrow.closest('.customer-support .customer-support-btn .btn');
+        btn?.classList.toggle('is-open');
+
+        const supportContainer = customerSupportBtn.querySelector('.customer-support .customer-support-btn .support-container');
+        supportContainer?.classList.toggle('is-open');
+      })
+    })
+
+    //authenticity guarantee script
+    const authenticityGuaranteeBtns = document.querySelectorAll('.authenticity-guarantee');
+
+    authenticityGuaranteeBtns?.forEach((authenticityGuaranteeBtn) => {
+      const arrowIcon = authenticityGuaranteeBtn.querySelector('.authenticity-guarantee .icon.arrow-icon');
+
+      arrowIcon?.addEventListener('click', () => {
+        arrowIcon.classList.toggle('is-open');
+        
+        const guaranteeSection = authenticityGuaranteeBtn.querySelector('.authenticity-guarantee .guarantee-section');
+        if (guaranteeSection) {
+          guaranteeSection.classList.toggle('is-open');
+        }
       })
     })
   })

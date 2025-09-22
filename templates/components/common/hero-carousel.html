@@ -408,7 +408,7 @@
     }
 
     .hero-section .left-container {
-      flex: 0 0 64%;
+      flex: 0 0 63.2%;
       position: relative;
     }
 
@@ -416,7 +416,7 @@
       display: flex;
       flex-direction: column;
       flex: 0 0 36%;
-      gap: 25px;
+      gap: 10px;
     }
 
     .hero-section .left-container .img::before {
@@ -505,17 +505,11 @@
     }
   }
 
-  @media (min-width: 769px) and (max-width: 840px) {
 
-    .hero-section .right-container .upper .heading,
-    .hero-section .right-container .lower .heading {
-      font-size: 14px;
-    }
-  }
 
   @media (min-width: 769px) and (max-width: 992px) {
     .hero-section .left-container .slick-slide img {
-      min-height: 320px;
+      min-height: 310px;
     }
 
     .hero-section .left-container .text-below-home-hero-mobile .title {
@@ -558,7 +552,13 @@
       font-size: 12px;
     }
   }
+  @media (min-width: 769px) and (max-width: 840px) {
 
+    .hero-section .right-container .upper .heading,
+    .hero-section .right-container .lower .heading {
+      font-size: 14px;
+    }
+  }
   @media (min-width: 993px) {
     .hero-section .left-container .text-below-home-hero-mobile .description {
       font-size: 14px;

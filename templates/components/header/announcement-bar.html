@@ -217,6 +217,236 @@
 	</div>
 </div>
 
+<!-- 
+ <script>
+	document.addEventListener('DOMContentLoaded', () => {
+		let authenticityRight = document.querySelector(".authenticity-right");
+		let guaranteeSection = document.querySelector(".guarantee-section");
+		let popupContainer = document.querySelector(".popup-events-container");
+		let popButton = document.getElementById("popbtn");
+		let accouncementTop = document.querySelector(".accouncement-icon-top");
+		let linearGradients = document.querySelectorAll(".linear-gradient-bg");
+		accouncementTop.addEventListener("click", (e) => {
+			e.stopPropagation();
+			if (popupContainer.style.display === "none") {
+				popupContainer.style.display = "block";
+				guaranteeSection.style.display = "none";
+                linearGradients?.forEach((linearGradient) => {
+				    linearGradient.style.display = "block"
+                })
+			} else {
+				popupContainer.style.display = "none";
+			}
+		});
+
+		popButton.addEventListener("click", (e) => {
+			e.stopPropagation();
+			popupContainer.style.display = "none";
+			// linearGradient.style.display = "none"
+            linearGradients?.forEach((linearGradient) => {
+				    linearGradient.style.display = "none"
+                })
+		});
+
+		window.addEventListener("click", () => {
+			popupContainer.style.display = "none";
+			guaranteeSection.style.display = "none";
+			// linearGradient.style.display = "none"
+            linearGradients?.forEach((linearGradient) => {
+				    linearGradient.style.display = "none"
+                })
+		});
+
+		popupContainer.addEventListener("click", (e) => e.stopPropagation());
+
+		authenticityRight.addEventListener("click", function (e) {
+			e.stopPropagation();
+			if (guaranteeSection.style.display === "none") {
+				guaranteeSection.style.display = "block";
+				popupContainer.style.display = "none";
+			} else {
+				guaranteeSection.style.display = "none";
+			}
+		});
+
+		guaranteeSection.addEventListener("click", (e) => e.stopPropagation());
+
+		// ✅ Resize pe button disable hote hi popup close kar do
+		function checkButtonState() {
+			if (window.innerWidth <= 768) {
+				// Button disable condition
+				popupContainer.style.display = "none";
+				guaranteeSection.style.display = "none";
+				//linearGradient.style.display = "none" //custom saad
+                 linearGradients?.forEach((linearGradient) => {
+				    linearGradient.style.display = "none"
+                })
+			}
+		}
+
+		// Page load par bhi check karo
+		checkButtonState();
+
+		// Resize hone par check karo
+		window.addEventListener("resize", checkButtonState);
+	});
+</script>  
+ -->
+<!-- <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const authenticityRight  = document.querySelector(".authenticity-right");
+  const guaranteeSection   = document.querySelector(".guarantee-section");
+  const popupContainer     = document.querySelector(".popup-events-container");
+  const popButton          = document.getElementById("popbtn");
+  const accouncementTop    = document.querySelector(".accouncement-icon-top");
+  const linearGradients    = Array.from(document.querySelectorAll(".linear-gradient-bg"));
+
+  if (!popupContainer) {
+    console.warn('popup-events-container not found — script aborted');
+    return;
+  }
+
+  let isPopupOpen = false;
+  const TRANS_MS = 350; // must match/ exceed CSS transition duration (300ms above)
+
+  function showPopup() {
+    if (isPopupOpen) return;
+    // ensure visible in layout
+    popupContainer.style.display = 'block';
+    // remove class in case it was left behind
+    popupContainer.classList.remove('is-open');
+    // FORCE reflow so the subsequent class add will transition
+    void popupContainer.offsetWidth;
+    // then add the visible class to animate opacity
+    popupContainer.classList.add('is-open');
+
+    // show/hide other items as before
+    if (guaranteeSection) guaranteeSection.style.display = 'none';
+    linearGradients.forEach(l => l.style.display = 'block');
+
+    isPopupOpen = true;
+  }
+
+  function finishHide() {
+    // hide from layout
+    popupContainer.style.display = 'none';
+    // ensure the class is not left behind
+    popupContainer.classList.remove('is-open');
+    isPopupOpen = false;
+  }
+
+  function hidePopup() {
+    if (!isPopupOpen && popupContainer.style.display === 'none') return;
+    // start fade out
+    popupContainer.classList.remove('is-open');
+
+    // safety: use both transitionend and fallback timeout
+    let done = false;
+    function doneOnce() {
+      if (done) return;
+      done = true;
+      finishHide();
+      popupContainer.removeEventListener('transitionend', onTrans);
+      clearTimeout(fallback);
+    }
+    function onTrans(e) {
+      // ensure it's the opacity property (extra safety)
+      if (e.propertyName && e.propertyName !== 'opacity') return;
+      doneOnce();
+    }
+    popupContainer.addEventListener('transitionend', onTrans);
+    const fallback = setTimeout(doneOnce, TRANS_MS + 80);
+
+    // hide linear gradients too
+    linearGradients.forEach(l => l.style.display = 'none');
+  }
+
+  // toggle on announcement click
+  if (accouncementTop) {
+    accouncementTop.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPopupOpen) hidePopup();
+      else showPopup();
+    });
+  }
+
+  // close button
+  if (popButton) {
+    popButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hidePopup();
+    });
+  }
+
+  // close on outside click
+  window.addEventListener('click', () => {
+    hidePopup();
+    if (guaranteeSection) guaranteeSection.style.display = 'none';
+    linearGradients.forEach(l => l.style.display = 'none');
+  });
+
+  // prevent closing when clicking inside popup
+  popupContainer.addEventListener('click', (e) => e.stopPropagation());
+
+  // authenticity-right toggles guarantee section (keeps previous behavior)
+  if (authenticityRight) {
+    authenticityRight.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!guaranteeSection) return;
+      if (guaranteeSection.style.display === 'none' || guaranteeSection.style.display === '') {
+        guaranteeSection.style.display = 'block';
+        hidePopup();
+      } else {
+        guaranteeSection.style.display = 'none';
+      }
+    });
+  }
+
+  if (guaranteeSection) guaranteeSection.addEventListener('click', (e) => e.stopPropagation());
+
+  // responsiveness: hide popup when width ≤ 768
+  function checkButtonState() {
+    if (window.innerWidth <= 768) {
+      hidePopup();
+      if (guaranteeSection) guaranteeSection.style.display = 'none';
+      linearGradients.forEach(l => l.style.display = 'none');
+    }
+  }
+  checkButtonState();
+  window.addEventListener('resize', checkButtonState);
+});
+</script> -->
+
+<style>
+    /* .popup-events-container {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.popup-events-container.fade-out {
+  opacity: 0;
+  visibility: hidden; 
+} */
+
+/* Initial hidden state */
+.popup-events-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease;
+  /* keep display:block so we can fade in/out */
+  display: block;
+}
+
+/* Visible state */
+.popup-events-container.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+</style>
 <!-- //------------------------------------------------------
 //Style and Script of main announcement bar Starts here
 //------------------------------------------------------ -->
@@ -513,80 +743,8 @@ border: 1px dashed rgba(255, 255, 255, 0.4); /* white with 40% opacity */
 	}
 </style>
 
-<!-- <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		let authenticityRight = document.querySelector(".authenticity-right");
-		let guaranteeSection = document.querySelector(".guarantee-section");
-		let popupContainer = document.querySelector(".popup-events-container");
-		let popButton = document.getElementById("popbtn");
-		let accouncementTop = document.querySelector(".accouncement-icon-top");
-		let linearGradients = document.querySelectorAll(".linear-gradient-bg");
-		accouncementTop.addEventListener("click", (e) => {
-			e.stopPropagation();
-			if (popupContainer.style.display === "none") {
-				popupContainer.style.display = "block";
-				guaranteeSection.style.display = "none";
-                linearGradients?.forEach((linearGradient) => {
-				    linearGradient.style.display = "block"
-                })
-			} else {
-				popupContainer.style.display = "none";
-			}
-		});
 
-		popButton.addEventListener("click", (e) => {
-			e.stopPropagation();
-			popupContainer.style.display = "none";
-			// linearGradient.style.display = "none"
-            linearGradients?.forEach((linearGradient) => {
-				    linearGradient.style.display = "none"
-                })
-		});
-
-		window.addEventListener("click", () => {
-			popupContainer.style.display = "none";
-			guaranteeSection.style.display = "none";
-			// linearGradient.style.display = "none"
-            linearGradients?.forEach((linearGradient) => {
-				    linearGradient.style.display = "none"
-                })
-		});
-
-		popupContainer.addEventListener("click", (e) => e.stopPropagation());
-
-		authenticityRight.addEventListener("click", function (e) {
-			e.stopPropagation();
-			if (guaranteeSection.style.display === "none") {
-				guaranteeSection.style.display = "block";
-				popupContainer.style.display = "none";
-			} else {
-				guaranteeSection.style.display = "none";
-			}
-		});
-
-		guaranteeSection.addEventListener("click", (e) => e.stopPropagation());
-
-		// ✅ Resize pe button disable hote hi popup close kar do
-		function checkButtonState() {
-			if (window.innerWidth <= 768) {
-				// Button disable condition
-				popupContainer.style.display = "none";
-				guaranteeSection.style.display = "none";
-				//linearGradient.style.display = "none" //custom saad
-                 linearGradients?.forEach((linearGradient) => {
-				    linearGradient.style.display = "none"
-                })
-			}
-		}
-
-		// Page load par bhi check karo
-		checkButtonState();
-
-		// Resize hone par check karo
-		window.addEventListener("resize", checkButtonState);
-	});
-</script> -->
- <!-- 
+<!-- 
 //----------------------------------------------------
 //Style and Script of main announcement bar Ends Here
 //---------------------------------------------------- -->

@@ -513,7 +513,7 @@ border: 1px dashed rgba(255, 255, 255, 0.4); /* white with 40% opacity */
 	}
 </style>
 
-<script>
+<!-- <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		let authenticityRight = document.querySelector(".authenticity-right");
 		let guaranteeSection = document.querySelector(".guarantee-section");
@@ -585,10 +585,8 @@ border: 1px dashed rgba(255, 255, 255, 0.4); /* white with 40% opacity */
 		// Resize hone par check karo
 		window.addEventListener("resize", checkButtonState);
 	});
-</script>
-
-
-<!-- 
+</script> -->
+ <!-- 
 //----------------------------------------------------
 //Style and Script of main announcement bar Ends Here
 //---------------------------------------------------- -->
@@ -639,7 +637,16 @@ border: 1px dashed rgba(255, 255, 255, 0.4); /* white with 40% opacity */
         border-radius: 10px;
         background: var(--Tan-Page-Bkg, #FBFBFB);
         z-index: 2;
+
+         opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease; 
     }
+
+    .popup-events-container.fade-out {
+    opacity: 0;
+    visibility: hidden;              /* keeps it out of flow after fade */
+}
 
     /* .popup-events-container {
     position: fixed; 
@@ -712,9 +719,9 @@ text-transform: capitalize;
         border-radius: 50%;
 
         width: 48.083px;
-height: 48.083px;
-flex-shrink: 0;
-aspect-ratio: 48.08/48.08;
+        height: 48.083px;
+        flex-shrink: 0;
+        aspect-ratio: 48.08/48.08;
     }
 
     .popup-close-btn--svg{
@@ -954,3 +961,4 @@ header.header.header-logo--left {
 	}
     }
 </style>
+

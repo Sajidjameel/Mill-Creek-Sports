@@ -171,6 +171,32 @@
 </nav>
 
 <style>
+  .previewCart{
+    padding-top: 15px;
+  }
+  .previewCart,
+  .previewCart * {
+      font-size: 14px !important;
+      font-family: "Noto Sans" !important;
+  
+  }
+
+
+  #cart-preview-dropdown{
+    max-width: 315px !important; 
+    left:auto !important;  
+    right:20px !important;
+    top: 80.1px !important; 
+    border-radius: 10px !important;
+    background: E8E8E8 !important;
+    font-family: "Noto Sans" !important;
+    font-size: 14px !important;
+  }
+  /* when the dropdown is visible and we add .active, fill turns blue */
+.navUser-item--account.active svg path {
+    fill: #961414 !important;
+}
+
   .header .navUser .navUser-item--cart .countPill {
     transform: translate(0.6%, 22%);
     transform: translate(75.6%, -30%);
@@ -291,9 +317,11 @@
     e.stopPropagation();
     if (customDropdown.style.display === "block") {
       customDropdown.style.display = "none"; //
+      navUserItemAccount.classList.remove("active");
     } else {
       customDropdown.style.display = "block";
       supportContainer.style.display = "none";
+      navUserItemAccount.classList.add("active");      
     }
   });
 
@@ -307,6 +335,36 @@
       !customDropdown.contains(e.target)
     ) {
       customDropdown.style.display = "none";
+      navUserItemAccount.classList.remove("active");
     }
   });
+
+  // navUser-item--cart
+</script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cartLink = document.querySelector('.navUser-item--cart .navUser-action');
+
+  function toggleCartBehavior() {
+    if (window.innerWidth < 992) {
+      // Remove dropdown attributes so the BigCommerce preview can't hook in
+      cartLink.removeAttribute('data-cart-preview');
+      cartLink.removeAttribute('data-dropdown');
+      cartLink.removeAttribute('data-options');
+    } else {
+      // Restore attributes for desktop if needed
+      cartLink.setAttribute('data-cart-preview', '');
+      cartLink.setAttribute('data-dropdown', 'cart-preview-dropdown');
+      cartLink.setAttribute('data-options', 'align:right');
+    }
+  }
+
+  // Run on load and on resize
+  toggleCartBehavior();
+  window.addEventListener('resize', toggleCartBehavior);
+});
 </script>

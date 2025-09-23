@@ -109,6 +109,16 @@
 {{{region name="header_bottom--global"}}} {{{region name="header_bottom"}}}
 
 <style>
+
+  input#nav-menu-quick-search::placeholder{
+    color: rgba(10, 10, 30, 0.90);
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.28px;
+  }
   .announcement-bar {
     position: relative;
     z-index: 11;
@@ -135,7 +145,6 @@
 
     height: 100px;
 
-    padding-right: 10px;
   }
   .header-logo {
     margin: 0;
@@ -184,6 +193,10 @@
   }
 
   @media (min-width: 993px) {
+    .header{
+    padding-right: 10px;
+
+    }
     .navPage-subMenu.is-open .navPage-subMenu-list {
       max-height: 785px;
       overflow-y: scroll !important;
@@ -1028,6 +1041,17 @@
   .navPages li {
     list-style: none;
   }
+  .button--primary{
+    background-color: #961414 !important;
+    color: white !important;
+  }
+  .button--action{
+    background-color: transparent !important;
+    color: #21205F !important;
+    FONT-FAMILY: 'NOTO SANS';
+    FONT-SIZE: 16PX;
+    border: 1px solid #21205F !important; 
+    }
 </style>
 
 <script>

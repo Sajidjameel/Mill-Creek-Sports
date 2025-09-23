@@ -1165,5 +1165,19 @@
         })
       }
     }, 2000)
+
+    const subMenuItems = document.querySelectorAll(".navPage-subMenu-item");
+
+    if (window.innerWidth > 992) {
+      setTimeout(() => {
+          subMenuItems.forEach(subMenuItem => {
+          const collapsibleIocn = subMenuItem.querySelector('.collapsible-icon-wrapper.is-open');
+          if (collapsibleIocn) {
+            collapsibleIocn.classList.remove('is-open');
+            collapsibleIocn.setAttribute('aria-expanded', 'false');
+          }
+        })
+      }, 2000);
+    }
   })
 </script>

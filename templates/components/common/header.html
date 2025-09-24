@@ -1520,3 +1520,48 @@
     }
   })
 </script>
+
+<style>
+.linear-gradient-bg-body.nav-open {
+  display: block;
+}
+.header.nav-open {
+  position: relative;
+  z-index: 3;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const gradient = document.querySelector('.linear-gradient-bg-body');
+  const header   = document.querySelector('.header');
+
+  document.querySelectorAll('.navPages-action.has-subMenu').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const isOpen = link.classList.contains('is-open');
+
+      if (isOpen) {
+        // Submenu is closing
+        gradient?.style.setProperty('display', 'none');
+        header?.classList.remove('nav-open');
+      } else {
+        // Submenu is opening
+        gradient?.style.setProperty('display', 'block');
+        header?.classList.add('nav-open');
+
+        // 🆕  Add a one-time window click listener
+        const closeOnOutsideClick = (event) => {
+          // Ignore clicks inside the header or on any navPages-action
+          if ( !event.target.closest('.navPages-action.has-subMenu')) {
+            gradient?.style.setProperty('display', 'none');
+            header?.classList.remove('nav-open');
+            window.removeEventListener('click', closeOnOutsideClick);
+          }
+        };
+
+        window.addEventListener('click', closeOnOutsideClick);
+      }
+    });
+  });
+});
+</script>

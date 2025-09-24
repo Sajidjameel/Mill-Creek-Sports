@@ -634,6 +634,8 @@
     background: transparent
    
   }
+
+
   .footer-form input::placeholder {
   color: #ffffff; /* placeholder text color */
   opacity: 1;
@@ -713,16 +715,16 @@
     }
   }
 
-  @media (min-width: 350px) and (max-width: 500px) {
+  @media (min-width: 380px) and (max-width: 500px) {
     .social-icons .social-link svg {
       width: 45px;
       height: 45px;
     }
   }
-  @media (min-width: 300px) and (max-width: 350px) {
+  @media (min-width: 300px) and (max-width: 380px) {
     .social-icons .social-link svg {
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
     }
   }
 </style>
@@ -1131,6 +1133,14 @@
       justify-content: center;
     }
   }
+   @media (max-width: 350px) {
+  .auto-slider .footer-form {
+    max-width: 242px;
+  }
+  .auto-slider .footer-form input {
+    max-width: 150px;
+  }
+}
 </style>
 
 <script>
@@ -1155,5 +1165,19 @@
         })
       }
     }, 2000)
+
+    const subMenuItems = document.querySelectorAll(".navPage-subMenu-item");
+
+    if (window.innerWidth > 992) {
+      setTimeout(() => {
+          subMenuItems.forEach(subMenuItem => {
+          const collapsibleIocn = subMenuItem.querySelector('.collapsible-icon-wrapper.is-open');
+          if (collapsibleIocn) {
+            collapsibleIocn.classList.remove('is-open');
+            collapsibleIocn.setAttribute('aria-expanded', 'false');
+          }
+        })
+      }, 2000);
+    }
   })
 </script>

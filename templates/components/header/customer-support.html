@@ -61,6 +61,9 @@
         z-index: 1;
         width: 303px;
         display: none;
+
+        font-family: "Noto Sans";
+
     }
 
     .border-blue {
@@ -69,7 +72,7 @@
 
     /* 👇 parent reference ke sath child classes */
     .support-container .support-header {
-        background-color: #f7f7f7;
+        background-color: white;
         padding-top: 12px;
     }
     
@@ -192,11 +195,13 @@ background-repeat: repeat-x;
     }
 
     .support-container .email {
-        font-size: 13px;
+        font-size: 14px;
         /* color: #0066cc; */
         color: #0A0A1E;
         text-decoration: none;
         font-weight: 400;
+       text-decoration: underline;
+        text-transform: none;
     }
 
     .support-container .email:hover {
@@ -211,11 +216,11 @@ background-repeat: repeat-x;
 
     .support-container .menu-links li {
         padding: 10px 0;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid #E0E0E0 !important;
     }
 
     .support-container .menu-links li:last-child {
-        border-bottom: none;
+        border-bottom: none !important;
         padding-bottom: 20px;
     }
 
@@ -264,7 +269,7 @@ background-repeat: repeat-x;
         color: var(--Dark-Overlay, #0A0A1E);
         text-align: center;
         font-family: "Noto Sans";
-        font-size: 13px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 150%;
@@ -297,3 +302,20 @@ background-repeat: repeat-x;
         border: none;
     }
 </style>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Select every header inside a support-container
+    document.querySelectorAll('.support-container .support-header').forEach(header => {
+        header.addEventListener('click', () => {
+            // Hide only the first ancestor with class "support-container"
+            const container = header.closest('.support-container');
+            if (container) {
+                container.style.display = 'none';
+            }
+        });
+    });
+});
+</script>

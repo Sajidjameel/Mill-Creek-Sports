@@ -1,10 +1,8 @@
 <div class="search-bar-dropdown">
     <div class="main-seacrh-bar">
         <form class="search-form" action="{{urls.search}}" data-quick-search-form>
-            <input type="search" name="" id="unique-search" class="search-bar-input-dropdown"
-                class="search-input"
-                id="{{name}}"
-                name="{{name}}"
+            <input type="search" name="" id="unique-search" class="search-bar-input-dropdown "
+                name="search_query"
                 data-search-quick
                 data-error-message="{{lang 'search.error.empty_field'}}"
                 placeholder="{{lang 'search.quick_search.input_placeholder'}}"
@@ -24,6 +22,7 @@
     .search-bar-dropdown {
         display: none;
         position: absolute;
+        top: 40px;
         right: 0;
         z-index: 2;
     }
@@ -41,6 +40,14 @@
         letter-spacing: -0.28px;
         white-space: nowrap;
         overflow: hidden;
+
+        color: rgba(10, 10, 30, 0.90);
+        font-family: "Noto Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 150%; /* 21px */
+        letter-spacing: -0.28px;
     }
 
     input#unique-search {
@@ -61,7 +68,7 @@
     } */
 </style>
 
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
         let searchButton = document.querySelector(".navUser .search-button");
         let searchBarDropdown = document.querySelector(".search-bar-dropdown");
@@ -94,4 +101,50 @@
             }
         });
     })
+</script>
+ -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let searchButton = document.querySelector(".navUser .search-button");
+    let searchBarDropdown = document.querySelector(".search-bar-dropdown");
+    let uniqueSearch1 = document.getElementById("unique-search"); // <— grab the input
+
+    function handleSearchBar(mediaQuery) {
+        if (mediaQuery.matches) {
+            searchButton.style.display = "block";
+            searchBarDropdown.style.display = "none";
+
+            searchButton.onclick = (e) => {
+                e.stopPropagation();
+
+                if (searchBarDropdown.style.display === "block") {
+                    searchBarDropdown.style.display = "none";
+                } else {
+                    searchBarDropdown.style.display = "block";
+
+                    // ---- Focus the input once the dropdown is visible ----
+                    if (uniqueSearch1) {
+                        setTimeout(() => uniqueSearch1.focus(), 0);
+                    }
+                }
+            };
+        } else {
+            searchBarDropdown.style.display = "none";
+        }
+    }
+
+    let mediaQuery = window.matchMedia("(min-width: 992px) and (max-width: 1250px)");
+    handleSearchBar(mediaQuery);
+    mediaQuery.addEventListener("change", () => handleSearchBar(mediaQuery));
+
+    window.addEventListener("click", (e) => {
+        if (
+            !searchButton.contains(e.target) &&
+            !searchBarDropdown.contains(e.target)
+        ) {
+            searchBarDropdown.style.display = "none";
+        }
+    });
+});
 </script>

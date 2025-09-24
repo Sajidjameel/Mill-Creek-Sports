@@ -1,30 +1,32 @@
 <nav class="navPages">
-  <div class="navPages-quickSearch">
-    {{> components/common/quick-search name='nav-menu-quick-search'}}
+  <div>
+    <div class="navPages-quickSearch">
+      {{> components/common/quick-search name='nav-menu-quick-search'}}
+    </div>
+    <ul
+      class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}"
+    >
+      {{#each categories}}
+      <li class="navPages-item">
+        {{#if ../theme_settings.navigation_design '===' 'simple'}} {{>
+        components/common/navigation-list}} {{/if}} {{#if
+        ../theme_settings.navigation_design '===' 'alternate'}} {{>
+        components/common/navigation-list-alternate}} {{/if}}
+      </li>
+      {{/each}} {{#unless theme_settings.hide_content_navigation}} {{#each pages}}
+      {{#unless name '===' 'Blog'}}
+      <li class="navPages-item navPages-item-page">
+        <a
+          class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}"
+          href="{{url}}"
+          aria-label="{{name}}"
+        >
+          <p class="name-styling">{{name}}</p>
+        </a>
+      </li>
+      {{/unless}} {{/each}} {{/unless}}
+    </ul>
   </div>
-  <ul
-    class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}"
-  >
-    {{#each categories}}
-    <li class="navPages-item">
-      {{#if ../theme_settings.navigation_design '===' 'simple'}} {{>
-      components/common/navigation-list}} {{/if}} {{#if
-      ../theme_settings.navigation_design '===' 'alternate'}} {{>
-      components/common/navigation-list-alternate}} {{/if}}
-    </li>
-    {{/each}} {{#unless theme_settings.hide_content_navigation}} {{#each pages}}
-    {{#unless name '===' 'Blog'}}
-    <li class="navPages-item navPages-item-page">
-      <a
-        class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}"
-        href="{{url}}"
-        aria-label="{{name}}"
-      >
-        <p class="name-styling">{{name}}</p>
-      </a>
-    </li>
-    {{/unless}} {{/each}} {{/unless}}
-  </ul>
   {{> components/header/mobile-bottom-dropdowns}}
 </nav>
 

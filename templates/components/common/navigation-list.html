@@ -28,110 +28,121 @@
   tabindex="-1"
 >
 
-    <a class="back-btn-and-icon second-level-back-btn">
-      <span class="icon back-icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="8"
-          height="12"
-          viewBox="0 0 8 12"
-          fill="none"
-        >
-          <g clip-path="url(#clip0_1_2656)">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M0.86922 6.59251L5.58339 11.3067L6.76172 10.1283L2.63672 6.00335L6.76172 1.87835L5.58339 0.700012L0.86922 5.41418C0.712993 5.57045 0.625231 5.78238 0.625231 6.00335C0.625231 6.22432 0.712993 6.43624 0.86922 6.59251Z"
-              fill="#0A0A1E"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_1_2656">
-              <rect
-                width="8"
-                height="12"
-                fill="white"
-                transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)"
+    <div class="content">
+      <a class="back-btn-and-icon second-level-back-btn">
+        <span class="icon back-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="12"
+            viewBox="0 0 8 12"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_1_2656)">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M0.86922 6.59251L5.58339 11.3067L6.76172 10.1283L2.63672 6.00335L6.76172 1.87835L5.58339 0.700012L0.86922 5.41418C0.712993 5.57045 0.625231 5.78238 0.625231 6.00335C0.625231 6.22432 0.712993 6.43624 0.86922 6.59251Z"
+                fill="#0A0A1E"
               />
-            </clipPath>
-          </defs>
-        </svg>
-      </span>
-      <span class="back-text">Back</span>
-    </a>
-    <p class="subCategory-name">{{name}}</p>
-    <ul class="navPage-subMenu-list">
-      {{#each children}}
-      <li class="navPage-subMenu-item">
-        {{#if children}}
-        <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}"
-          aria-label="{{name}}">
-          <span class="name-styling">{{name}}</span>
-          <span class="collapsible-icon-wrapper" data-collapsible="navPages-{{id}}"
-            data-collapsible-disabled-breakpoint="medium" data-collapsible-disabled-state="open"
-            data-collapsible-enabled-state="closed">
-            <i class="icon navPages-action-moreIcon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                <g clip-path="url(#clip0_1_2187)">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M7.13078 6.5925L2.41661 11.3067L1.23828 10.1283L5.36328 6.00333L1.23828 1.87833L2.41661 0.699997L7.13078 5.41416C7.28701 5.57044 7.37477 5.78236 7.37477 6.00333C7.37477 6.2243 7.28701 6.43622 7.13078 6.5925Z"
-                    fill="#0A0A1E" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_2187">
-                    <rect width="8" height="12" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </i>
-          </span>
-        </a>    
-        <div class="subMenu-dropdown" style="display: none;">
-          <a class="back-btn-and-icon third-level-back-btn">
-            <span class="icon back-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                <g clip-path="url(#clip0_1_2656)">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M0.86922 6.59251L5.58339 11.3067L6.76172 10.1283L2.63672 6.00335L6.76172 1.87835L5.58339 0.700012L0.86922 5.41418C0.712993 5.57045 0.625231 5.78238 0.625231 6.00335C0.625231 6.22432 0.712993 6.43624 0.86922 6.59251Z"
-                    fill="#0A0A1E" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_2656">
-                    <rect width="8" height="12" fill="white" transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)" />
-                  </clipPath>
-                </defs>
-              </svg>
+            </g>
+            <defs>
+              <clipPath id="clip0_1_2656">
+                <rect
+                  width="8"
+                  height="12"
+                  fill="white"
+                  transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+        <span class="back-text">Back</span>
+      </a>
+      <p class="subCategory-name">{{name}}</p>
+      <ul class="navPage-subMenu-list">
+        {{#each children}}
+        <li class="navPage-subMenu-item">
+          {{#if children}}
+          <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}"
+            aria-label="{{name}}">
+            <span class="name-styling">{{name}}</span>
+            <span class="collapsible-icon-wrapper" data-collapsible="navPages-{{id}}"
+              data-collapsible-disabled-breakpoint="medium" data-collapsible-disabled-state="open"
+              data-collapsible-enabled-state="closed">
+              <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                  <g clip-path="url(#clip0_1_2187)">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M7.13078 6.5925L2.41661 11.3067L1.23828 10.1283L5.36328 6.00333L1.23828 1.87833L2.41661 0.699997L7.13078 5.41416C7.28701 5.57044 7.37477 5.78236 7.37477 6.00333C7.37477 6.2243 7.28701 6.43622 7.13078 6.5925Z"
+                      fill="#0A0A1E" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_2187">
+                      <rect width="8" height="12" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </i>
             </span>
-            <span class="back-text">Back</span>
-          </a>
-          <ul class="navPage-childList" id="navPages-{{id}}">
-            <p class="subCategory-name">{{name}}</p>
-            {{#each children}}
-            <li class="navPage-childList-item">
-              <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}"
-                aria-label="{{name}}">
-                <span class="name-styling">{{name}}</span>
+          </a>    
+          <div class="subMenu-dropdown" style="display: none;">
+            <div class="content">
+              <div class="navPages-quickSearch">
+                {{> components/common/quick-search name='nav-menu-quick-search'}}
+              </div>
+              <a class="back-btn-and-icon third-level-back-btn">
+                <span class="icon back-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                    <g clip-path="url(#clip0_1_2656)">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.86922 6.59251L5.58339 11.3067L6.76172 10.1283L2.63672 6.00335L6.76172 1.87835L5.58339 0.700012L0.86922 5.41418C0.712993 5.57045 0.625231 5.78238 0.625231 6.00335C0.625231 6.22432 0.712993 6.43624 0.86922 6.59251Z"
+                        fill="#0A0A1E" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1_2656">
+                        <rect width="8" height="12" fill="white" transform="matrix(-1 4.37114e-08 4.37114e-08 1 8 0)" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+                <span class="back-text">Back</span>
               </a>
-            </li>
-            {{/each}}
-          </ul>
-          <div class="category-image-and-cta">
-            <img src="{{getImage image}}" alt="{{image.alt}}">
-            <a href="{{url}}" class="button">Shop All {{name}}</a>
+              <ul class="navPage-childList" id="navPages-{{id}}">
+                <p class="subCategory-name">{{name}}</p>
+                {{#each children}}
+                <li class="navPage-childList-item">
+                  <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}"
+                    aria-label="{{name}}">
+                    <span class="name-styling">{{name}}</span>
+                  </a>
+                </li>
+                {{/each}}
+              </ul>
+              <div class="category-image-and-cta">
+                <img src="{{getImage image}}" alt="{{image.alt}}">
+                <a href="{{url}}" class="button">Shop All {{name}}</a>
+              </div>
+            </div>
+            {{> components/header/mobile-bottom-dropdowns}}
           </div>
-          {{> components/header/mobile-bottom-dropdowns}}
-        </div>
+          {{else}}
+          <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}"
+            aria-label="{{name}}">
+            <span class="name-styling">{{name}}</span>
+          </a>
+          {{/if}}
+        </li>
+        {{/each}}
+      </ul>
+      <div class="category-image-and-cta">
+        {{#if name '===''Shop All Products'}}
+          <a href="{{url}}" class="button">{{name}}</a>
         {{else}}
-        <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}"
-          aria-label="{{name}}">
-          <span class="name-styling">{{name}}</span>
-        </a>
+          <a href="{{url}}" class="button">Shop All {{name}}</a>
         {{/if}}
-      </li>
-      {{/each}}
-    </ul>
-    <div class="category-image-and-cta">
-      <a href="{{url}}" class="button">Shop All {{name}}</a>
+      </div>
     </div>
     {{> components/header/mobile-bottom-dropdowns}}
 </div>

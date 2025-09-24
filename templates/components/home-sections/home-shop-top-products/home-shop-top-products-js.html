@@ -122,26 +122,21 @@
     function setLoader(targets) {
         playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
         slidesSTP = getSlidesToShow();
-        console.log(slidesSTP);
         displaySlidesSTP = slidesSTP;
         playersLengthSTP = playersSTP.length
         percentageSTP = (slidesSTP * 100) / playersLengthSTP;
-        console.log(targets, 'target')
 
         progressBarSTP = document.querySelector(`${targets} .stp-slick-container .fp-progress-fill`)
         progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
-        console.log(progressBarSTP, 'progressBarSTP')
     }
     setLoader('#New-Products-container');
 
     function nextSTP(event) {
-        console.log('prevstp', slidesSTP, playersLengthSTP)
 
         if (slidesSTP + 1 <= playersLengthSTP) {
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.new-products-grid .slick-next.slick-arrow')?.click()
-            console.log(event, 'next event');
 
         }
     }
@@ -151,7 +146,6 @@
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.featured-products-grid .slick-next.slick-arrow')?.click()
-            console.log(event, 'next event');
 
         }
     }
@@ -160,7 +154,6 @@
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.top-seller-products-grid .slick-next.slick-arrow')?.click()
-            console.log(event, 'next event');
 
         }
     }
@@ -172,7 +165,6 @@
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.new-products-grid .slick-prev.slick-arrow')?.click();
-            console.log(event, 'prev event')
         }
     }
     function featuredPrevSTP(event) {
@@ -180,16 +172,13 @@
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.featured-products-grid .slick-prev.slick-arrow')?.click()
-            console.log(event, 'prev event')
         }
     }
     function topPrevSTP(event) {
-        console.log('topprev')
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('#Top-Products-container .slick-prev.slick-arrow')?.click()
-            console.log(event, 'prev event')
         }
     }
 
@@ -211,11 +200,9 @@
         const NewslickContainer = document.querySelector('.stp-new-slick-container');
         topSellersProducts.forEach((p) => p.classList.remove('d-none'));
         if (isMobile2()) {
-            console.log('inside if')
             $('.top-seller-products-grid').slick('slickGoTo', 1, true)
         }
         else {
-            console.log('inside else')
             $('.top-seller-products-grid').slick('slickGoTo', 0);
         }
         setLoader('#Top-Products-container')

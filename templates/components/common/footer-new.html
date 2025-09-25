@@ -1155,9 +1155,9 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    //remove is-open class from all navpage childlists
     setTimeout(() => {
       if (window.innerWidth > 800 && window.innerWidth <= 992) {
-        //remove is-open class from all navpage childlists
         const navPageChildLists = document.querySelectorAll('.subMenu-dropdown .navPage-childList');
         navPageChildLists?.forEach((navPageChildList) => {
           navPageChildList.classList.remove('is-open');
@@ -1166,6 +1166,7 @@
       }
     }, 2000)
 
+    //remove is-open class from all collapsible icons
     const subMenuItems = document.querySelectorAll(".navPage-subMenu-item");
 
     if (window.innerWidth > 992) {

@@ -1468,27 +1468,29 @@
       })
     })
 
-    //adjust category dropdown height on mobile
-    function setDropdownHeight() {
-      const dropdowns = document.querySelectorAll('.navPages, .subMenu-dropdown');
+    if (window.innerWidth <= 992) {
+      //adjust category dropdown height on mobile
+      function setDropdownHeight() {
+        const dropdowns = document.querySelectorAll('.navPages, .subMenu-dropdown');
 
-      dropdowns.forEach((dropdown) => {
-        const topOffset = 90; // height of your header
-        const vh = window.innerHeight; // visible viewport height
+        dropdowns.forEach((dropdown) => {
+          const topOffset = 90; // height of your header
+          const vh = window.innerHeight; // visible viewport height
 
-        // Get iOS safe area inset if available
-        const safeAreaInset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-bottom')) || 0;
+          // Get iOS safe area inset if available
+          const safeAreaInset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-bottom')) || 0;
 
-        // Set dropdown height
-        dropdown.style.height = (vh - topOffset - safeAreaInset) + 'px';
-      })
+          // Set dropdown height
+          dropdown.style.height = (vh - topOffset - safeAreaInset) + 'px';
+        })
+      }
+
+      setDropdownHeight();
+
+      window.addEventListener('load', setDropdownHeight);
+
+      window.addEventListener('resize', setDropdownHeight);
     }
-
-    setDropdownHeight();
-
-    window.addEventListener('load', setDropdownHeight);
-
-    window.addEventListener('resize', setDropdownHeight);
 
     //handle overlay on opening and closing of desktop dropdown
     if (window.innerWidth > 992) {
@@ -1518,6 +1520,7 @@
 
       observer.observe(navPagesContainer, { attributes: true, childList: true });
     }
+  
   })
 </script>
 

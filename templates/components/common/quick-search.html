@@ -1,6 +1,6 @@
 <div class="search-bar-container">
   <!-- <form class="search-form ss" action="{{urls.search}}" data-quick-search-form> -->
-    <form class="search-form ss" action="/search.php" data-quick-search-form>
+  <form class="search-form ss quick_search-form" data-url="/search.php" data-quick-search-form>
     <!-- <input
       class="search-input"
       id="{{name}}"
@@ -18,6 +18,7 @@
       data-error-message="{{lang 'search.error.empty_field'}}"
       placeholder="{{lang 'search.quick_search.input_placeholder'}}"
       autocomplete="off"
+      type="search"
     />
     <button type="submit" class="search-button" aria-label="Search">
       <svg
@@ -152,3 +153,36 @@
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //handle search
+    const quickSearchForms = document.querySelectorAll('.quick_search-form');
+    console.log('quickSearchForms:', quickSearchForms);
+
+
+    setTimeout(() => {
+      quickSearchForms.forEach(form => {
+
+        const quickSearchInput = form?.querySelector('.search-input');
+        console.log('quickSearchInput', quickSearchInput);
+        form?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          console.log('search form submitted');
+
+          if (quickSearchInput) {
+            const query = quickSearchInput.value.trim();
+
+            if (query) {
+              // Redirect manually
+              window.location.href = `/search.php?search_query=${encodeURIComponent(query)}`;
+            }
+          }
+        })
+      })
+    }, 3000)
+  })
+</script>
+

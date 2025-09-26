@@ -632,6 +632,28 @@
       transform: translateX(-50%) rotate(45deg);
      }
 
+     .navPage-subMenu-list::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 83px;
+    transform: translateX(-50%) translateY(-5%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+
+    background: var(--Tan-Background, #F2F0EC);
+    border-radius: 0px;
+
+    /* new border */
+    border-top: 1px solid #E0E0E0;
+    border-left: 1px solid #E0E0E0;
+    /* border-right: 1px solid red;
+    border-bottom: 1px solid red; */
+    box-sizing: border-box; /* ensures the border doesn’t increase total size */
+}
+
+
+
      .navPage-subMenu.is-open > .content > .category-image-and-cta {
       display: none;
      }

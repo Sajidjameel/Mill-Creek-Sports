@@ -1,13 +1,13 @@
 <style>
     .custom-dropdown {
        
-        width: 270px;
+        width: 262px;
         border-radius: 10px;
         border: 1px solid var(--Gray-5, #E0E0E0);
         background: var(--White, #FFF);
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
-        max-width: 270px;
-        padding: 23px 35px 28px 35px;
+        max-width: 262px;
+        padding: 23px 45px 28px 46px;
         position: absolute;
         right: 26px;
          top: 83px; 
@@ -55,6 +55,33 @@
         border-bottom: 8px solid #e0e0e0;
         z-index: -1;
     } */
+
+    .custom-dropdown .custom-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -32px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;   /* 1px bigger */
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #E0E0E0;      /* red “border” layer */
+    z-index: 0;                           /* behind the white triangle */
+}
+
+.custom-dropdown .custom-dropdown-menu::after {
+    content: '';
+    position: absolute;
+    top: -31px;                           /* 1px lower so it sits inside */
+    right: 21px;                           /* shift to keep centered */
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;        /* actual white arrow */
+    z-index: 1;                            /* on top */
+}
+
 
     .custom-dropdown .custom-dropdown-item {
         /* padding: 12px 20px; */

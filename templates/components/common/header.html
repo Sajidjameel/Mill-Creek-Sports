@@ -231,6 +231,8 @@
     background: var(--Page-Bkg, #FBFBFB);
     width: 300px;
     padding: 20px;
+    /* padding inspect */
+    padding: 11px 32.5px 9px 33px; 
 
     margin: 0;
     list-style-type: none;
@@ -406,6 +408,7 @@
   .stp-container {
     background: #fbfbfb !important;
     background-color: #fbfbfb !important;
+    /* font-family: "Noto Sans" !important; */
   }
 
   [data-content-region] [data-sub-layout] {
@@ -477,6 +480,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    margin-top: 3px;
   }
 
   .subCategory-name {
@@ -563,7 +567,7 @@
       display: block;
     }
     .navPage-subMenu-item .navPages-action {
-      border-bottom: 1px solid #cccccc;
+      border-bottom: 1px solid #E0E0E0;
     }
     .navPages-list:not(.navPages-list-depth-max) .navPage-subMenu-action {
       padding: 0.78571rem 0 1.14286rem;
@@ -590,7 +594,7 @@
       left: 300px;
       max-height: 785px;
       overflow: auto;
-      padding: 20px 20px 20px 35px;
+      padding: 18px 20px 20px 33px;
       height: 100%;
       border-radius: 0 10px 10px 0;
       border: 1px solid var(--Gray-5, #e0e0e0);
@@ -663,7 +667,7 @@
      }
 
      .navPage-subMenu-list {
-      padding: 20px 20px 0;
+      /* padding: 20px 20px 0; */
      }
 
      .navPages-action.has-subMenu > .navPages-action-moreIcon {
@@ -1554,6 +1558,14 @@
   position: relative;
   z-index: 3;
 }
+
+.fp-nav-prev svg path{
+  stroke: #BDBDBD;
+}
+/* .fp-nav-prev:hover svg path{
+
+  stroke: #961414;
+} */
 </style>
 
 <script>
@@ -1590,3 +1602,36 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+
+<!-- 
+<style>
+.fp-nav-prev svg path {
+  stroke: #BDBDBD;
+  transition: stroke 0.3s ease;
+}
+
+.fp-nav-prev.prev-green svg path {
+  stroke: #0A0A1E;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtn = document.querySelector('.fp-nav-next');
+  const prevBtn = document.querySelector('.fp-nav-prev');
+
+  if (!nextBtn || !prevBtn) return;
+
+  nextBtn.addEventListener('click', () => {
+    // add the class to change the color
+    prevBtn.classList.add('prev-green');
+
+    // remove it after 3 seconds (3000 ms)
+    setTimeout(() => {
+      prevBtn.classList.remove('prev-green');
+    }, 3000);
+  });
+});
+</script>
+ -->

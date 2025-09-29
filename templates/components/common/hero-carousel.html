@@ -34,7 +34,7 @@
     </div>
 
     <div class="carousel-arrows-and-dots">
-      <span class="icon carousel-arrow prev-arrow" style="cursor: pointer;">
+      <span class="icon carousel-arrow prev-arrow" style="cursor: pointer; width: 10px; height: 15px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="none">
           <g clip-path="url(#clip0_10_1100)">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -254,6 +254,9 @@
     bottom: 20px;
     left: 20px;
     right: 20px;
+    bottom: 14%;
+    left: 7.5%;
+    right: 8%;
     justify-content: space-between;
     gap: 26px;
     align-items: center;
@@ -293,7 +296,7 @@
     background: var(--Tan-Page-Bkg, #fbfbfb);
     text-decoration: none;
     min-width: fit-content;
-    align-self: flex-end;
+    /* align-self: flex-end; */
   }
 
   /* hero section right side 2 boxes btn-text*/
@@ -537,16 +540,21 @@
       min-height: 150px;
     }
 
-    .hero-section .right-container .upper .content,
+    /* .hero-section .right-container .upper .content,
     .hero-section .right-container .lower .content {
       bottom: 15px;
       left: 15px;
       right: 15px;
-    }
+    } */
 
     .hero-section .right-container .upper .heading,
     .hero-section .right-container .lower .heading {
       font-size: 16px;
+    }
+    
+    .hero-section .right-container .lower .heading {
+      font-size: 14px;
+      /* responsiveness issues oso its important */
     }
 
     .hero-section .right-container .upper .shop-now-btn,
@@ -611,6 +619,10 @@
       bottom: 15px;
       left: 15px;
       right: 15px;
+      bottom: 10.3%;
+        left: 5%;
+        right: 5.2%;
+    
     }
 
     .hero-section .right-container .upper .heading,
@@ -655,6 +667,13 @@
     .hero-section .right-container .upper .shop-now-btn--text,
     .hero-section .right-container .lower .shop-now-btn--text {
       font-size: 12px;
+    }
+
+
+  }
+ @media (min-width: 769px) and (max-width: 900px) {
+    section .right-container .lower .shop-now-btn {
+      align-self: flex-end;
     }
   }
 </style>

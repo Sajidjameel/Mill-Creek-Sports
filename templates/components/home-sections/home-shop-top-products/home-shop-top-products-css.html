@@ -12,12 +12,50 @@
         justify-content: center;
     }
 
+
+
+/* Add these styles to your existing CSS */
+.fp-progress-bar {
+    position: relative;
+    cursor: pointer;
+}
+
+.fp-progress-fill {
+    position: relative;
+    transition: width 0.2s ease;
+}
+
+/* Endpoint indicator */
+.fp-progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    /* box-shadow: 0 0 4px rgba(0,0,0,0.5); */
+}
+
+.fp-progress-bar:hover .fp-progress-fill::after {
+    transform: translateY(-50%) scale(1);
+}
+.fp-progress-fill.dragging::after {
+   cursor:grab;
+}
+
+
+
+
     .stp-slick-container .fp-progress-bar {
         width: 835px;
         height: 3px;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 1px;
-        overflow: hidden;
+        overflow: visible;
     }
     @media (max-width:992px) {
         .stp-slick-container .fp-progress-bar{
@@ -100,14 +138,6 @@
         font-weight: bold;
         color: #21205F;
         padding-left: 20px;
-
-        color: var(--Mill-Creek-Blue, #21205F);
-font-family: "Noto Sans";
-font-size: 36px;
-font-style: normal;
-font-weight: 700;
-line-height: 90%; /* 32.4px */
-letter-spacing: -0.72px;
     }
 
     .stp-filters {
@@ -159,11 +189,11 @@ letter-spacing: -0.72px;
     .stp-product-card {
         background: white;
         overflow: hidden;
-        /* transition: transform 0.3s ease; */
+        transition: transform 0.3s ease;
     }
-    /* .stp-product-card:hover{
+    .stp-product-card:hover{
         transform: translateY(-5px);
-    } */
+    }
 
     .stp-product-image {
         width: 100%;
@@ -217,15 +247,6 @@ letter-spacing: -0.72px;
         align-items: center;
         justify-content: space-between;
         padding-top: 7%;
-
-        color: var(--Dark-Overlay, #0A0A1E);
-        text-align: center;
-        font-family: "Noto Sans";
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%; /* 18px */
-        letter-spacing: -0.24px;
     }
 
     .stp-product-brand {
@@ -234,15 +255,6 @@ letter-spacing: -0.72px;
         margin-bottom: 5px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 400;
-
-        color: var(--Dark-Overlay, #0A0A1E);
-        text-align: center;
-        font-family: "Noto Sans";
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%; /* 18px */
-        letter-spacing: -0.24px;
     }
     .stp-product-brand-name{
         font-size: 12px;
@@ -307,75 +319,42 @@ letter-spacing: -0.72px;
         letter-spacing: 0px;
         font-weight: 500;
     }
-.stp-add-to-cart {
-    width: 100%;
-    padding: 15px;
-    border: 1.3px solid #21205F;
-    background: white;
-    color: #21205F;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 10px;
-    /* sweep setup */
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
 
-    /* only animate color & border-color (not border-width) */
-    transition: color 0.3s ease, border-color 0.3s ease;
+    .stp-add-to-cart {
+        width: 100%;
+        padding: 15px;
+        border: 1.3px solid #21205F;
+        background: white;
+        color: #21205F;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
 
+    .stp-add-to-cart::after {
+        content: '';
+        margin-left: 0;
+        transition: margin-left 0.5 ease opacity 0.5 ease;
+        opacity: 0;
+    }
 
-    color: var(--Mill-Creek-Blue, #21205F);
-text-align: center;
-font-family: "Noto Sans";
-font-size: 14px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-letter-spacing: -0.28px;
-text-transform: uppercase;
-}
+    .stp-add-to-cart:hover::after {
+        content: "→";
+        margin-left: 7px;
+        margin-bottom: 5px;
+        opacity: 1;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-.stp-add-to-cart::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #961414;
-    z-index: -1;
-    transition: top 0.3s ease;
-}
-
-.stp-add-to-cart::after {
-    content: '';
-    margin-left: 0;
-    opacity: 0;
-    transition: margin-left 0.5s ease, opacity 0.5s ease;
-}
-
-.stp-add-to-cart:hover {
-    color: white;
-    /* 🔴 only change color—keep border width constant */
-    border-color: #961414;
-}
-
-.stp-add-to-cart:hover::before {
-    top: 0;
-}
-
-.stp-add-to-cart:hover::after {
-    content: "→";
-    margin-left: 7px;
-    margin-bottom: 5px;
-    opacity: 1;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-}
-
+    .stp-add-to-cart:hover {
+        background: #961414;
+        color: white;
+        border-color: #961414;
+    }
   
 
     @media (max-width:768px) {

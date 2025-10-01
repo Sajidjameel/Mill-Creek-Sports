@@ -318,217 +318,184 @@
 </script>
 
 <script>
-// Prevent multiple initialization
-let progressBarInitialized = false;
+class ProgressBarManager {
+    constructor() {
+        this.isDragging = false;
+        this.currentProgressBar = null;
+        this.currentProgressFill = null;
+        this.dragStartX = 0;
+        this.initialWidth = 0;
+        this.init();
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    if (progressBarInitialized) return;
-    progressBarInitialized = true;
-    
-    let isDragging = false;
-    let currentProgressBar = null;
-    let currentProgressFill = null;
-    let dragStartX = 0;
-    let initialWidth = 0;
+    init() {
+        this.initializeProgressBars();
+    }
 
-    // Check if mobile (width < 570px)
-    function isMobileView() {
+    isMobileView() {
         return window.innerWidth < 570;
     }
-    
-    // Get percentage points based on device
-    function getPercentagePoints() {
-        return isMobileView() ? [20, 40, 60, 80, 100] : [40, 60, 80, 100];
+
+    getPercentagePoints() {
+        return this.isMobileView() ? [20, 40, 60, 80, 100] : [40, 60, 80, 100];
     }
-    
-    // Utility function to snap to nearest percentage point
-    function snapToNearestPercentage(currentPercentage) {
-        const percentagePoints = getPercentagePoints();
+
+    snapToNearestPercentage(currentPercentage) {
+        const percentagePoints = this.getPercentagePoints();
         const minPercentage = percentagePoints[0];
         
-        // If below first point, snap to first point
         if (currentPercentage < minPercentage) {
             return minPercentage;
         }
         
-        // Find the closest percentage point
-        let closest = percentagePoints[0];
-        let minDiff = Math.abs(currentPercentage - closest);
-        
-        for (let i = 1; i < percentagePoints.length; i++) {
-            const diff = Math.abs(currentPercentage - percentagePoints[i]);
-            if (diff < minDiff) {
-                minDiff = diff;
-                closest = percentagePoints[i];
-            }
-        }
-        
-        return closest;
+        return percentagePoints.reduce((closest, point) => {
+            return Math.abs(point - currentPercentage) < Math.abs(closest - currentPercentage) ? point : closest;
+        });
     }
 
-    // Utility function to get percentage
-    function getPercentage(progressBar, clientX) {
+    getPercentage(progressBar, clientX) {
         const rect = progressBar.getBoundingClientRect();
         const position = clientX - rect.left;
         return Math.min(100, Math.max(0, (position / rect.width) * 100));
     }
 
-    // Handle drag events
-    function handleDragStart(event, progressBar, progressFill) {
-        // Only handle left mouse button and first touch
+    handleDragStart = (event, progressBar, progressFill) => {
         if (event.type === 'mousedown' && event.button !== 0) return;
         if (event.type === 'touchstart' && event.touches.length !== 1) return;
         
         const rect = progressFill.getBoundingClientRect();
         const clickX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
         
-        // Check if click is near the endpoint (within 15px)
         if (Math.abs(clickX - rect.right) <= 15) {
-            isDragging = true;
-            currentProgressBar = progressBar;
-            currentProgressFill = progressFill;
-            dragStartX = clickX;
-            initialWidth = parseFloat(progressFill.style.width) || 0;
+            this.isDragging = true;
+            this.currentProgressBar = progressBar;
+            this.currentProgressFill = progressFill;
+            this.dragStartX = clickX;
+            this.initialWidth = parseFloat(progressFill.style.width) || 0;
             progressFill.classList.add('dragging');
             
-            console.log('Drag started:', initialWidth.toFixed(2) + '%', 'Mobile:', isMobileView());
+            console.log('Drag started:', this.initialWidth.toFixed(2) + '%', 'Mobile:', this.isMobileView());
             
-            // Add move and end listeners
-            document.addEventListener('mousemove', handleDragMove, { passive: false });
-            document.addEventListener('touchmove', handleDragMove, { passive: false });
-            document.addEventListener('mouseup', handleDragEnd, { passive: true });
-            document.addEventListener('touchend', handleDragEnd, { passive: true });
-            document.addEventListener('touchcancel', handleDragEnd, { passive: true });
+            // Add passive listeners for move events
+            document.addEventListener('mousemove', this.handleDragMove);
+            document.addEventListener('touchmove', this.handleDragMove, { passive: true });
+            document.addEventListener('mouseup', this.handleDragEnd);
+            document.addEventListener('touchend', this.handleDragEnd);
             
-            // Only prevent default if it's cancelable
-            if (event.cancelable) {
-                event.preventDefault();
-            }
             event.stopPropagation();
         }
     }
-    
-    function handleDragMove(event) {
-        if (!isDragging || !currentProgressBar) return;
+
+    handleDragMove = (event) => {
+        if (!this.isDragging || !this.currentProgressBar) return;
         
         const clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
-        const rawPercentage = getPercentage(currentProgressBar, clientX);
+        const rawPercentage = this.getPercentage(this.currentProgressBar, clientX);
         
-        // For smooth dragging, use raw percentage during movement
-        currentProgressFill.style.width = rawPercentage + '%';
-        
-        // Only prevent default if we're actually dragging and it's cancelable
-        if (isDragging && event.cancelable) {
-            event.preventDefault();
-        }
+        this.currentProgressFill.style.width = rawPercentage + '%';
     }
 
-    function handleDragEnd(event) {
-        if (!isDragging || !currentProgressFill) return;
+    handleDragEnd = (event) => {
+        if (!this.isDragging || !this.currentProgressFill) return;
         
         let clientX;
         if (event.type.includes('touch')) {
-            // Use last known position if no changedTouches
-            clientX = event.changedTouches?.[0]?.clientX || 
-                     event.touches?.[0]?.clientX || 
-                     dragStartX;
+            clientX = event.changedTouches?.[0]?.clientX || this.dragStartX;
         } else {
             clientX = event.clientX;
         }
         
-        const rawPercentage = getPercentage(currentProgressBar, clientX);
-        const snappedPercentage = snapToNearestPercentage(rawPercentage);
+        const rawPercentage = this.getPercentage(this.currentProgressBar, clientX);
+        const snappedPercentage = this.snapToNearestPercentage(rawPercentage);
         
-        // Apply the snapped percentage
-        currentProgressFill.style.width = snappedPercentage + '%';
+        this.currentProgressFill.style.width = snappedPercentage + '%';
         
-        console.log('Drag ended - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', isMobileView());
+        console.log('Drag ended - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', this.isMobileView());
         
-        updateSlickSliderFromProgress(currentProgressBar, snappedPercentage);
-        endDrag();
+        this.updateSlickSlider(this.currentProgressBar, snappedPercentage);
+        this.endDrag();
         
         event.stopPropagation();
     }
 
-    // Clean up event listeners
-    function endDrag() {
-        isDragging = false;
-        currentProgressFill?.classList.remove('dragging');
-        currentProgressBar = currentProgressFill = null;
-        dragStartX = initialWidth = 0;
+    endDrag() {
+        this.isDragging = false;
+        this.currentProgressFill?.classList.remove('dragging');
+        this.currentProgressBar = this.currentProgressFill = null;
+        this.dragStartX = this.initialWidth = 0;
         
-        // Remove event listeners
-        document.removeEventListener('mousemove', handleDragMove);
-        document.removeEventListener('touchmove', handleDragMove);
-        document.removeEventListener('mouseup', handleDragEnd);
-        document.removeEventListener('touchend', handleDragEnd);
-        document.removeEventListener('touchcancel', handleDragEnd);
+        document.removeEventListener('mousemove', this.handleDragMove);
+        document.removeEventListener('touchmove', this.handleDragMove);
+        document.removeEventListener('mouseup', this.handleDragEnd);
+        document.removeEventListener('touchend', this.handleDragEnd);
     }
 
-    // Initialize progress bars - only once
-    document.querySelectorAll('.fp-progress-bar').forEach(progressBar => {
-        // Check if already has listeners
-        if (progressBar.hasAttribute('data-progress-initialized')) return;
-        progressBar.setAttribute('data-progress-initialized', 'true');
+    handleProgressBarClick = (event, progressBar, progressFill) => {
+        if (this.isDragging) return;
+        const rawPercentage = this.getPercentage(progressBar, event.clientX);
+        const snappedPercentage = this.snapToNearestPercentage(rawPercentage);
         
-        const progressFill = progressBar.querySelector('.fp-progress-fill');
-        if (!progressFill) return;
-        
-        // Named functions for proper removal if needed
-        function handleProgressBarClick(event) {
-            if (isDragging) return;
-            const rawPercentage = getPercentage(progressBar, event.clientX);
-            const snappedPercentage = snapToNearestPercentage(rawPercentage);
-            
-            progressFill.style.width = snappedPercentage + '%';
-            console.log('Clicked - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', isMobileView());
-            updateSlickSliderFromProgress(progressBar, snappedPercentage);
-        }
-        
-        function handleProgressFillMouseDown(e) {
-            handleDragStart(e, progressBar, progressFill);
-        }
-        
-        function handleProgressFillTouchStart(e) {
-            handleDragStart(e, progressBar, progressFill);
-        }
+        progressFill.style.width = snappedPercentage + '%';
+        console.log('Clicked - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', this.isMobileView());
+        this.updateSlickSlider(progressBar, snappedPercentage);
+    }
 
-        // Click to set progress
-        progressBar.addEventListener('click', handleProgressBarClick);
+    updateSlickSlider(progressBar, percentage) {
+        const container = progressBar.closest('.stp-slick-container');
+        if (!container) return;
         
-        // Drag events - use passive: true for start events to avoid warnings
-        progressFill.addEventListener('mousedown', handleProgressFillMouseDown, { passive: true });
-        progressFill.addEventListener('touchstart', handleProgressFillTouchStart, { passive: true });
-    });
-});
-
-// Reusable function to update slider
-function updateSlickSliderFromProgress(progressBar, percentage) {
-    const container = progressBar.closest('.stp-slick-container');
-    if (!container) return;
-    
-    const containerMap = {
-        '#New-Products-container': '.new-products-grid',
-        '#Featured-Products-container': '.featured-products-grid', 
-        '#Top-Products-container': '.top-seller-products-grid'
-    };
-    
-    for (const [containerId, sliderClass] of Object.entries(containerMap)) {
-        if (container.querySelector(containerId) || container.closest(containerId)) {
-            const slider = $(sliderClass);
-            if (slider.length && typeof slider.slick === 'function') {
-                const totalSlides = slider[0].slick.slideCount;
-                const slidesToShow = getSlidesToShow();
-                const targetSlide = Math.floor((percentage / 100) * Math.max(0, totalSlides - slidesToShow));
-                
-                slider.slick('slickGoTo', Math.max(0, targetSlide), true);
-                updateProgressAfterClick(containerId, percentage);
-                break;
+        const containerMap = {
+            '#New-Products-container': '.new-products-grid',
+            '#Featured-Products-container': '.featured-products-grid', 
+            '#Top-Products-container': '.top-seller-products-grid'
+        };
+        
+        for (const [containerId, sliderClass] of Object.entries(containerMap)) {
+            if (container.querySelector(containerId) || container.closest(containerId)) {
+                const slider = $(sliderClass);
+                if (slider.length && typeof slider.slick === 'function') {
+                    const totalSlides = slider[0].slick.slideCount;
+                    const slidesToShow = getSlidesToShow();
+                    const targetSlide = Math.floor((percentage / 100) * Math.max(0, totalSlides - slidesToShow));
+                    
+                    slider.slick('slickGoTo', Math.max(0, targetSlide), true);
+                    updateProgressAfterClick(containerId, percentage);
+                    break;
+                }
             }
         }
     }
+
+    initializeProgressBars() {
+        document.querySelectorAll('.fp-progress-bar').forEach(progressBar => {
+            if (progressBar.hasAttribute('data-progress-initialized')) return;
+            progressBar.setAttribute('data-progress-initialized', 'true');
+            
+            const progressFill = progressBar.querySelector('.fp-progress-fill');
+            if (!progressFill) return;
+            
+            // Use arrow functions to maintain 'this' context
+            const handleClick = (e) => this.handleProgressBarClick(e, progressBar, progressFill);
+            const handleMouseDown = (e) => this.handleDragStart(e, progressBar, progressFill);
+            const handleTouchStart = (e) => this.handleDragStart(e, progressBar, progressFill);
+
+            progressBar.addEventListener('click', handleClick);
+            progressFill.addEventListener('mousedown', handleMouseDown, { passive: true });
+            progressFill.addEventListener('touchstart', handleTouchStart, { passive: true });
+        });
+    }
 }
 
+// Initialize the progress bar manager
+let progressBarManager;
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (!progressBarManager) {
+        progressBarManager = new ProgressBarManager();
+    }
+});
+
+// Keep your existing functions
 function updateProgressAfterClick(containerId, percentage) {
     const players = document.querySelectorAll(`${containerId} .stp-product-card`);
     if (players.length) {
@@ -540,7 +507,6 @@ function updateProgressAfterClick(containerId, percentage) {
     }
 }
 
-// Update setLoader function
 function setLoader(targets) {
     const playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
     const slidesSTP = getSlidesToShow();
@@ -550,7 +516,6 @@ function setLoader(targets) {
     
     let percentageSTP = (slidesSTP * 100) / playersLengthSTP;
     
-    // Apply minimum percentage based on device
     const isMobile = window.innerWidth < 570;
     const minPercentage = isMobile ? 20 : 40;
     percentageSTP = Math.max(minPercentage, percentageSTP);

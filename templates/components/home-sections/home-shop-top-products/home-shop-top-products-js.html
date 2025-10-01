@@ -118,6 +118,43 @@
         }
     }
 
+
+    function syncCustomArrows(containerId) {
+  console.log("Syncing arrows for:", containerId);
+
+  let container = document.querySelector(containerId);
+  if (!container) {
+    console.warn("No container found:", containerId);
+    return;
+  }
+
+  let slickPrev = container.querySelector('.slick-prev.slick-arrow');
+  let slickNext = container.querySelector('.slick-next.slick-arrow');
+  let progressBar = container.querySelector('.stp-slick-container');
+  let customPrev = container.querySelector('.fp-nav-prev');
+  let customNext = container.querySelector('.fp-nav-next');
+
+  if (slickPrev?.classList.contains('slick-disabled')) {
+    customPrev.style.opacity = "0.2";
+  } else {
+    customPrev.style.opacity = "1";
+  }
+
+  if (slickNext?.classList.contains('slick-disabled')) {
+    customNext.style.opacity = "0.2";
+  } else {
+    customNext.style.opacity = "1";
+  }
+
+  if (!slickNext && progressBar) {
+    progressBar.style.visibility = 'hidden';
+  } else if (progressBar) {
+    progressBar.style.display = 'flex'; 
+  }
+}
+
+    document.addEventListener('DOMContentLoaded',syncCustomArrows('#New-Products-container'));
+
     var playersSTP, slidesSTP, displaySlidesSTP, slidesSTP, playersLengthSTP, playersSTP, percentageSTP, slidesSTP, progressBarSTP
     function setLoader(targets) {
         playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
@@ -125,27 +162,29 @@
         displaySlidesSTP = slidesSTP;
         playersLengthSTP = playersSTP.length
         percentageSTP = (slidesSTP * 100) / playersLengthSTP;
-
+        
         progressBarSTP = document.querySelector(`${targets} .stp-slick-container .fp-progress-fill`)
         progressBarSTP && (progressBarSTP.style.width = `${percentageSTP}%`)
+        
     }
     setLoader('#New-Products-container');
-
     function nextSTP(event) {
 
         if (slidesSTP + 1 <= playersLengthSTP) {
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('.new-products-grid .slick-next.slick-arrow')?.click()
-
-        }
+            let arrow = document.querySelector('.new-products-grid .slick-next.slick-arrow')
+            arrow?.click();
+            syncCustomArrows('#New-Products-container')
     }
+}
 
     function featuredNextSTP(event) {
         if (slidesSTP + 1 <= playersLengthSTP) {
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.featured-products-grid .slick-next.slick-arrow')?.click()
+            syncCustomArrows('#Featured-Products-container');
 
         }
     }
@@ -154,7 +193,7 @@
             percentageSTP = (((++slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.top-seller-products-grid .slick-next.slick-arrow')?.click()
-
+            syncCustomArrows('#Top-Products-container');
         }
     }
 
@@ -165,20 +204,24 @@
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
             document.querySelector('.new-products-grid .slick-prev.slick-arrow')?.click();
+            syncCustomArrows('#New-Products-container');
         }
     }
     function featuredPrevSTP(event) {
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('.featured-products-grid .slick-prev.slick-arrow')?.click()
+            document.querySelector('.featured-products-grid .slick-prev.slick-arrow')?.click();
+            syncCustomArrows('#Featured-Products-container');
         }
     }
     function topPrevSTP(event) {
         if (slidesSTP - 1 >= displaySlidesSTP) {
             percentageSTP = (((--slidesSTP) * 100) / playersLengthSTP)
             progressBarSTP.style.width = `${percentageSTP}%`
-            document.querySelector('#Top-Products-container .slick-prev.slick-arrow')?.click()
+            document.querySelector('#Top-Products-container .slick-prev.slick-arrow')?.click();
+            syncCustomArrows('#Top-Products-container');
+
         }
     }
 
@@ -206,6 +249,7 @@
             $('.top-seller-products-grid').slick('slickGoTo', 0);
         }
         setLoader('#Top-Products-container')
+        syncCustomArrows('#Top-Products-container')
         newProducts.forEach((e) => e.classList.add('d-none'));
         if (featuredProducts.length > 0) {
             featuredProducts.forEach((e) => e.classList.add('d-none'));
@@ -231,7 +275,8 @@
         } else {
             $('.new-products-grid').slick('slickGoTo', 0);
         }
-        setLoader('#New-Products-container')
+        setLoader('#New-Products-container');
+        syncCustomArrows('#New-Products-container')
         newProducts.forEach((e) => e.classList.remove('d-none'));
         if (featuredProducts.length > 0) {
             featuredProducts.forEach((e) => e.classList.add('d-none'));
@@ -257,7 +302,8 @@
         } else {
             $('.featured-products-grid').slick('slickGoTo', 0);
         }
-        setLoader('#Featured-Products-container')
+        setLoader('#Featured-Products-container');
+        syncCustomArrows('#Featured-Products-container')
         newProducts.forEach((e) => e.classList.add('d-none'));
         if (featuredProducts.length > 0) {
             featuredProducts.forEach((e) => e.classList.remove('d-none'));
@@ -269,4 +315,249 @@
         }
     }
 
+</script>
+
+<script>
+// Prevent multiple initialization
+let progressBarInitialized = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (progressBarInitialized) return;
+    progressBarInitialized = true;
+    
+    let isDragging = false;
+    let currentProgressBar = null;
+    let currentProgressFill = null;
+    let dragStartX = 0;
+    let initialWidth = 0;
+
+    // Check if mobile (width < 570px)
+    function isMobileView() {
+        return window.innerWidth < 570;
+    }
+    
+    // Get percentage points based on device
+    function getPercentagePoints() {
+        return isMobileView() ? [20, 40, 60, 80, 100] : [40, 60, 80, 100];
+    }
+    
+    // Utility function to snap to nearest percentage point
+    function snapToNearestPercentage(currentPercentage) {
+        const percentagePoints = getPercentagePoints();
+        const minPercentage = percentagePoints[0];
+        
+        // If below first point, snap to first point
+        if (currentPercentage < minPercentage) {
+            return minPercentage;
+        }
+        
+        // Find the closest percentage point
+        let closest = percentagePoints[0];
+        let minDiff = Math.abs(currentPercentage - closest);
+        
+        for (let i = 1; i < percentagePoints.length; i++) {
+            const diff = Math.abs(currentPercentage - percentagePoints[i]);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = percentagePoints[i];
+            }
+        }
+        
+        return closest;
+    }
+
+    // Utility function to get percentage
+    function getPercentage(progressBar, clientX) {
+        const rect = progressBar.getBoundingClientRect();
+        const position = clientX - rect.left;
+        return Math.min(100, Math.max(0, (position / rect.width) * 100));
+    }
+
+    // Handle drag events
+    function handleDragStart(event, progressBar, progressFill) {
+        // Only handle left mouse button and first touch
+        if (event.type === 'mousedown' && event.button !== 0) return;
+        if (event.type === 'touchstart' && event.touches.length !== 1) return;
+        
+        const rect = progressFill.getBoundingClientRect();
+        const clickX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+        
+        // Check if click is near the endpoint (within 15px)
+        if (Math.abs(clickX - rect.right) <= 15) {
+            isDragging = true;
+            currentProgressBar = progressBar;
+            currentProgressFill = progressFill;
+            dragStartX = clickX;
+            initialWidth = parseFloat(progressFill.style.width) || 0;
+            progressFill.classList.add('dragging');
+            
+            console.log('Drag started:', initialWidth.toFixed(2) + '%', 'Mobile:', isMobileView());
+            
+            // Add move and end listeners
+            document.addEventListener('mousemove', handleDragMove, { passive: false });
+            document.addEventListener('touchmove', handleDragMove, { passive: false });
+            document.addEventListener('mouseup', handleDragEnd, { passive: true });
+            document.addEventListener('touchend', handleDragEnd, { passive: true });
+            document.addEventListener('touchcancel', handleDragEnd, { passive: true });
+            
+            // Only prevent default if it's cancelable
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+            event.stopPropagation();
+        }
+    }
+    
+    function handleDragMove(event) {
+        if (!isDragging || !currentProgressBar) return;
+        
+        const clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+        const rawPercentage = getPercentage(currentProgressBar, clientX);
+        
+        // For smooth dragging, use raw percentage during movement
+        currentProgressFill.style.width = rawPercentage + '%';
+        
+        // Only prevent default if we're actually dragging and it's cancelable
+        if (isDragging && event.cancelable) {
+            event.preventDefault();
+        }
+    }
+
+    function handleDragEnd(event) {
+        if (!isDragging || !currentProgressFill) return;
+        
+        let clientX;
+        if (event.type.includes('touch')) {
+            // Use last known position if no changedTouches
+            clientX = event.changedTouches?.[0]?.clientX || 
+                     event.touches?.[0]?.clientX || 
+                     dragStartX;
+        } else {
+            clientX = event.clientX;
+        }
+        
+        const rawPercentage = getPercentage(currentProgressBar, clientX);
+        const snappedPercentage = snapToNearestPercentage(rawPercentage);
+        
+        // Apply the snapped percentage
+        currentProgressFill.style.width = snappedPercentage + '%';
+        
+        console.log('Drag ended - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', isMobileView());
+        
+        updateSlickSliderFromProgress(currentProgressBar, snappedPercentage);
+        endDrag();
+        
+        event.stopPropagation();
+    }
+
+    // Clean up event listeners
+    function endDrag() {
+        isDragging = false;
+        currentProgressFill?.classList.remove('dragging');
+        currentProgressBar = currentProgressFill = null;
+        dragStartX = initialWidth = 0;
+        
+        // Remove event listeners
+        document.removeEventListener('mousemove', handleDragMove);
+        document.removeEventListener('touchmove', handleDragMove);
+        document.removeEventListener('mouseup', handleDragEnd);
+        document.removeEventListener('touchend', handleDragEnd);
+        document.removeEventListener('touchcancel', handleDragEnd);
+    }
+
+    // Initialize progress bars - only once
+    document.querySelectorAll('.fp-progress-bar').forEach(progressBar => {
+        // Check if already has listeners
+        if (progressBar.hasAttribute('data-progress-initialized')) return;
+        progressBar.setAttribute('data-progress-initialized', 'true');
+        
+        const progressFill = progressBar.querySelector('.fp-progress-fill');
+        if (!progressFill) return;
+        
+        // Named functions for proper removal if needed
+        function handleProgressBarClick(event) {
+            if (isDragging) return;
+            const rawPercentage = getPercentage(progressBar, event.clientX);
+            const snappedPercentage = snapToNearestPercentage(rawPercentage);
+            
+            progressFill.style.width = snappedPercentage + '%';
+            console.log('Clicked - Raw:', rawPercentage.toFixed(2) + '%, Snapped:', snappedPercentage + '%, Mobile:', isMobileView());
+            updateSlickSliderFromProgress(progressBar, snappedPercentage);
+        }
+        
+        function handleProgressFillMouseDown(e) {
+            handleDragStart(e, progressBar, progressFill);
+        }
+        
+        function handleProgressFillTouchStart(e) {
+            handleDragStart(e, progressBar, progressFill);
+        }
+
+        // Click to set progress
+        progressBar.addEventListener('click', handleProgressBarClick);
+        
+        // Drag events - use passive: true for start events to avoid warnings
+        progressFill.addEventListener('mousedown', handleProgressFillMouseDown, { passive: true });
+        progressFill.addEventListener('touchstart', handleProgressFillTouchStart, { passive: true });
+    });
+});
+
+// Reusable function to update slider
+function updateSlickSliderFromProgress(progressBar, percentage) {
+    const container = progressBar.closest('.stp-slick-container');
+    if (!container) return;
+    
+    const containerMap = {
+        '#New-Products-container': '.new-products-grid',
+        '#Featured-Products-container': '.featured-products-grid', 
+        '#Top-Products-container': '.top-seller-products-grid'
+    };
+    
+    for (const [containerId, sliderClass] of Object.entries(containerMap)) {
+        if (container.querySelector(containerId) || container.closest(containerId)) {
+            const slider = $(sliderClass);
+            if (slider.length && typeof slider.slick === 'function') {
+                const totalSlides = slider[0].slick.slideCount;
+                const slidesToShow = getSlidesToShow();
+                const targetSlide = Math.floor((percentage / 100) * Math.max(0, totalSlides - slidesToShow));
+                
+                slider.slick('slickGoTo', Math.max(0, targetSlide), true);
+                updateProgressAfterClick(containerId, percentage);
+                break;
+            }
+        }
+    }
+}
+
+function updateProgressAfterClick(containerId, percentage) {
+    const players = document.querySelectorAll(`${containerId} .stp-product-card`);
+    if (players.length) {
+        const slides = Math.floor((percentage / 100) * players.length);
+        if (containerId === '#New-Products-container') {
+            slidesSTP = Math.max(getSlidesToShow(), slides);
+        }
+        syncCustomArrows(containerId);
+    }
+}
+
+// Update setLoader function
+function setLoader(targets) {
+    const playersSTP = document.querySelectorAll(`${targets} .stp-product-card`);
+    const slidesSTP = getSlidesToShow();
+    const playersLengthSTP = playersSTP.length;
+    
+    if (playersLengthSTP === 0) return;
+    
+    let percentageSTP = (slidesSTP * 100) / playersLengthSTP;
+    
+    // Apply minimum percentage based on device
+    const isMobile = window.innerWidth < 570;
+    const minPercentage = isMobile ? 20 : 40;
+    percentageSTP = Math.max(minPercentage, percentageSTP);
+    
+    const progressBarSTP = document.querySelector(`${targets} .stp-slick-container .fp-progress-fill`);
+    if (progressBarSTP) {
+        progressBarSTP.style.width = `${percentageSTP}%`;
+    }
+}
 </script>
